@@ -24,10 +24,10 @@ final class The_Guide {
 		 *
 		 * When DEV_MODE is TRUE:
 		 * 
-		 * The_Guide_Public_Assets->is_current_user_watched_this_tour() always returns FALSE so you can watch any tour.
+		 * - The_Guide_Public_Assets->is_current_user_watched_this_tour() always returns FALSE so you can watch any tour.
+		 * - There's no caching in browsers because the version of the plugin used for assets' URLs is equal to the time.
 		 */
 		define( 'DEV_MODE', true );
-		// Used for assets version (to avoid browser cache)
 		define( 'THE_GUIDE_VERSION', DEV_MODE ? time() : 0.1 );
 
 		define( 'THE_GUIDE_URL', plugin_dir_url( __FILE__ ) );
