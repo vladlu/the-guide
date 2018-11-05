@@ -1,0 +1,193 @@
+/*
+* YOU SHOULD KNOW WHAT YOU ARE DOING !!!
+*
+* This is a copy of the default plugin styles.
+* If you delete this, everything will be OK.
+*
+* Also you can get the default styles again: delete everything here
+* (CTRL+A & DEL).
+*/
+.the-guide-floating-block {
+    /* Better don't edit this "position" */
+    position:         fixed;
+    /*
+    * The default position of the element.
+    * You can set up positions on the settings page.
+    */
+    bottom:           2%;
+    right:            2%;
+
+    border:           1px solid #e5e5e5;
+    border-radius:    2px;
+    background-color: #fff;
+    font-size:        16px !important;
+    height:           175px;
+    width:            275px;
+    overflow-x:       hidden;
+    z-index:          999;
+}
+
+    .the-guide-floating-block-container {
+        position: relative;
+        height:   100%;
+    }
+
+        .the-guide-floating-block-content {
+            padding:    4px;
+            height:     137px;
+            font-size:  16px;
+            overflow-y: auto;
+        }
+
+        .the-guide-floating-block-button-container {
+            height:     35px;
+            text-align: center;
+        }
+
+            .the-guide-floating-block-button {
+                width:      125px;
+                height:     100%;
+                padding:    1px !important;
+                font-size:  12px !important;
+            }
+
+
+.the-guide-modal {
+    /* Better don't edit this "position" */
+    position:         fixed;
+    /* The default position of the element. */
+    top:              7.5%;
+    left:             3.5%;
+
+    width:            300px;
+    height:           200px;
+    border:           1px solid #e5e5e5;
+    border-radius:    2px;
+    background-color: #fff;
+    overflow-x:       hidden;
+    z-index:          1001;
+}
+
+    .the-guide-modal-container {
+        position: relative;
+        height:   100%;
+    }
+
+        .the-guide-modal-current-elem {
+            text-align: center;
+            height:     23px;
+            font-size:  16px;
+        }
+
+        .the-guide-modal-content {
+            height:     145px;
+            font-size:  16px;
+            overflow-y: auto;
+        }
+
+        .the-guide-modal-buttons {
+            position:   relative;
+            height:     30px;
+        }
+
+            #the-guide-modal-button-prev {
+                position:   absolute;
+                bottom:     0;
+                left:       0;
+                width:      75px;
+                height:     100%;
+                font-size:  12px;
+                padding:     1px;
+            }
+
+            #the-guide-modal-button-next {
+                position:   absolute;
+                bottom:     0;
+                right:      0;
+                width:      75px;
+                height:     100%;
+                font-size:  12px;
+                padding:     1px;
+            }
+
+
+
+.the-guide-modal-next-to-the-elem {
+    position:         absolute;
+    width:            500px;
+    height:           100px;
+    border:           1px solid #e5e5e5;
+    border-radius:    2px;
+    background-color: #fff;
+    overflow-x:       hidden;
+    z-index:          1001;
+}
+    .the-guide-modal-next-to-the-elem-container {
+        position:        relative;
+        display:         flex;
+        justify-content: space-between;
+        align-items:     stretch;
+        height:          100%;
+    }
+
+        .the-guide-modal-next-to-the-elem-current-elem {
+            position:    absolute;
+            text-align:  left;
+            font-size:   16px;
+            left:        5px;
+            font-weight: bold;
+            color:       whitesmoke;
+            z-index:     2;
+        }
+
+        .the-guide-modal-next-to-the-elem-button-prev-container {
+            flex-basis: 17.5%;
+            height:     100%;
+            width:      100%;
+        }
+
+            #the-guide-modal-next-to-the-elem-button-prev {
+                height:     100%;
+                min-width:  100%;
+                font-size:  12px;
+                padding:    0 !important;
+            }
+
+        .the-guide-modal-next-to-the-elem-content {
+            flex-basis: 65%;
+            padding:    2px;
+            height:     100%;
+            width:      100%;
+            font-size:  16px;
+            overflow-y: auto;
+        }
+
+        .the-guide-modal-next-to-the-elem-button-next-container {
+            flex-basis: 17.5%;
+            height:     100%;
+            width:      100%;
+        }
+
+            #the-guide-modal-next-to-the-elem-button-next {
+                height:     100%;
+                width:      100%;
+                font-size:  12px;
+                padding:    0 !important;
+            }
+
+
+/*******************
+* DANGEROUS
+*/
+.the-guide-shadow {
+    position:    absolute;
+    z-index:     1000;
+    box-shadow:  0 0 0 100000px rgba(0,0,0,.85);
+}
+
+.the-guide-hidden {
+    display: none;
+}
+/*
+* DANGEROUS
+*******************/

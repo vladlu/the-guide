@@ -1,0 +1,2 @@
+- Run "to_dev.sh" to switch the plugin to development mode.
+- Run "to_prod.sh" to switch the plugin to production mode.
