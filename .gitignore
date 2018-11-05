@@ -1,0 +1,23 @@
+# Main
+dev/webpack/node_modules/
+assets/general/lib/
+assets/admin/lib/
+
+# Editors
+project.xml
+project.properties
+/nbproject/private/
+.buildpath
+.project
+.settings*
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+.sublimelinterrc
+
+# OS X metadata
+.DS_Store
+
+# Windows junk
+Thumbs.db
