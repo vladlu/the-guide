@@ -6,3 +6,6 @@ Version: alpha 0.1
 There's still a lot of work to do.
 
 If you want to test the plugin, download the RELEASE archive from here https://github.com/vladlu/the-guide/releases, then go to Plugins > Add New on your WordPress site, click Upload Plugin button and select the archive.
+
+Demo:  
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/lf-gFjWmY9M/0.jpg)](https://www.youtube.com/watch?v=lf-gFjWmY9M)
