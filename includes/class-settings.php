@@ -20,14 +20,9 @@ class The_Guide_Settings {
 
 
 	public function save_plugin_setting( $setting_name, $data_to_save ) {
-		if ( get_option( 'the-guide-settings' ) ) {
-			$all_settings = get_option( 'the-guide-settings' );
-			$all_settings[ $setting_name ] = $data_to_save;
-
-			update_option( 'the-guide-settings', $all_settings );
-		} else {
-			add_option( 'the-guide-settings', $data_to_save );
-		}
+		$all_settings = get_option( 'the-guide-settings' );
+		$all_settings[ $setting_name ] = $data_to_save;
+		update_option( 'the-guide-settings', $all_settings );
 	}
 
 
