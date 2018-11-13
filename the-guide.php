@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: The Guide
-Description: A page tour plugin for WordPress
+Description: Explains to your site visitors how to interact with it.
 Version: 0.1
 Author: Vladislav Luzan
 Text Domain: the-guide
