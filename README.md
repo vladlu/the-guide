@@ -1,7 +1,7 @@
 # the-guide
 WordPress Plugin  
 
-Explains to your site visitors how to interact with it.  
+Explains to your site visitors how to use it. 
 Like [Bootstrap Tour](https://bootstraptour.com/) but special for WordPress and easier to use (and more raw...).
 
 Version: alpha 0.1
