@@ -1,6 +1,6 @@
 'use strict';
 
-jQuery( ($) => {
+jQuery( $ => {
 
     // Moves elements according to their positions
     (function () {

@@ -41,7 +41,7 @@ class The_Guide_Menus {
 			}
 		);
 
-		add_action( 'admin_print_scripts-' . $page, [
+		add_action( 'load-' . $page, [
 			new The_Guide_Admin_Assets( $this->settings ), 'load_controller_menu_assets'
 		] );
 
@@ -57,7 +57,7 @@ class The_Guide_Menus {
 			}
 		);
 
-		add_action( 'admin_print_scripts-' . $page, [
+		add_action( 'load-' . $page, [
 			new The_Guide_Admin_Assets( $this->settings ), 'load_settings_menu_assets'
 		] );
 
@@ -73,7 +73,7 @@ class The_Guide_Menus {
 			}
 		);
 
-		add_action( 'admin_print_scripts-' . $page, [
+		add_action( 'load-' . $page, [
 			new The_Guide_Admin_Assets( $this->settings ), 'load_customize_menu_assets'
 		] );
 

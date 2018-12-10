@@ -1,6 +1,6 @@
 'use strict';
 
-jQuery( ($) => {
+jQuery( $ => {
 
     let cm = CodeMirror.fromTextArea(
         document.querySelector( '.the-guide-customize-input-area' ),
