@@ -1,13 +1,13 @@
 <?php
 /*
 Plugin Name: The Guide
-Description: Explains to your site visitors how to interact with it.
-Plugin URI: https://github.com/vladlu/the-guide
-Version: 0.1.2
-Author: Vladislav Luzan
-Author URI: https://vlad.lu/
+Description: Explains to your site visitors how to use it.
+Version:     0.1.2
+Plugin URI:  https://github.com/vladlu/the-guide
+Author:      Vladislav Luzan
+Author URI:  https://vlad.lu/
 Text Domain: the-guide
-License: MIT
+License:     MIT
 */
 
 
