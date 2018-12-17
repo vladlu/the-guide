@@ -6,6 +6,8 @@ Like [Bootstrap Tour](https://bootstraptour.com/) but special for WordPress and 
 
 Version: alpha 0.1.2
 
+Idea authors: [Mechanical Pie Studio](https://mechanical-pie.com/)
+
 If you want to test the plugin, download the RELEASE archive from here https://github.com/vladlu/the-guide/releases, then go to Plugins > Add New on your WordPress site, click Upload Plugin button and select the archive.
 
 Demo:  
