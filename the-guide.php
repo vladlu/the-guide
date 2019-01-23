@@ -19,6 +19,44 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class The_Guide {
 
+
+	/**
+	 * Settings object.
+	 *
+	 * @since 0.1.0
+	 * @var object The_Guide_Settings
+	 */
+	private $settings;
+
+
+
+	public function __construct() {
+		$this->define_constants();
+		$this->import_files();
+
+		add_action( 'init', function() {
+			$this->settings = new The_Guide_Settings;
+
+
+			$this->load_plugin_textdomain();
+			$this->register_post_type();
+
+			if ( wp_doing_ajax() ) {
+				new The_Guide_Ajax( $this->settings );
+			}
+
+			if ( is_admin() ) {
+				new The_Guide_Menus( $this->settings );
+			} else {
+				new The_Guide_Public_Assets( $this->settings );
+			}
+
+			new The_Guide_Shortcodes();
+		} );
+	}
+
+
+
 	private function define_constants() {
 		/**
 		 * Don't touch this constant. Use the script in /dev instead.
@@ -33,7 +71,6 @@ final class The_Guide {
 
 		define( 'THE_GUIDE_URL', plugin_dir_url( __FILE__ ) );
 		define( 'THE_GUIDE_DIR', plugin_dir_path( __FILE__ ) );
-		define( 'THE_GUIDE_FILE', __FILE__ );
  	}
 
 
@@ -56,30 +93,6 @@ final class The_Guide {
 		register_post_type( 'the-guide', [
 			'public' => false
 		] );
-	}
-
-
-	public function __construct() {
-		$this->define_constants();
-		$this->import_files();
-		add_action( 'plugins_loaded', [ $this, 'load_plugin_textdomain' ] );
-		add_action( 'init', function() {
-			$settings_inst = new The_Guide_Settings;
-
-			$this->register_post_type();
-
-			if ( wp_doing_ajax() ) {
-				new The_Guide_Ajax( $settings_inst );
-			}
-
-			if ( is_admin() ) {
-				new The_Guide_Menus( $settings_inst );
-			} else {
-				new The_Guide_Public_Assets( $settings_inst );
-			}
-
-			new The_Guide_Shortcodes();
-		} );
 	}
 }
 

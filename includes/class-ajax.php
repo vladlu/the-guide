@@ -19,7 +19,22 @@ class The_Guide_Ajax {
 
 
 
-	public function ajax_public_get_tour_data_by_id() {
+	public function __construct( The_Guide_Settings $settings_inst ) {
+		$this->settings = $settings_inst;
+
+		add_action( 'wp_ajax_the_guide_public_get_tour_data_by_id',        [ $this, 'public_get_tour_data_by_id' ] );
+		add_action( 'wp_ajax_nopriv_the_guide_public_get_tour_data_by_id', [ $this, 'public_get_tour_data_by_id' ] );
+		if ( current_user_can( 'list_users' ) ) {
+			add_action( 'wp_ajax_the_guide_controller_menu',             [ $this, 'controller_menu' ] );
+			add_action( 'wp_ajax_the_guide_controller_menu_delete_tour', [ $this, 'controller_menu_delete_tour' ] );
+			add_action( 'wp_ajax_the_guide_settings_menu',  [ $this, 'settings_menu' ] );
+			add_action( 'wp_ajax_the_guide_customize_menu', [ $this, 'customize_menu' ] );
+		}
+	}
+
+
+
+	public function public_get_tour_data_by_id() {
 		// Returns tour data only if the tour is enabled
 		if ( in_array( $_POST['id'], (array) $this->settings->get_plugin_setting( 'enabled-tours' ) ) ) {
 			// And if there is a token in the request
@@ -41,7 +56,7 @@ class The_Guide_Ajax {
 
 
 
-	public function ajax_controller_menu() {
+	public function controller_menu() {
 		if ( wp_verify_nonce( $_POST['token'], '5MBn1s3cLrcK' ) ) {
 
 			$this->settings->save_plugin_setting(
@@ -60,7 +75,7 @@ class The_Guide_Ajax {
 
 
 
-	public function ajax_controller_menu_delete_tour() {
+	public function controller_menu_delete_tour() {
 		if ( wp_verify_nonce( $_POST['token'], '5MBn1s3cLrcK' ) ) {
 			wp_delete_post( (int) $_POST['tour-id'], true );
 		}
@@ -69,7 +84,7 @@ class The_Guide_Ajax {
 
 
 
-	public function ajax_settings_menu() {
+	public function settings_menu() {
 		if ( wp_verify_nonce( $_POST['token'], 'kv155ztWAlFQ' ) ) {
 
 			$data = [
@@ -173,25 +188,10 @@ class The_Guide_Ajax {
 
 
 
-	public function ajax_customize_menu() {
+	public function customize_menu() {
 		if ( wp_verify_nonce( $_POST['token'], 'NzbrOyxcQOb6' ) ) {
 			$this->settings->save_plugin_setting( 'custom-css', stripslashes( $_POST['customCSS'] ) );
 		}
 		wp_die();
-	}
-
-
-
-	public function __construct( The_Guide_Settings $settings_inst ) {
-		$this->settings = $settings_inst;
-
-		add_action( 'wp_ajax_the_guide_public_get_tour_data_by_id',        [ $this, 'ajax_public_get_tour_data_by_id' ] );
-		add_action( 'wp_ajax_nopriv_the_guide_public_get_tour_data_by_id', [ $this, 'ajax_public_get_tour_data_by_id' ] );
-		if ( current_user_can( 'list_users' ) ) {
-			add_action( 'wp_ajax_the_guide_controller_menu',             [ $this, 'ajax_controller_menu' ] );
-			add_action( 'wp_ajax_the_guide_controller_menu_delete_tour', [ $this, 'ajax_controller_menu_delete_tour' ] );
-			add_action( 'wp_ajax_the_guide_settings_menu',  [ $this, 'ajax_settings_menu' ] );
-			add_action( 'wp_ajax_the_guide_customize_menu', [ $this, 'ajax_customize_menu' ] );
-		}
 	}
 }

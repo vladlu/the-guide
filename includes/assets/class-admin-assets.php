@@ -19,6 +19,12 @@ class The_Guide_Admin_Assets {
 
 
 
+	public function __construct( The_Guide_Settings $settings_inst ) {
+		$this->settings = $settings_inst;
+	}
+
+
+
 	private function get_admin_js_data() {
 		$all_posts_data = [];
 
@@ -186,11 +192,5 @@ class The_Guide_Admin_Assets {
 		wp_localize_script( 'the-guide-script-admin-customize-menu',  'theGuide', [
 			'token' => wp_create_nonce( 'NzbrOyxcQOb6' ),
 		] );
-	}
-
-
-
-	public function __construct( The_Guide_Settings $settings_inst ) {
-		$this->settings = $settings_inst;
 	}
 }

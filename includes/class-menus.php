@@ -19,6 +19,15 @@ class The_Guide_Menus {
 
 
 
+	public function __construct( The_Guide_Settings $settings_inst ) {
+		$this->settings = $settings_inst;
+
+		// Inits dashboard menus
+		add_action( 'admin_menu', [ $this, 'init_dashboard_menus' ] );
+	}
+
+
+
 	public function init_dashboard_menus() {
 		add_menu_page(
 			'The Guide',
@@ -79,14 +88,5 @@ class The_Guide_Menus {
 
 
 		remove_submenu_page( 'the-guide-menu', 'the-guide-menu' );
-	}
-
-
-
-	public function __construct( The_Guide_Settings $settings_inst ) {
-        $this->settings = $settings_inst;
-
-        // Inits dashboard menus
-		add_action( 'admin_menu', [ $this, 'init_dashboard_menus' ] );
 	}
 }

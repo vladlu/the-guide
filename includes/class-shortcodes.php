@@ -9,6 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class The_Guide_Shortcodes {
 
+
+	public function __construct() {
+		// It's impossible to use is_singular() before WP object is initialized
+		add_action( 'wp', [ $this, 'init_shortcodes' ] );
+	}
+
 	
 	public function shortcode_the_guide_launch( $atts ) {
 		// Check if shortcode doesn't exists yet.
@@ -55,11 +61,5 @@ class The_Guide_Shortcodes {
 				$GLOBALS['post']->post_content = do_shortcode( $content );
 			}
 		}
-	}
-
-
-	public function __construct() {
-		// It's impossible to use is_singular() before WP object is initialized
-		add_action( 'wp', [ $this, 'init_shortcodes' ] );
 	}
 }
