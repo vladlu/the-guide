@@ -1,0 +1,25 @@
+.the-guide-header {
+    text-align: center;
+}
+
+.the-guide-customize-input-area {
+    width:  100%;
+}
+
+.CodeMirror {
+    border: 1px solid #eee;
+    height: auto;
+}
+
+.the-guide-flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+.the-guide-flex-item-input {
+    flex-basis: 640px;
+}
+
+.the-guide-submit-button {
+    margin-top: 5px !important;
+}

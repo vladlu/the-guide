@@ -1,0 +1,120 @@
+.the-guide-header {
+    text-align: center;
+}
+
+
+.the-guide-flex-container-activation-method {
+    display:     flex;
+    align-items: center;
+    margin-top:  -.3em;
+}
+.the-guide-flex-container-selected-elems {
+    display:       flex;
+    align-items:   center;
+    margin-bottom: .35em;
+}
+.the-guide-flex-container-primary {
+    display:        flex;
+    align-items:    center;
+    margin-bottom:  3px;
+}
+.the-guide-flex-container {
+    display:     flex;
+    align-items: center;
+}
+
+    .the-guide-flex-item-text {
+        flex-basis: 11.25%;
+    }
+    .the-guide-flex-item-position-title {
+        flex-basis: 11.25%;
+        display:    flex;
+        flex-flow:  column;
+    }
+
+        .the-guide-position-title {
+            margin-top:    0.35em;
+            margin-bottom: 0.35em;
+        }
+
+    .the-guide-flex-item-position-input {
+        flex-basis: 22.5%;
+        display:    flex;
+        flex-flow:  column;
+    }
+
+
+
+    .the-guide-flex-title {
+        flex-basis: 22.5%;
+    }
+
+    .the-guide-flex-title-content {
+        flex-basis:      22.5%;
+        display:         flex;
+        justify-content: center;
+        align-items:     center;
+    }
+
+    .the-guide-flex-input {
+        flex-basis: 20%;
+    }
+
+
+.the-guide-tour-activation {
+    margin-top:    8px;
+    margin-bottom: 8px;
+}
+
+.the-guide-controller-position {
+    margin-top:    8px;
+    margin-bottom: 8px;
+}
+
+
+#the-guide-activation-data-floating-text {
+    width:  270px;
+}
+
+#the-guide-activation-data-position-input-top,
+#the-guide-activation-data-position-input-bottom,
+#the-guide-activation-data-position-input-left,
+#the-guide-activation-data-position-input-right {
+    width: 75px;
+}
+
+#the-guide-controller-position-input-top,
+#the-guide-controller-position-input-bottom,
+#the-guide-controller-position-input-left,
+#the-guide-controller-position-input-right {
+    width: 75px;
+}
+
+#the-guide-activation-data-selectors-input,
+#the-guide-steps,
+#the-guide-url {
+    width: 400px;
+}
+
+.the-guide-step-content {
+    width: 250px;
+}
+
+textarea {
+    margin-left: 1px !important;
+}
+
+.the-guide-bold {
+    color: #383838;
+    font-weight: bolder;
+}
+
+
+.the-guide-submit-button {
+    margin-left: 27.5% !important;
+}
+
+
+.the-guide-hidden {
+    display: none;
+}
