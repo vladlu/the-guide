@@ -4,24 +4,15 @@ SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 cd $SCRIPTPATH
 
 
-for file in ../admin/styles/*.prod.css
+
+while IFS=, read -r path extension
 do
-  mv "$file" "${file/.prod.css/.css}"
-done
+	for file in "../$path/*.prod.$extension"
+	do
+  		mv "$file" "${file/.prod.$extension/.$extension}"
+	done
+done < "files_to_cover.csv"
 
-
-
-for file in ../admin/js/*.prod.js
-do
-  mv "$file" "${file/.prod.js/.js}"
-done
-
-
-
-for file in ../public/js/*.prod.js
-do
-  mv "$file" "${file/.prod.js/.js}"
-done
 
 
 sed -i '' -e "s/define( 'DEV_MODE', false )/define( 'DEV_MODE', true )/g" ../the-guide.php
