@@ -1,27 +1,26 @@
-const UglifyJSPlugin          = require('uglifyjs-webpack-plugin'),
-      ExtractTextPlugin       = require('extract-text-webpack-plugin'),
-      OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 
 const Main = {
-	entry: {
-        'public/js/the-guide.js':             '../../assets/public/js/the-guide.prod.js',
-        
-        'admin/js/dashboard-controller-menu.js': '../../assets/admin/js/dashboard-controller-menu.prod.js',
-        'admin/js/dashboard-settings-menu.js':   '../../assets/admin/js/dashboard-settings-menu.prod.js',
-        'admin/js/dashboard-customize-menu.js':  '../../assets/admin/js/dashboard-customize-menu.prod.js',
+    entry: {
+        'public/scripts/the-guide.js': '../../public/scripts/the-guide.prod.js',
 
-        'admin/css/dashboard-controller-menu.css': '../../assets/admin/css/dashboard-controller-menu.prod.css',
-        'admin/css/dashboard-customize-menu.css':  '../../assets/admin/css/dashboard-customize-menu.prod.css',
-        'admin/css/dashboard-settings-menu.css':   '../../assets/admin/css/dashboard-settings-menu.prod.css',
+        'admin/scripts/dashboard-menu-controller.js': '../../admin/scripts/dashboard-menu-controller.prod.js',
+        'admin/scripts/dashboard-menu-settings.js': '../../admin/scripts/dashboard-menu-settings.prod.js',
+        'admin/scripts/dashboard-menu-customize.js': '../../admin/scripts/dashboard-menu-customize.prod.js',
+
+        'admin/styles/dashboard-menu-controller.css': '../../admin/styles/dashboard-menu-controller.prod.css',
+        'admin/styles/dashboard-menu-customize.css': '../../admin/styles/dashboard-menu-customize.prod.css',
+        'admin/styles/dashboard-menu-settings.css': '../../admin/styles/dashboard-menu-settings.prod.css',
 
         // -----BEGIN CODEMIRROR CODE BLOCK-----
-        'admin/lib/codemirror/codemirror.css': './node_modules/codemirror/lib/codemirror.css',
+        'libs/codemirror/codemirror.css': './node_modules/codemirror/lib/codemirror.css',
         // -----END CODEMIRROR CODE BLOCK-----
     },
     output: {
-        path:     __dirname + '/../../assets/',
+        path: __dirname + '/../../',
         filename: '[name]'
     },
     module: {
@@ -30,9 +29,9 @@ const Main = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env']
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
                     }
                 }
             },
@@ -48,7 +47,6 @@ const Main = {
         new OptimizeCSSAssetsPlugin()
     ],
 };
-
 
 
 // Exports Array of Configurations

@@ -29,12 +29,11 @@ final class The_Guide {
 	private $settings;
 
 
-
 	public function __construct() {
 		$this->define_constants();
 		$this->import_files();
 
-		add_action( 'init', function() {
+		add_action( 'init', function () {
 			$this->settings = new The_Guide_Settings;
 
 
@@ -56,13 +55,12 @@ final class The_Guide {
 	}
 
 
-
 	private function define_constants() {
 		/**
 		 * Don't touch this constant. Use the script in /dev instead.
 		 *
 		 * When DEV_MODE is TRUE:
-		 * 
+		 *
 		 * - The_Guide_Public_Assets->is_current_user_watched_this_tour() always returns FALSE so you can watch any tour.
 		 * - There's no caching in browsers because the version of the plugin used for assets' URLs is equal to the time.
 		 */
@@ -71,16 +69,16 @@ final class The_Guide {
 
 		define( 'THE_GUIDE_URL', plugin_dir_url( __FILE__ ) );
 		define( 'THE_GUIDE_DIR', plugin_dir_path( __FILE__ ) );
- 	}
+	}
 
 
 	private function import_files() {
-		require_once( THE_GUIDE_DIR . 'includes/class-ajax.php' );
-		require_once( THE_GUIDE_DIR . 'includes/class-menus.php' );
-		require_once( THE_GUIDE_DIR . 'includes/class-settings.php' );
-		require_once( THE_GUIDE_DIR . 'includes/class-shortcodes.php' );
-		require_once( THE_GUIDE_DIR . 'includes/assets/class-admin-assets.php' );
-		require_once( THE_GUIDE_DIR . 'includes/assets/class-public-assets.php' );
+		require_once( THE_GUIDE_DIR . 'src/class-ajax.php' );
+		require_once( THE_GUIDE_DIR . 'src/class-menus.php' );
+		require_once( THE_GUIDE_DIR . 'src/class-settings.php' );
+		require_once( THE_GUIDE_DIR . 'src/class-shortcodes.php' );
+		require_once( THE_GUIDE_DIR . 'src/assets/class-admin-assets.php' );
+		require_once( THE_GUIDE_DIR . 'src/assets/class-public-assets.php' );
 	}
 
 

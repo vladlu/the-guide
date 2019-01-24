@@ -4,21 +4,21 @@ SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 cd $SCRIPTPATH
 
 
-for file in ../assets/admin/css/*.prod.css
+for file in ../admin/styles/*.prod.css
 do
   mv "$file" "${file/.prod.css/.css}"
 done
 
 
 
-for file in ../assets/admin/js/*.prod.js
+for file in ../admin/js/*.prod.js
 do
   mv "$file" "${file/.prod.js/.js}"
 done
 
 
 
-for file in ../assets/public/js/*.prod.js
+for file in ../public/js/*.prod.js
 do
   mv "$file" "${file/.prod.js/.js}"
 done

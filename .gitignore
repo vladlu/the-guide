@@ -22,5 +22,4 @@ Thumbs.db
 # MAIN
 
 dev/webpack/node_modules/
-assets/general/lib/
-assets/admin/lib/
+libs/
