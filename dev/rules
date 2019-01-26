@@ -1,0 +1,63 @@
+##
+# Formatting:
+#
+#   At least one tab between items. You can add additional tabs and spaces to give it beautiful formatting.
+#   You can use comments in any format you like — only lines that contain one of the rules will be interpreted.
+#
+# List of available rules:
+#
+#   substitute
+#       dev_mode_text  prod_mode_text  file
+#
+#   copy
+#       from  to
+#
+#   uglifyjs
+#       from  to  [common_directory]
+#
+#   webpack
+#       from  to  [common_directory]
+#
+# =====================================
+#
+#   Webpack
+#       JS:  Babel -> UglifyJS
+#       CSS: Minified
+#
+# =====================================
+#
+# - .dev files are created automatically, with renaming.
+# - Rules are updated only on prod (to_prod), so to_dev always works with the old (previous) rules.
+#
+##
+
+
+substitute	define( 'DEV_MODE', true )	    define( 'DEV_MODE', false )		the-guide.php
+
+
+# to_prod
+
+
+webpack		the-guide.dev.js			        the-guide.js			        public/scripts/
+webpack		dashboard-menu-controller.dev.js	dashboard-menu-controller.js	admin/scripts/
+webpack		dashboard-menu-settings.dev.js	    dashboard-menu-settings.js	    admin/scripts/
+webpack		dashboard-menu-customize.dev.js		dashboard-menu-customize.js	    admin/scripts/
+
+webpack		dashboard-menu-controller.dev.css	dashboard-menu-controller.css	admin/styles/
+webpack		dashboard-menu-customize.dev.css	dashboard-menu-customize.css	admin/styles/
+webpack		dashboard-menu-settings.dev.css		dashboard-menu-settings.css	    admin/styles/
+
+
+## Libraries
+
+
+### babel-polyfill
+
+copy		dev/webpack/node_modules/@babel/polyfill/dist/polyfill.min.js	libs/babel-polyfill/babel-polyfill.js
+
+### CodeMirror
+
+uglifyjs	dev/webpack/node_modules/codemirror/lib/codemirror.js		    libs/codemirror/codemirror.js
+uglifyjs	dev/webpack/node_modules/codemirror/mode/css/css.js		        libs/codemirror/css.js
+
+webpack		dev/webpack/node_modules/codemirror/lib/codemirror.css		    libs/codemirror/codemirror.css

@@ -3,22 +3,26 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
     OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 
+
+const fs = require('fs');
+let files = {};
+
+function load_files() {
+    const file_to_read = '../.rules.d/webpack.tsv',
+          file_text    = fs.readFileSync(file_to_read, 'utf-8'),
+          lines        = file_text.split('\n');
+
+    for (let i = 0; i < lines.length - 1; i++) {
+        let entities         = lines[i].split('\t');
+        files[ entities[0] ] = entities[1]
+    }
+}
+load_files();
+
+
+
 const Main = {
-    entry: {
-        'public/scripts/the-guide.js': '../../public/scripts/the-guide.prod.js',
-
-        'admin/scripts/dashboard-menu-controller.js': '../../admin/scripts/dashboard-menu-controller.prod.js',
-        'admin/scripts/dashboard-menu-settings.js': '../../admin/scripts/dashboard-menu-settings.prod.js',
-        'admin/scripts/dashboard-menu-customize.js': '../../admin/scripts/dashboard-menu-customize.prod.js',
-
-        'admin/styles/dashboard-menu-controller.css': '../../admin/styles/dashboard-menu-controller.prod.css',
-        'admin/styles/dashboard-menu-customize.css': '../../admin/styles/dashboard-menu-customize.prod.css',
-        'admin/styles/dashboard-menu-settings.css': '../../admin/styles/dashboard-menu-settings.prod.css',
-
-        // -----BEGIN CODEMIRROR CODE BLOCK-----
-        'libs/codemirror/codemirror.css': './node_modules/codemirror/lib/codemirror.css',
-        // -----END CODEMIRROR CODE BLOCK-----
-    },
+    entry: files,
     output: {
         path: __dirname + '/../../',
         filename: '[name]'
