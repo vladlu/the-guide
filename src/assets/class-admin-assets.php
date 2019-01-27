@@ -85,7 +85,7 @@ class The_Guide_Admin_Assets {
 		wp_localize_script( 'the-guide-script-admin-controller-menu', 'theGuide', [
 			'positions' => $this->settings->get_plugin_setting( 'positions' ),
 
-			'token' => wp_create_nonce( '5MBn1s3cLrcK' ),
+			'token' => wp_create_nonce( 'the-guide-controller-menu' ),
 		] );
 	}
 
@@ -123,7 +123,7 @@ class The_Guide_Admin_Assets {
 			'postsData' => $this->get_admin_js_data(),
 			'positions' => $this->settings->get_plugin_setting( 'positions' ),
 
-			'token' => wp_create_nonce( 'kv155ztWAlFQ' ),
+			'token' => wp_create_nonce( 'the-guide-settings-menu' ),
 		] );
 	}
 
@@ -182,7 +182,7 @@ class The_Guide_Admin_Assets {
 
 		// data to JS
 		wp_localize_script( 'the-guide-script-admin-customize-menu', 'theGuide', [
-			'token' => wp_create_nonce( 'NzbrOyxcQOb6' ),
+			'token' => wp_create_nonce( 'the-guide-customize-menu' ),
 		] );
 	}
 }

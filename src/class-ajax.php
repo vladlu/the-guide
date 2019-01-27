@@ -36,7 +36,7 @@ class The_Guide_Ajax {
 		// Returns tour data only if the tour is enabled
 		if ( in_array( $_POST['id'], (array) $this->settings->get_plugin_setting( 'enabled-tours' ) ) ) {
 			// And if there is a token in the request
-			if ( wp_verify_nonce( $_POST['token'], 'nFE9FYcmNL5c' ) ) {
+			if ( wp_verify_nonce( $_POST['token'], 'the-guide-public' ) ) {
 
 				$the_tour_data = [];
 
@@ -54,7 +54,7 @@ class The_Guide_Ajax {
 
 
 	public function controller_menu() {
-		if ( wp_verify_nonce( $_POST['token'], '5MBn1s3cLrcK' ) ) {
+		if ( wp_verify_nonce( $_POST['token'], 'the-guide-controller-menu' ) ) {
 
 			$this->settings->save_plugin_setting(
 				'enabled-tours',
@@ -72,7 +72,7 @@ class The_Guide_Ajax {
 
 
 	public function controller_menu_delete_tour() {
-		if ( wp_verify_nonce( $_POST['token'], '5MBn1s3cLrcK' ) ) {
+		if ( wp_verify_nonce( $_POST['token'], 'the-guide-controller-menu' ) ) {
 			wp_delete_post( (int) $_POST['tour-id'], true );
 		}
 		wp_die();
@@ -80,7 +80,7 @@ class The_Guide_Ajax {
 
 
 	public function settings_menu() {
-		if ( wp_verify_nonce( $_POST['token'], 'kv155ztWAlFQ' ) ) {
+		if ( wp_verify_nonce( $_POST['token'], 'the-guide-settings-menu' ) ) {
 
 			$data = [
 				'select-entity'              => $_POST['select-entity'],
@@ -182,7 +182,7 @@ class The_Guide_Ajax {
 
 
 	public function customize_menu() {
-		if ( wp_verify_nonce( $_POST['token'], 'NzbrOyxcQOb6' ) ) {
+		if ( wp_verify_nonce( $_POST['token'], 'the-guide-customize-menu' ) ) {
 			$this->settings->save_plugin_setting( 'custom-css', stripslashes( $_POST['customCSS'] ) );
 		}
 		wp_die();

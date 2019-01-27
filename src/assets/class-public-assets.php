@@ -176,7 +176,7 @@ class The_Guide_Public_Assets {
 				],
 
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'token'   => wp_create_nonce( 'nFE9FYcmNL5c' ),
+				'token'   => wp_create_nonce( 'the-guide-public' ),
 			] );
 
 			/**
