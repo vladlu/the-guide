@@ -38,14 +38,14 @@ substitute	define( 'DEV_MODE', true )	    define( 'DEV_MODE', false )		the-guide
 # to_prod
 
 
-webpack		the-guide.dev.js			        the-guide.js			        public/scripts/
+webpack		the-guide.dev.js			the-guide.js			public/scripts/
 webpack		dashboard-menu-controller.dev.js	dashboard-menu-controller.js	admin/scripts/
-webpack		dashboard-menu-settings.dev.js	    dashboard-menu-settings.js	    admin/scripts/
-webpack		dashboard-menu-customize.dev.js		dashboard-menu-customize.js	    admin/scripts/
+webpack		dashboard-menu-settings.dev.js	    	dashboard-menu-settings.js	admin/scripts/
+webpack		dashboard-menu-customize.dev.js		dashboard-menu-customize.js	admin/scripts/
 
 webpack		dashboard-menu-controller.dev.css	dashboard-menu-controller.css	admin/styles/
 webpack		dashboard-menu-customize.dev.css	dashboard-menu-customize.css	admin/styles/
-webpack		dashboard-menu-settings.dev.css		dashboard-menu-settings.css	    admin/styles/
+webpack		dashboard-menu-settings.dev.css		dashboard-menu-settings.css	admin/styles/
 
 
 ## Libraries
@@ -58,6 +58,6 @@ copy		dev/webpack/node_modules/@babel/polyfill/dist/polyfill.min.js	libs/babel-p
 ### CodeMirror
 
 uglifyjs	dev/webpack/node_modules/codemirror/lib/codemirror.js		    libs/codemirror/codemirror.js
-uglifyjs	dev/webpack/node_modules/codemirror/mode/css/css.js		        libs/codemirror/css.js
+uglifyjs	dev/webpack/node_modules/codemirror/mode/css/css.js		    libs/codemirror/css.js
 
 webpack		dev/webpack/node_modules/codemirror/lib/codemirror.css		    libs/codemirror/codemirror.css
