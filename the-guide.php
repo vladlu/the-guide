@@ -2,7 +2,7 @@
 /*
 Plugin Name: The Guide
 Description: Explains to your site visitors how to use it.
-Version:     0.1.2
+Version:     0.1.3
 Plugin URI:  https://github.com/vladlu/the-guide
 Author:      Vladislav Luzan
 Author URI:  https://vlad.lu/
@@ -65,7 +65,7 @@ final class The_Guide {
 		 * - There's no caching in browsers because the version of the plugin used for assets' URLs is equal to the time.
 		 */
 		define( 'DEV_MODE', true );
-		define( 'THE_GUIDE_VERSION', DEV_MODE ? time() : '0.1.2' );
+		define( 'THE_GUIDE_VERSION', DEV_MODE ? time() : '0.1.3' );
 
 		define( 'THE_GUIDE_URL', plugin_dir_url( __FILE__ ) );
 		define( 'THE_GUIDE_DIR', plugin_dir_path( __FILE__ ) );

@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         <div class="the-guide-flex-item-button">
             <!-- Submit button -->
-            <input type="submit" class="the-guide-submit-button button button-primary"
-                   value="<?php esc_attr_e( 'Save Positions', 'the-guide' ) ?>"
-            >
+            <div class="the-guide-submit-button">
+		        <?php submit_button( esc_attr__( 'Save Positions', 'the-guide' ), 'primary', '', false ) ?>
+            </div>
         </div>
 
         <div class="the-guide-flex-item-table">

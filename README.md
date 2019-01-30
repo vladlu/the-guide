@@ -12,6 +12,6 @@ If you want to test the plugin, download the RELEASE archive from here https://g
 
 # Other 
 
-Version: alpha 0.1.2
+Version: alpha 0.1.3
 
 Idea authors: [Mechanical Pie Studio](https://mechanical-pie.com/)

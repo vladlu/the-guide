@@ -25,9 +25,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="the-guide-flex-container">
 		<div class="the-guide-flex-item-input-submit">
-            <input type="submit" class="the-guide-submit-button button button-primary"
-            value="<?php esc_attr_e( 'Save Changes', 'the-guide' ) ?>"
-            >
+            <div class="the-guide-submit-button">
+				<?php submit_button( esc_attr__( 'Save Changes', 'the-guide' ), 'primary', '', false ) ?>
+            </div>
 		</div>
 	</div>
 </form>
