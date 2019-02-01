@@ -2,7 +2,7 @@
 WordPress Plugin.
 
 Explains to your site visitors how to use it.   
-Like [Bootstrap Tour](https://bootstraptour.com/) but special for WordPress, and you don't need to know programming to use it.
+Similiar to [Bootstrap Tour](https://bootstraptour.com/) but you don't need to know programming to use it.
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/lf-gFjWmY9M/0.jpg)](https://www.youtube.com/watch?v=lf-gFjWmY9M)
 
