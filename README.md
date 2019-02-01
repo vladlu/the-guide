@@ -11,7 +11,7 @@ Like [Bootstrap Tour](https://bootstraptour.com/) but special for WordPress, and
 It's in alpha at the moment, so I don't recommend to use it on production yet.
 
 
-But if you want to test the plugin, download the RELEASE archive from [here](https://github.com/vladlu/the-guide/releases), then go to Plugins > Add New on your WordPress website, click Upload Plugin button and select the archive.
+If you want to test the plugin, download the RELEASE archive from [here](https://github.com/vladlu/the-guide/releases), then go to Plugins > Add New in the dashboard of your WordPress website, click Upload Plugin button and select the archive.
 
 #
 
