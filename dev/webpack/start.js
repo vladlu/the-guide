@@ -2,7 +2,7 @@
 
 
 // UglifyJS
-// Used for CodeMirror. Because UglifyJS in Webpack bundles the CodeMirror so it doesn't work properly. 
+// Used for CodeMirror. Because UglifyJS in Webpack bundles CodeMirror so it doesn't work properly.
 
 
 const fs = require('fs');

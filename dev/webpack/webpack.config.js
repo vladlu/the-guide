@@ -1,11 +1,15 @@
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const  MiniCssExtractPlugin = require("mini-css-extract-plugin"),
+       autoprefixer         = require('autoprefixer'),
+       cssnano              = require('cssnano'),
+
+       UglifyJSPlugin       = require('uglifyjs-webpack-plugin');
+
 
 
 
 const fs = require('fs');
 let files = {};
+
 
 function load_files() {
     const file_to_read = '../.rules.d/webpack.tsv',
@@ -18,6 +22,7 @@ function load_files() {
     }
 }
 load_files();
+
 
 
 
@@ -41,14 +46,29 @@ const Main = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract('css-loader')
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            plugins: [
+                                autoprefixer(),
+                                cssnano(),
+                            ]
+                        }
+                    }
+                ],
             },
-        ]
+        ],
     },
     plugins: [
         new UglifyJSPlugin(),
-        new ExtractTextPlugin('[name]'),
-        new OptimizeCSSAssetsPlugin()
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+            chunkFilename: "[id].css"
+        }),
     ],
 };
 

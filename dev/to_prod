@@ -67,6 +67,22 @@ if [ -d "webpack/node_modules" ]; then
         cd webpack
         node start.js
 
+
+        # Workaround for css file names from webpack
+
+        cd "$SCRIPTPATH"
+
+
+        if [ -f "$rules_dir/webpack.tsv" ]; then
+            while IFS=$'\t' read -r to from
+            do
+                if [[ $to == *".css" ]]; then
+                    mv "../$to.css" "../$to"
+                fi
+            done < "$rules_dir/webpack.tsv"
+        fi
+
+
     else
         echo -e "\nWhoops. It's already prod!\n"
     fi
