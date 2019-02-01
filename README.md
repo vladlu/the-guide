@@ -14,4 +14,6 @@ If you want to test the plugin, download the RELEASE archive from here https://g
 
 Version: 0.1.3
 
+License: [MIT](https://github.com/vladlu/the-guide/blob/master/LICENSE)
+
 Idea authors: [Mechanical Pie Studio](https://mechanical-pie.com/)
