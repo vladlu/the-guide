@@ -20,11 +20,14 @@ webpack		dashboard-menu-settings.dev.css		dashboard-menu-settings.css	admin/styl
 
 ### babel-polyfill
 
-copy		dev/webpack/node_modules/@babel/polyfill/dist/polyfill.min.js	libs/babel-polyfill/babel-polyfill.js
+copy		[m]/@babel/polyfill/dist/polyfill.min.js	libs/babel-polyfill/babel-polyfill.js
 
 ### CodeMirror
 
-uglifyjs	dev/webpack/node_modules/codemirror/lib/codemirror.js		libs/codemirror/codemirror.js
-uglifyjs	dev/webpack/node_modules/codemirror/mode/css/css.js		libs/codemirror/css.js
+install 	codemirror
 
-webpack		dev/webpack/node_modules/codemirror/lib/codemirror.css		libs/codemirror/codemirror.css
+
+uglifyjs	[m]/codemirror/lib/codemirror.js	libs/codemirror/codemirror.js
+uglifyjs	[m]/codemirror/mode/css/css.js		libs/codemirror/css.js
+
+webpack		[m]/codemirror/lib/codemirror.css	libs/codemirror/codemirror.css
