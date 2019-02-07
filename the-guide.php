@@ -89,7 +89,23 @@ final class The_Guide {
 
 	private function register_post_type() {
 		register_post_type( 'the-guide', [
-			'public' => false
+			'labels' => [
+				'name'          => __( 'Tours',        'the-guide' ),
+				'singular_name' => __( 'Tour',         'the-guide' ),
+
+				'add_new_item'  => __( 'Add New Tour', 'the-guide' ),
+				'edit_item'     => __( 'Edit Tour',    'the-guide' ),
+				'view_item'     => __( 'View Tour',    'the-guide' ),
+				'search_items'  => __( 'Search Tours', 'the-guide' ),
+
+				'item_updated'             => __( 'Tour updated',             'the-guide' ),
+				'item_published'           => __( 'Tour published',           'the-guide' ),
+				'item_published_privately' => __( 'Tour published privately', 'the-guide' ),
+				'item_reverted_to_draft'   => __( 'Tour reverted to draft',   'the-guide' ),
+				'item_scheduled'           => __( 'Tour scheduled',           'the-guide' ),
+			],
+			'show_ui' => true,
+			'show_in_menu' => 'the-guide-menu'
 		] );
 	}
 }

@@ -53,6 +53,79 @@ class The_Guide_Admin_Assets {
 	}
 
 
+
+
+	public function load_all_tours_menu_assets() {
+
+		// Babel polyfill
+		wp_enqueue_script(
+			'the-guide-script-babel-polyfill',
+			THE_GUIDE_URL . 'libs/babel-polyfill/babel-polyfill.js',
+			[],
+			THE_GUIDE_VERSION
+		);
+
+
+		// loads CSS
+		wp_enqueue_style(
+			'the-guide-style-admin-all-tours-menu',
+			THE_GUIDE_URL . 'admin/styles/dashboard-all-tours.css',
+			[],
+			THE_GUIDE_VERSION
+		);
+
+		// loads JS
+		wp_enqueue_script(
+			'the-guide-script-admin-all-tours-menu',
+			THE_GUIDE_URL . 'admin/scripts/dashboard-all-tours.js',
+			[],
+			THE_GUIDE_VERSION
+		);
+	}
+
+
+
+	public function load_add_new_menu_assets() {
+
+
+		// Babel polyfill
+		wp_enqueue_script(
+			'the-guide-script-babel-polyfill',
+			THE_GUIDE_URL . 'libs/babel-polyfill/babel-polyfill.js',
+			[],
+			THE_GUIDE_VERSION
+		);
+
+
+		// loads CSS
+		wp_enqueue_style(
+			'the-guide-style-admin-settings-menu',
+			THE_GUIDE_URL . 'admin/styles/dashboard-menu-settings.css',
+			[],
+			THE_GUIDE_VERSION
+		);
+
+		// loads JS
+		wp_enqueue_script(
+			'the-guide-script-admin-settings-menu',
+			THE_GUIDE_URL . 'admin/scripts/dashboard-menu-settings.js',
+			[ 'jquery' ],
+			THE_GUIDE_VERSION
+		);
+
+
+		// data to JS
+		wp_localize_script( 'the-guide-script-admin-settings-menu', 'theGuide', [
+			'postsData' => $this->get_admin_js_data(),
+			'positions' => $this->settings->get_plugin_setting( 'positions' ),
+
+			'token' => wp_create_nonce( 'the-guide-settings-menu' ),
+		] );
+	}
+
+
+
+
 	public function load_controller_menu_assets() {
 
 		// Babel polyfill
@@ -126,6 +199,8 @@ class The_Guide_Admin_Assets {
 			'token' => wp_create_nonce( 'the-guide-settings-menu' ),
 		] );
 	}
+
+
 
 
 	public function load_customize_menu_assets() {
