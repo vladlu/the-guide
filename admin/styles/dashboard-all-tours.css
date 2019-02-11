@@ -1,0 +1,24 @@
+
+/**
+    Checkboxes (Enabled)
+ */
+
+tr[id^="post-"] input.the-guide-enabled {
+    background: transparent;
+}
+
+
+tr[id^="post-"] input.the-guide-enabled:checked:before {
+    color: green;
+}
+
+
+tr[id^="post-"] input.the-guide-enabled:disabled {
+    border: 0;
+    opacity: 1;
+    box-shadow: none
+}
+
+tr[id^="post-"] input.the-guide-enabled:disabled:checked:before {
+    opacity: 1;
+}”

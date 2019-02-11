@@ -103,10 +103,11 @@ class The_Guide_Ajax {
 				] );
 
 				// Adds a new tour to "enabled-tours" option
-				$enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
-				if ( $enabled_tours ) {
-					if ( ! in_array( $post_id, $enabled_tours ) ) {
-						$this->settings->save_plugin_setting( 'enabled-tours', array_push( $enabled_tours, $post_id ) );
+				$all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
+
+				if ( $all_enabled_tours ) {
+					if ( ! in_array( $post_id, $all_enabled_tours ) ) {
+						$this->settings->save_plugin_setting( 'enabled-tours', array_push( $all_enabled_tours, $post_id ) );
 					}
 				} else {
 					$this->settings->save_plugin_setting( 'enabled-tours', [ $post_id ] );

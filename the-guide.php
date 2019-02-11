@@ -45,7 +45,10 @@ final class The_Guide {
 			}
 
 			if ( is_admin() ) {
-				new The_Guide_Menus( $this->settings );
+				new The_Guide_Admin_Assets( $this->settings );
+				new The_Guide_Menus       ( $this->settings );
+				new The_Guide_Columns     ( $this->settings );
+				new The_Guide_Quick_Edit  ( $this->settings );
 			} else {
 				new The_Guide_Public_Assets( $this->settings );
 			}
@@ -74,7 +77,9 @@ final class The_Guide {
 
 	private function import_files() {
 		require_once( THE_GUIDE_DIR . 'src/class-ajax.php' );
+		require_once( THE_GUIDE_DIR . 'src/class-columns.php' );
 		require_once( THE_GUIDE_DIR . 'src/class-menus.php' );
+		require_once( THE_GUIDE_DIR . 'src/class-quick-edit.php' );
 		require_once( THE_GUIDE_DIR . 'src/class-settings.php' );
 		require_once( THE_GUIDE_DIR . 'src/class-shortcodes.php' );
 		require_once( THE_GUIDE_DIR . 'src/assets/class-admin-assets.php' );

@@ -59,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                                 <td>
                                     <ol>
                                         <li>
-                                            <?php echo implode('</li><li>', get_post_meta(  $tour_id, 'the-guide-steps', true ) ) ?>
+                                            <?php echo implode('</li><li>', get_post_meta( $tour_id, 'the-guide-steps', true ) ) ?>
                                         </li>
                                     </ol>
                                 </td>

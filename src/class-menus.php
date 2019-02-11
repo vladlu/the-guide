@@ -37,8 +37,9 @@ class The_Guide_Menus {
 		);
 
 
+		// Add new (the-guide)
 
-		$page = add_submenu_page(
+		add_submenu_page(
 			'the-guide-menu',
 			__( 'Add New' ),
 			__( 'Add New' ),
@@ -46,8 +47,9 @@ class The_Guide_Menus {
 			'post-new.php?post_type=the-guide'
 		);
 
+		// Customize
 
-		$page = add_submenu_page(
+		add_submenu_page(
 			'the-guide-menu',
 			__( 'Custom CSS', 'the-guide' ),
 			__( 'Custom CSS', 'the-guide' ),
@@ -58,15 +60,10 @@ class The_Guide_Menus {
 			}
 		);
 
-		add_action( 'load-' . $page, [
-			new The_Guide_Admin_Assets( $this->settings ),
-			'load_customize_menu_assets'
-		] );
 
+		// Controller
 
-
-
-		$page = add_submenu_page(
+		add_submenu_page(
 			'the-guide-menu',
 			__( 'Controller', 'the-guide' ),
 			__( 'Controller', 'the-guide' ),
@@ -77,13 +74,9 @@ class The_Guide_Menus {
 			}
 		);
 
-		add_action( 'load-' . $page, [
-			new The_Guide_Admin_Assets( $this->settings ),
-			'load_controller_menu_assets'
-		] );
+		// Settings
 
-
-		$page = add_submenu_page(
+		add_submenu_page(
 			'the-guide-menu',
 			__( 'Settings' ),
 			__( 'Settings' ),
@@ -94,15 +87,8 @@ class The_Guide_Menus {
 			}
 		);
 
-		add_action( 'load-' . $page, [
-			new The_Guide_Admin_Assets( $this->settings ),
-			'load_settings_menu_assets'
-		] );
 
-
-
-
-		// Removes the main menu submenu
+		// Removes main menu submenu
 		remove_submenu_page( 'the-guide-menu', 'the-guide-menu' );
 	}
 }

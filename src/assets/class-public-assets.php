@@ -52,10 +52,10 @@ class The_Guide_Public_Assets {
 		$is_there_enabled_tour              = false;
 
 
-		$enabled_tours_ids = $this->settings->get_plugin_setting( 'enabled-tours' );
+		$all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
 		// Search current tour by its url
-		if ( $enabled_tours_ids ) {
-			foreach ( $enabled_tours_ids as $tour_id ) {
+		if ( $all_enabled_tours ) {
+			foreach ( $all_enabled_tours as $tour_id ) {
 
 				$pattern = '~' . preg_quote( get_post_meta( $tour_id, 'the-guide-url', true ) ) . '~' . 'u';
 				if ( preg_match( $pattern, $current_url ) ) {

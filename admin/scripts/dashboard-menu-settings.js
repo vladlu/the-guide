@@ -324,7 +324,7 @@ jQuery( $ => {
             'name':           $tourName.        val(),
             'url':            $tourUrl.         val(),
             'steps':          $stepsInSelectors.val().split(','),
-            'stepsContent':  getStepsContent(),
+            'stepsContent':   getStepsContent(),
             'activationMethodAndItsData': getActivationMethodAndItsData(),
             'controllerMethodAndItsData': getControllerMethodAndItsData(),
 
