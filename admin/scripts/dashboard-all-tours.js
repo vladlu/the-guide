@@ -7,7 +7,8 @@ jQuery( $ => {
     /**
      * Quick Edit
      */
-    (function () {
+
+    if ( typeof inlineEditPost !== 'undefined' ) {
         // we create a copy of the WP inline edit post function
         var $wp_inline_edit = inlineEditPost.edit;
 
@@ -51,5 +52,5 @@ jQuery( $ => {
 
             }
         };
-    })();
+    }
 });
