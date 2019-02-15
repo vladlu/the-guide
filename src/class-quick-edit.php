@@ -88,6 +88,10 @@ class The_Guide_Quick_Edit {
 
 	public function save( $post_id ) {
 		$slug = 'the-guide';
+
+		if ( ! isset( $_POST['post_type'] ) ) {
+		    return;
+        }
 		if ( $slug !== $_POST['post_type'] ) {
 			return;
 		}
