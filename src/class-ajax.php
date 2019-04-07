@@ -98,8 +98,9 @@ class The_Guide_Ajax {
 			if ( $data['select-entity'] === 'add-new-entity' ) {
 
 				$post_id = wp_insert_post( [
-					'post_title' => $data['name'],
-					'post_type'  => 'the-guide'
+					'post_title'  => $data['name'],
+					'post_type'   => 'the-guide',
+					'post_status' => 'publish'
 				] );
 
 				// Adds a new tour to "enabled-tours" option

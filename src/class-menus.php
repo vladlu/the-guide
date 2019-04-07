@@ -65,8 +65,8 @@ class The_Guide_Menus {
 
 		add_submenu_page(
 			'the-guide-menu',
-			__( 'Controller', 'the-guide' ),
-			__( 'Controller', 'the-guide' ),
+			__( '// Controller', 'the-guide' ),
+			__( '// Controller', 'the-guide' ),
 			'manage_options',
 			'the-guide-controller',
 			function () {
@@ -78,8 +78,8 @@ class The_Guide_Menus {
 
 		add_submenu_page(
 			'the-guide-menu',
-			__( 'Settings' ),
-			__( 'Settings' ),
+			__( '// Settings' ),
+			__( '// Settings' ),
 			'manage_options',
 			'the-guide-settings',
 			function () {

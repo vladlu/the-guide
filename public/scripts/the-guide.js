@@ -3,7 +3,7 @@
 class TheGuide {
 
     constructor() {
-        this._$shadow = jQuery( '.the-guide-shadow' );
+        this._$shadow             = null;
         this._$targetModalWindow  = null;
         this._$targetButtonPrev   = null;
         this._$targetButtonNext   = null;
@@ -16,6 +16,7 @@ class TheGuide {
         this._tourData      = null;
         this._observer      = null;
         this._filteredSteps = null;
+        this._htmlAdded     = null;
 
         // API
         this.allTours     = theGuide.allEnabledToursForThisURL;
@@ -29,7 +30,14 @@ class TheGuide {
 
 
     go( TourID, showPrelude ) {
-        if (this.isActive === true) {
+        if ( ! this._htmlAdded ) {
+            this._addHTML();
+            this._$shadow = jQuery( '.the-guide-shadow' );
+
+            this._htmlAdded = true;
+        }
+
+        if ( this.isActive === true ) {
             this.hide();
         }
 
@@ -79,6 +87,56 @@ class TheGuide {
         }
     }
 
+
+
+    _addHTML() {
+        const html = `
+<div class="the-guide-floating-block the-guide-hidden">
+    <div class="the-guide-floating-block-container">
+        <div class="the-guide-floating-block-content"></div>
+        <div class="the-guide-floating-block-button-container">
+            <input class="the-guide-floating-block-button" type="button" value="${theGuide.translates.start}" >
+        </div>
+    </div>
+</div>
+
+
+<div class="the-guide-modal the-guide-hidden">
+    <div class="the-guide-modal-container">
+        <div class="the-guide-modal-current-elem"></div>
+        <div class="the-guide-modal-content"></div>
+        <div class="the-guide-modal-buttons">
+            <input id="the-guide-modal-button-prev" type="button" name="" value="${theGuide.translates.previous}">
+            <input id="the-guide-modal-button-next" type="button" name="" value="${theGuide.translates.next}">
+        </div>
+    </div>
+</div>
+
+
+<div class="the-guide-modal-next-to-the-elem the-guide-hidden">
+    <div class="the-guide-modal-next-to-the-elem-container">
+
+        <div class="the-guide-modal-next-to-the-elem-button-prev-container">
+            <input id="the-guide-modal-next-to-the-elem-button-prev" type="button" name="" value="${theGuide.translates.previous}">
+        </div>
+
+        <div class="the-guide-modal-next-to-the-elem-current-elem"></div>
+
+        <div class="the-guide-modal-next-to-the-elem-content"></div>
+
+        <div class="the-guide-modal-next-to-the-elem-button-next-container">
+            <input id="the-guide-modal-next-to-the-elem-button-next" type="button" name="" value="${theGuide.translates.next}">
+        </div>
+
+    </div>
+</div>
+
+
+<div class="the-guide-shadow the-guide-hidden"></div>
+    `;
+
+        jQuery( 'body' ).append( html );
+    }
 
 
     _useSelectedActivationMethod() {

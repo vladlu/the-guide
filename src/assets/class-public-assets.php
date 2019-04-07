@@ -56,16 +56,19 @@ class The_Guide_Public_Assets {
 		// Search current tour by its url
 		if ( $all_enabled_tours ) {
 			foreach ( $all_enabled_tours as $tour_id ) {
+				// Only published posts
+				if ( get_post_status( $tour_id ) === 'publish' ) {
+					$pattern = '~' . preg_quote( get_post_meta( $tour_id, 'the-guide-url', true ) ) . '~' . 'u';
+					// Only with matched URL
+					if ( preg_match( $pattern, $current_url ) ) {
+						if ( ! $first_enabled_tour_id_for_this_url ) {
+							$first_enabled_tour_id_for_this_url = $tour_id;
+						}
 
-				$pattern = '~' . preg_quote( get_post_meta( $tour_id, 'the-guide-url', true ) ) . '~' . 'u';
-				if ( preg_match( $pattern, $current_url ) ) {
-					if ( ! $first_enabled_tour_id_for_this_url ) {
-						$first_enabled_tour_id_for_this_url = $tour_id;
+						array_push( $all_enabled_tours_for_this_url, (int) $tour_id );
+
+						$is_there_enabled_tour = true;
 					}
-
-					array_push( $all_enabled_tours_for_this_url, (int) $tour_id );
-
-					$is_there_enabled_tour = true;
 				}
 			}
 		}
@@ -138,11 +141,6 @@ class The_Guide_Public_Assets {
 
 
 			/**
-			 * loads HTML
-			 */
-			require_once( THE_GUIDE_DIR . 'src/templates/the-guide.php' );
-
-			/**
 			 * loads CSS
 			 */
 			wp_enqueue_style(
@@ -171,8 +169,10 @@ class The_Guide_Public_Assets {
 				'allEnabledToursForThisURL' => $all_enabled_tours_for_this_url,
 
 				'translates' => [
-					'next'   => __( 'Next', 'the-guide' ),
-					'finish' => __( 'Finish', 'the-guide' )
+					'start' => __( 'Start the tour', 'the-guide' ),
+					'previous'  => __( 'Previous',       'the-guide' ),
+					'next'      => __( 'Next',           'the-guide' ),
+					'finish'    => __( 'Finish',         'the-guide' )
 				],
 
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
