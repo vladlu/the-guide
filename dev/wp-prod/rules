@@ -2,9 +2,6 @@
 substitute	define( 'DEV_MODE', true )	    define( 'DEV_MODE', false )		the-guide.php
 
 
-# to_prod
-
-
 webpack		the-guide.dev.js			the-guide.js			public/scripts/
 webpack		dashboard-menu-controller.dev.js	dashboard-menu-controller.js	admin/scripts/
 webpack		dashboard-menu-settings.dev.js	    	dashboard-menu-settings.js	admin/scripts/

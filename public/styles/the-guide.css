@@ -173,8 +173,8 @@
 
 
 /*******************
-* CAUTION
-*/
+ * CAUTION
+ */
 .the-guide-shadow {
     position:    absolute;
     z-index:     1000;
@@ -185,5 +185,5 @@
     display: none;
 }
 /*
-* CAUTION
+ * CAUTION
 *******************/
