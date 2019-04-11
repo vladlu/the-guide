@@ -32,18 +32,16 @@ final class The_Guide {
 	public function __construct() {
 		$this->define_constants();
 		$this->import_files();
-
 		add_action( 'init', function () {
-			$this->settings = new The_Guide_Settings;
-
-
 			$this->load_plugin_textdomain();
 			$this->register_post_type();
 
+			$this->settings = new The_Guide_Settings;
+
+			new The_Guide_Shortcodes();
 			if ( wp_doing_ajax() ) {
 				new The_Guide_Ajax( $this->settings );
 			}
-
 			if ( is_admin() ) {
 				new The_Guide_Admin_Assets( $this->settings );
 				new The_Guide_Menus       ( $this->settings );
@@ -52,8 +50,6 @@ final class The_Guide {
 			} else {
 				new The_Guide_Public_Assets( $this->settings );
 			}
-
-			new The_Guide_Shortcodes();
 		} );
 	}
 

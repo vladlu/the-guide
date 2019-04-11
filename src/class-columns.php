@@ -28,11 +28,13 @@ class The_Guide_Columns {
 
 
 
-
 	public function columns( $columns ) {
 
-		unset( $columns['date'] ); // Removes date
+		// Removes columns
 
+		unset( $columns['date'] );
+
+        // Adds columns
 
 		$new_columns = [
 			'url'     =>  __( 'URL',     'the-guide' ),
@@ -42,10 +44,8 @@ class The_Guide_Columns {
 			'date' => 'Date' // Moves it back to the end
 		];
 
-
 		return array_merge( $columns, $new_columns );
 	}
-
 
 
 
@@ -63,11 +63,7 @@ class The_Guide_Columns {
                             echo implode( ',', $steps );
                         ?>
                     ">
-                        <li>
-
-                        <?php echo implode( '</li><li>', $steps ) ?>
-
-                        </li>
+                        <li><?php echo implode( '</li><li>', $steps ) ?></li>
                     </ol>
 				<?php
 

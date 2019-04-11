@@ -37,7 +37,7 @@ class The_Guide_Menus {
 		);
 
 
-		// Add new (the-guide)
+		// Add New (the-guide)
 
 		add_submenu_page(
 			'the-guide-menu',
@@ -60,6 +60,7 @@ class The_Guide_Menus {
 			}
 		);
 
+		/*============================== TO BE REMOVED START ==============================*/
 
 		// Controller
 
@@ -87,8 +88,6 @@ class The_Guide_Menus {
 			}
 		);
 
-
-		// Removes main menu submenu
-		remove_submenu_page( 'the-guide-menu', 'the-guide-menu' );
+		/*============================== TO BE REMOVED END ==============================*/
 	}
 }

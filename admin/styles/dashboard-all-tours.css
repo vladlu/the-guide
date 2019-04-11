@@ -8,17 +8,15 @@ tr[id^="post-"] input.the-guide-enabled {
 }
 
 
-tr[id^="post-"] input.the-guide-enabled:checked:before {
-    color: green;
-}
-
-
-tr[id^="post-"] input.the-guide-enabled:disabled {
+tr[id^="post-"] input.the-guide-enabled {
     border: 0;
     opacity: 1;
-    box-shadow: none
+    box-shadow: none;
+    cursor: default;
 }
 
-tr[id^="post-"] input.the-guide-enabled:disabled:checked:before {
+
+tr[id^="post-"] input.the-guide-enabled:checked:before {
     opacity: 1;
+    color: green;
 }”

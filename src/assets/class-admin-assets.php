@@ -18,12 +18,12 @@ class The_Guide_Admin_Assets {
 	private $settings;
 
 
+
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
 
 		$this->admin_assets_controller();
 	}
-
 
 
 
@@ -34,9 +34,7 @@ class The_Guide_Admin_Assets {
 		 *
 		 * - All Tours menu
 		 */
-		add_action( 'admin_enqueue_scripts', [
-			$this, 'load_general_assets'
-		] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'load_general_assets' ] );
 
 
 		/**
@@ -46,6 +44,7 @@ class The_Guide_Admin_Assets {
 			$this, 'load_customize_menu_assets'
 		] );
 
+		/*============================== TO BE REMOVED START ==============================*/
 
 		/**
 		 * Controller menu
@@ -61,38 +60,8 @@ class The_Guide_Admin_Assets {
 		add_action( 'load-the-guide_page_the-guide-settings', [
 			$this, 'load_settings_menu_assets'
 		] );
-	}
 
-
-
-
-	private function get_admin_js_data() {
-		$all_posts_data = [];
-
-		$query = new WP_Query( [ 'post_type' => 'the-guide', 'posts_per_page' => - 1 ] );
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-
-				$the_post_data = [];
-				$the_post_ID   = get_the_ID();
-
-				$the_post_data['id']                         = $the_post_ID;
-				$the_post_data['name']                       = get_the_title();
-				$the_post_data['url']                        = get_post_meta( $the_post_ID, 'the-guide-url', true );
-				$the_post_data['steps']                      = get_post_meta( $the_post_ID, 'the-guide-steps', true );
-				$the_post_data['stepsContent']               = get_post_meta( $the_post_ID, 'the-guide-steps-content', true );
-				$the_post_data['activationMethodAndItsData'] = get_post_meta( $the_post_ID, 'the-guide-activation-method-and-its-data', true );
-				$the_post_data['controllerMethodAndItsData'] = get_post_meta( $the_post_ID, 'the-guide-controller-method-and-its-data', true );
-
-
-				array_push( $all_posts_data, $the_post_data );
-			}
-			wp_reset_postdata();
-		}
-
-		return $all_posts_data;
+		/*============================== TO BE REMOVED END ==============================*/
 	}
 
 
@@ -198,6 +167,39 @@ class The_Guide_Admin_Assets {
 	}
 
 
+	/*============================== TO BE REMOVED START ==============================*/
+
+
+
+	private function get_admin_js_data() {
+		$all_posts_data = [];
+
+		$query = new WP_Query( [ 'post_type' => 'the-guide', 'posts_per_page' => - 1 ] );
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+
+				$the_post_data = [];
+				$the_post_ID   = get_the_ID();
+
+				$the_post_data['id']                         = $the_post_ID;
+				$the_post_data['name']                       = get_the_title();
+				$the_post_data['url']                        = get_post_meta( $the_post_ID, 'the-guide-url', true );
+				$the_post_data['steps']                      = get_post_meta( $the_post_ID, 'the-guide-steps', true );
+				$the_post_data['stepsContent']               = get_post_meta( $the_post_ID, 'the-guide-steps-content', true );
+				$the_post_data['activationMethodAndItsData'] = get_post_meta( $the_post_ID, 'the-guide-activation-method-and-its-data', true );
+				$the_post_data['controllerMethodAndItsData'] = get_post_meta( $the_post_ID, 'the-guide-controller-method-and-its-data', true );
+
+
+				array_push( $all_posts_data, $the_post_data );
+			}
+			wp_reset_postdata();
+		}
+
+		return $all_posts_data;
+	}
+
 
 
 	public function load_controller_menu_assets() {
@@ -270,4 +272,6 @@ class The_Guide_Admin_Assets {
 			'token' => wp_create_nonce( 'the-guide-settings-menu' ),
 		] );
 	}
+
+	/*============================== TO BE REMOVED END ==============================*/
 }

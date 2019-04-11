@@ -1,11 +1,18 @@
 
+substitute	define( 'DEV_MODE', true )	    define( 'DEV_MODE', false )		the-guide.php
+
+
 # to_prod
 
 
-webpack		script.dev.js		script.js		js/
+webpack		the-guide.dev.js			the-guide.js			public/scripts/
+webpack		dashboard-menu-controller.dev.js	dashboard-menu-controller.js	admin/scripts/
+webpack		dashboard-menu-settings.dev.js	    	dashboard-menu-settings.js	admin/scripts/
+webpack		dashboard-menu-customize.dev.js		dashboard-menu-customize.js	admin/scripts/
 
-webpack		style.dev.css		style.css
-
+webpack		dashboard-menu-controller.dev.css	dashboard-menu-controller.css	admin/styles/
+webpack		dashboard-menu-customize.dev.css	dashboard-menu-customize.css	admin/styles/
+webpack		dashboard-menu-settings.dev.css		dashboard-menu-settings.css	admin/styles/
 
 
 ## Libraries
@@ -13,13 +20,14 @@ webpack		style.dev.css		style.css
 
 ### babel-polyfill
 
+copy		[m]/@babel/polyfill/dist/polyfill.min.js	libs/babel-polyfill/babel-polyfill.js
 
-copy		[m]/@babel/polyfill/dist/polyfill.min.js		libs/babel-polyfill/babel-polyfill.js
+### CodeMirror
 
-
-### typed.js
-
-install		typed.js
+install 	codemirror
 
 
-copy		[m]/typed.js/lib/typed.min.js	libs/typed.js/typed.js
+uglifyjs	[m]/codemirror/lib/codemirror.js	libs/codemirror/codemirror.js
+uglifyjs	[m]/codemirror/mode/css/css.js		libs/codemirror/css.js
+
+webpack		[m]/codemirror/lib/codemirror.css	libs/codemirror/codemirror.css

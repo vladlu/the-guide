@@ -24,9 +24,15 @@ class The_Guide_Ajax {
 		add_action( 'wp_ajax_the_guide_public_get_tour_data_by_id',        [ $this, 'public_get_tour_data_by_id' ] );
 		add_action( 'wp_ajax_nopriv_the_guide_public_get_tour_data_by_id', [ $this, 'public_get_tour_data_by_id' ] );
 		if ( current_user_can( 'list_users' ) ) {
+
+			/*============================== TO BE REMOVED START ==============================*/
+
 			add_action( 'wp_ajax_the_guide_controller_menu',             [ $this, 'controller_menu' ] );
 			add_action( 'wp_ajax_the_guide_controller_menu_delete_tour', [ $this, 'controller_menu_delete_tour' ] );
 			add_action( 'wp_ajax_the_guide_settings_menu',  [ $this, 'settings_menu' ] );
+
+			/*============================== TO BE REMOVED END ==============================*/
+
 			add_action( 'wp_ajax_the_guide_customize_menu', [ $this, 'customize_menu' ] );
 		}
 	}
@@ -51,6 +57,17 @@ class The_Guide_Ajax {
 		}
 		wp_die();
 	}
+
+
+	public function customize_menu() {
+		if ( wp_verify_nonce( $_POST['token'], 'the-guide-customize-menu' ) ) {
+			$this->settings->save_plugin_setting( 'custom-css', stripslashes( $_POST['customCSS'] ) );
+		}
+		wp_die();
+	}
+
+
+	/*============================== TO BE REMOVED START ==============================*/
 
 
 	public function controller_menu() {
@@ -182,11 +199,5 @@ class The_Guide_Ajax {
 		wp_die();
 	}
 
-
-	public function customize_menu() {
-		if ( wp_verify_nonce( $_POST['token'], 'the-guide-customize-menu' ) ) {
-			$this->settings->save_plugin_setting( 'custom-css', stripslashes( $_POST['customCSS'] ) );
-		}
-		wp_die();
-	}
+	/*============================== TO BE REMOVED END ==============================*/
 }

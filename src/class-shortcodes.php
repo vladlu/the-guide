@@ -11,8 +11,19 @@ class The_Guide_Shortcodes {
 
 
 	public function __construct() {
-		// It's impossible to use is_singular() before WP object is initialized
+		// It's impossible to use is_singular() before WP object is initialized.
 		add_action( 'wp', [ $this, 'init_shortcodes' ] );
+	}
+
+
+	public function init_shortcodes() {
+		add_shortcode( 'the-guide-launch', [ $this, 'shortcode_the_guide_launch' ] );
+		add_shortcode( 'the-guide-go',     [ $this, 'shortcode_the_guide_go' ] );
+
+		if ( is_singular() ) {
+			$content                       = $GLOBALS['post']->post_content;
+			$GLOBALS['post']->post_content = do_shortcode( $content );
+		}
 	}
 
 
@@ -41,24 +52,6 @@ class The_Guide_Shortcodes {
 			if ( isset( $atts['step'] ) ) {
 				// Reduces by 1 to use as index
 				define( 'THE_GUIDE_SHORTCODE_GO_STEP', (int) $atts['step'] - 1 );
-			}
-		}
-	}
-
-
-	public function init_shortcodes() {
-
-		// Adds shortcodes
-		add_shortcode( 'the-guide-launch', [ $this, 'shortcode_the_guide_launch' ] );
-		add_shortcode( 'the-guide-go',     [ $this, 'shortcode_the_guide_go' ] );
-
-
-		if ( is_singular() ) {
-			while ( have_posts() ) {
-				the_post();
-
-				$content                       = $GLOBALS['post']->post_content;
-				$GLOBALS['post']->post_content = do_shortcode( $content );
 			}
 		}
 	}

@@ -3,7 +3,6 @@
 
 jQuery( $ => {
 
-
     /**
      * Quick Edit
      */
@@ -28,18 +27,18 @@ jQuery( $ => {
             if ( $post_id > 0 ) {
 
                 /**
-                 * Inserts Values
+                 * Inserts Data
                  */
 
-                let $edit_row = $( '#edit-' + $post_id ),
-                    $post_row = $( '#post-' + $post_id ),
+                let $post_row = $( '#post-' + $post_id ),
+                    $edit_row = $( '#edit-' + $post_id ),
 
-                    // get the data
+                    // Gets the data
                     $enabled = !! $( '.the-guide-enabled', $post_row ).prop( 'checked' ),
                     $url     =    $( '.the-guide-url',     $post_row ).text(),
-                    $steps   =    $( '.the-guide-steps',   $post_row ).data( 'steps' ).replace(/\s{2,}/g, ''); // Removes more than 1 spaces
+                    $steps   =    $( '.the-guide-steps',   $post_row ).data( 'steps' ).replace(/\s{2,}/g, ''); // Removes double spaces
 
-                // populate the data
+                // Populates the data
                 $( '.the-guide-enabled', $edit_row ).prop( 'checked', $enabled );
                 $( '.the-guide-url',     $edit_row ).val( $url );
                 $( '.the-guide-steps',   $edit_row ).val( $steps );
