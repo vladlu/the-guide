@@ -22,12 +22,12 @@ class The_Guide_Admin_Assets {
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
 
-		$this->admin_assets_controller();
+		$this->load_admin_assets();
 	}
 
 
 
-	private function admin_assets_controller() {
+	private function load_admin_assets() {
 
 		/**
 		 * - General

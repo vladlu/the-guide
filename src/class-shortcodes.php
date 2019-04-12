@@ -28,7 +28,7 @@ class The_Guide_Shortcodes {
 
 
 	public function shortcode_the_guide_launch( $atts ) {
-		// Check if shortcode doesn't exists yet.
+		// Checks if the shortcode doesn't exist yet.
 		if ( ! defined( 'THE_GUIDE_DOING_SHORTCODE_LAUNCH' ) ) {
 			define( 'THE_GUIDE_DOING_SHORTCODE_LAUNCH', true );
 
@@ -45,7 +45,7 @@ class The_Guide_Shortcodes {
 
 
 	public function shortcode_the_guide_go( $atts ) {
-		// Check if shortcode doesn't exists yet
+		// Checks if the shortcode doesn't exist yet.
 		if ( ! defined( 'THE_GUIDE_DOING_SHORTCODE_GO' ) ) {
 			define( 'THE_GUIDE_DOING_SHORTCODE_GO', true );
 

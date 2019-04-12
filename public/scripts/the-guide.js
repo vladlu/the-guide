@@ -11,7 +11,7 @@ class TheGuide {
         this._$targetCurrentElem  = null;
         this._$selectedElem       = null;
 
-        this._elemIndex     = parseInt( theGuide.elemIndex, 10 );
+        this._elemIndex     = parseInt( theGuide.theGuideData.elemIndex, 10 );
         this._showPrelude   = null;
         this._tourData      = null;
         this._observer      = null;
@@ -19,7 +19,7 @@ class TheGuide {
         this._htmlAdded     = null;
 
         // API
-        this.allTours     = theGuide.allEnabledToursForThisURL;
+        this.allTours     = theGuide.theGuideData.allEnabledToursForThisURL;
         this.isActive     = false;
         this.currentTour  = null;
         this.howManySteps = null;
@@ -529,8 +529,36 @@ class TheGuide {
 
 
 jQuery(() => {
-    window.TheGuideInst = new TheGuide();
 
+    /*
+     * Gets the init data
+     */
+    (async function getInitData() {
+        const response = await new Promise( resolve => {
+            let data = {
+                'action': 'the_guide_public_init',
+                'url':    window.location.href
+            };
+            jQuery.post( theGuide.ajaxurl, data, theGuideData => {
+                if (theGuideData) {
+                    // Populates the init data
+                    theGuide.theGuideData = theGuideData;
+
+                    resolve(0);
+                }
+            }, 'json');
+        } );
+
+        if ( response === 0 ) {
+            window.TheGuideInst = new TheGuide();
+            showTheTour( theGuide.theGuideData.TourID );
+        }
+    })();
+
+
+    /*
+     * Inits the tour
+     */
     async function showTheTour( tourID ) {
         const response = await window.TheGuideInst.go( tourID, true );
 
@@ -538,5 +566,4 @@ jQuery(() => {
             window.TheGuideInst.show();
         }
     }
-    showTheTour( theGuide.TourID );
 });

@@ -18,10 +18,13 @@ class The_Guide_Ajax {
 	private $settings;
 
 
+
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
 
-		add_action( 'wp_ajax_the_guide_public_get_tour_data_by_id',        [ $this, 'public_get_tour_data_by_id' ] );
+		add_action(        'wp_ajax_the_guide_public_init', [ $this, 'public_init' ] );
+		add_action( 'wp_ajax_nopriv_the_guide_public_init', [ $this, 'public_init' ] );
+		add_action(        'wp_ajax_the_guide_public_get_tour_data_by_id', [ $this, 'public_get_tour_data_by_id' ] );
 		add_action( 'wp_ajax_nopriv_the_guide_public_get_tour_data_by_id', [ $this, 'public_get_tour_data_by_id' ] );
 		if ( current_user_can( 'list_users' ) ) {
 
@@ -38,25 +41,108 @@ class The_Guide_Ajax {
 	}
 
 
-	public function public_get_tour_data_by_id() {
-		// Returns tour data only if the tour is enabled
-		if ( in_array( $_POST['id'], (array) $this->settings->get_plugin_setting( 'enabled-tours' ) ) ) {
-			// And if there is a token in the request
-			if ( wp_verify_nonce( $_POST['token'], 'the-guide-public' ) ) {
+	// TODO Add nonce
+	public function public_init() {
 
-				$the_tour_data = [];
+		/**
+		 * URL
+		 *
+		 * @since 0.1.0
+		 * @var string URL
+		 */
+		$current_url = $_POST['url'];
 
-				$the_tour_data['steps']                      = get_post_meta( $_POST['id'], 'the-guide-steps', true );
-				$the_tour_data['stepsContent']               = get_post_meta( $_POST['id'], 'the-guide-steps-content', true );
-				$the_tour_data['activationMethodAndItsData'] = get_post_meta( $_POST['id'], 'the-guide-activation-method-and-its-data', true );
-				$the_tour_data['controllerMethodAndItsData'] = get_post_meta( $_POST['id'], 'the-guide-controller-method-and-its-data', true );
+		$all_enabled_tours_for_this_url     = [];
+		$first_enabled_tour_id_for_this_url = null;
+		$is_there_an_enabled_tour           = false;
 
-				echo json_encode( $the_tour_data );
+		$all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
 
+		foreach ( $all_enabled_tours as $tour_id ) {
+			$pattern = '~' . preg_quote( get_post_meta( $tour_id, 'the-guide-url', true ) ) . '~' . 'u';
+
+			if (
+				get_post_status( $tour_id ) === 'publish' && // Only published posts
+				preg_match( $pattern, $current_url )         // that match the pattern
+			) {
+				if ( ! $first_enabled_tour_id_for_this_url ) {
+					$first_enabled_tour_id_for_this_url = $tour_id;
+				}
+
+				array_push( $all_enabled_tours_for_this_url, (int) $tour_id );
+
+				$is_there_an_enabled_tour = true;
 			}
+		}
+
+
+
+		// Shortcode: the-guide-launch
+		if ( defined( 'THE_GUIDE_DOING_SHORTCODE_LAUNCH' ) ) {
+			if ( defined( 'THE_GUIDE_SHORTCODE_LAUNCH_ID' ) && defined( 'THE_GUIDE_SHORTCODE_LAUNCH_STEP' ) ) {
+				$the_guide_data = [
+					'allEnabledToursForThisURL' => $all_enabled_tours_for_this_url,
+					'TourID'                    => THE_GUIDE_SHORTCODE_LAUNCH_ID,
+					'elemIndex'                 => THE_GUIDE_SHORTCODE_GO_STEP
+				];
+			}
+		// Shortcode: the-guide-go
+		} elseif ( defined( 'THE_GUIDE_DOING_SHORTCODE_GO' ) ) {
+			if ( $is_there_an_enabled_tour ) {
+				if ( defined( 'THE_GUIDE_SHORTCODE_GO_STEP' ) ) {
+					$the_guide_data = [
+						'allEnabledToursForThisURL' => $all_enabled_tours_for_this_url,
+						'TourID'                    => $first_enabled_tour_id_for_this_url,
+						'elemIndex'                 => THE_GUIDE_SHORTCODE_GO_STEP
+					];
+				}
+			}
+		// Without shortcodes
+		} else {
+			if ( $is_there_an_enabled_tour ) {
+				$the_guide_data = [
+					'allEnabledToursForThisURL' => $all_enabled_tours_for_this_url,
+					'TourID'                    => $first_enabled_tour_id_for_this_url,
+					'elemIndex'                 => 0
+				];
+			}
+		}
+
+
+		if ( $the_guide_data ) {
+			/**
+			 * ID of the current post with type 'the-guide'.
+			 *
+			 * @var $tour_id
+			 */
+			$tour_id = $the_guide_data['TourID'];
+
+
+			if ( ! $this->is_current_user_watched_this_tour( $tour_id ) ) {
+				echo json_encode( $the_guide_data );
+			}
+		}
+
+		wp_die();
+	}
+
+
+
+	public function public_get_tour_data_by_id() {
+		// And if there is a token in the request
+		if ( wp_verify_nonce( $_POST['token'], 'the-guide-public' ) ) {
+			$the_tour_data = [];
+
+			$the_tour_data['steps']                      = get_post_meta( $_POST['id'], 'the-guide-steps', true );
+			$the_tour_data['stepsContent']               = get_post_meta( $_POST['id'], 'the-guide-steps-content', true );
+			$the_tour_data['activationMethodAndItsData'] = get_post_meta( $_POST['id'], 'the-guide-activation-method-and-its-data', true );
+			$the_tour_data['controllerMethodAndItsData'] = get_post_meta( $_POST['id'], 'the-guide-controller-method-and-its-data', true );
+
+			echo json_encode( $the_tour_data );
 		}
 		wp_die();
 	}
+
 
 
 	public function customize_menu() {
@@ -67,7 +153,61 @@ class The_Guide_Ajax {
 	}
 
 
+
+	/**
+	 * Checks if the current user has watched this tour. Updates this to true if not yet.
+	 *
+	 * Possible Environment Influence:
+	 *  - post meta 'the-guide-who-watched'
+	 *
+	 * @since 0.1.0
+	 *
+	 * @see The_Guide_Public_Assets::load_public_assets
+	 *
+	 * @param int $tour_id ID of the current post with type 'the-guide'.
+	 *
+	 * @return bool Is current user watched this tour
+	 */
+	private function is_current_user_watched_this_tour( $tour_id ) {
+
+		/**
+		 * ID of the current user.
+		 *
+		 * @var int
+		 */
+		$current_user_id = get_current_user_id();
+
+		/**
+		 * List of all users who watched this tour, or empty string.
+		 *
+		 * @var int[]|string
+		 */
+		$all_users_who_watched = get_post_meta( $tour_id, 'the-guide-who-watched', true );
+
+
+		if ( '' === $all_users_who_watched ) {
+			$all_users_who_watched = [];
+		}
+
+
+		if ( DEV_MODE ) {
+			return false;
+		} else {
+			if ( in_array( $current_user_id, $all_users_who_watched ) ) {
+				return true;
+			} else {
+				$all_users_who_watched[] = $current_user_id;
+				update_post_meta( $tour_id, 'the-guide-who-watched', $all_users_who_watched );
+
+				return false;
+			}
+		}
+	}
+
+
+
 	/*============================== TO BE REMOVED START ==============================*/
+
 
 
 	public function controller_menu() {
