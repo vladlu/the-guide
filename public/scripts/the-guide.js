@@ -48,7 +48,7 @@ class TheGuide {
         // Receives the selected tour's data from the server and handles it
         let data = {
             'action': 'the_guide_public_get_tour_data_by_id',
-            'token':  theGuide.token,
+            'token':  theGuide.theGuideData.nonceGetTourDataByID,
 
             'id':     this.currentTour,
         };
@@ -552,6 +552,7 @@ jQuery(() => {
         if ( response === 0 ) {
             window.TheGuideInst = new TheGuide();
             showTheTour( theGuide.theGuideData.TourID );
+            theGuide_loadCustomCSS();
         }
     })();
 

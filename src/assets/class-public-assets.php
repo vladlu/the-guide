@@ -85,39 +85,25 @@ class The_Guide_Public_Assets {
 			[ 'jquery-ui-draggable' ],
 			THE_GUIDE_VERSION
 		);
+		wp_enqueue_script(
+			'the-guide-script-custom-css',
+			THE_GUIDE_URL . 'public/scripts/custom-css.js',
+			[ 'the-guide-script-public', 'jquery' ],
+			THE_GUIDE_VERSION
+		);
 
 
 		/**
 		 * data to JS
 		 */
 		wp_localize_script( 'the-guide-script-public', 'theGuide', [
-//			'TourID'                    => $tour_id,
-//			'elemIndex'                 => $first_tour_step,
-//			'allEnabledToursForThisURL' => $all_enabled_tours_for_this_url,
-//
 			'translates' => [
 				'start'     => __( 'Start the tour', 'the-guide' ),
 				'previous'  => __( 'Previous',       'the-guide' ),
 				'next'      => __( 'Next',           'the-guide' ),
 				'finish'    => __( 'Finish',         'the-guide' )
 			],
-
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'token'   => wp_create_nonce( 'the-guide-public' ),
 		] );
-
-
-
-//		/**
-//		 * Custom CSS
-//		 *
-//		 * @var $custom_css
-//		 */
-//		$custom_css = $this->settings->get_plugin_setting( 'custom-css' );
-//
-//		/**
-//		 * Custom public CSS
-//		 */
-//		wp_add_inline_style( 'the-guide-style-public', $custom_css );
 	}
 }
