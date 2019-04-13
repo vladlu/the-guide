@@ -30,11 +30,13 @@ final class The_Guide {
 
 
 	public function __construct() {
+
 		$this->define_constants();
 		$this->import_files();
 		add_action( 'init', function () {
 			$this->load_plugin_textdomain();
 			$this->register_post_type();
+			$this->custom_bulk_actions();
 
 			$this->settings = new The_Guide_Settings;
 
@@ -108,6 +110,99 @@ final class The_Guide {
 			'show_ui' => true,
 			'show_in_menu' => 'the-guide-menu'
 		] );
+	}
+
+
+	private function custom_bulk_actions() {
+
+		/*
+		 * Enable
+		 */
+
+		add_filter( 'bulk_actions-edit-the-guide', function( $bulk_actions ) {
+			$bulk_actions['enable'] = __( 'Enable', 'the-guide' );
+			return $bulk_actions;
+		} );
+
+
+		add_filter( 'handle_bulk_actions-edit-the-guide', function( $redirect_to, $doaction, $post_ids ) {
+			if ( $doaction !== 'enable' ) {
+				return $redirect_to;
+			}
+			foreach ( $post_ids as $post_id ) {
+				/*
+                 * Adds a tour to enabled
+                 */
+				$all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
+
+				if ( $all_enabled_tours ) {
+					if ( ! in_array( $post_id, $all_enabled_tours ) ) {
+						$this->settings->save_plugin_setting( 'enabled-tours', array_push( $all_enabled_tours, $post_id ) );
+					}
+				} else {
+					$this->settings->save_plugin_setting( 'enabled-tours', [ $post_id ] );
+				}
+			}
+			$redirect_to = add_query_arg( 'enabled', count( $post_ids ), $redirect_to );
+			return $redirect_to;
+		}, 10, 3 );
+
+
+		add_action( 'admin_notices', function() {
+			if ( ! empty( $_REQUEST['enabled'] ) ) {
+				$enabled_count = $_REQUEST['enabled'];
+				printf( '<div id="message" class="notice notice-success is-dismissible"><p>' .
+				        _n( '%s tour enabled.',
+					        '%s tours enabled.',
+					        $enabled_count,
+					        'the-guide'
+				        ) . '</p></div>', $enabled_count );
+			}
+		} );
+
+		/*
+		 * Disable
+		 */
+
+		add_filter( 'bulk_actions-edit-the-guide', function( $bulk_actions ) {
+			$bulk_actions['disable'] = __( 'Disable', 'the-guide' );
+			return $bulk_actions;
+		} );
+
+
+		add_filter( 'handle_bulk_actions-edit-the-guide', function( $redirect_to, $doaction, $post_ids ) {
+			if ( $doaction !== 'disable' ) {
+				return $redirect_to;
+			}
+			foreach ( $post_ids as $post_id ) {
+				/*
+				 * Removes a tour from enabled
+				 */
+				$all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
+
+				if ( $all_enabled_tours && in_array( $post_id, $all_enabled_tours ) ) {
+					$post_index = array_search( $post_id, $all_enabled_tours );
+					unset( $all_enabled_tours[ $post_index ] );
+
+					$this->settings->save_plugin_setting( 'enabled-tours', $all_enabled_tours );
+				}
+			}
+			$redirect_to = add_query_arg( 'disabled', count( $post_ids ), $redirect_to );
+			return $redirect_to;
+		}, 10, 3 );
+
+
+		add_action( 'admin_notices', function() {
+			if ( ! empty( $_REQUEST['disabled'] ) ) {
+				$disabled_count = $_REQUEST['disabled'];
+				printf( '<div id="message" class="notice notice-success is-dismissible"><p>' .
+				        _n( '%s tour disabled.',
+					        '%s tours disabled.',
+					        $disabled_count,
+					        'the-guide'
+				        ) . '</p></div>', $disabled_count );
+			}
+		} );
 	}
 }
 
