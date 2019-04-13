@@ -40,6 +40,7 @@ class The_Guide_Columns {
 			'url'     =>  __( 'URL',     'the-guide' ),
 			'steps'   =>  __( 'Steps',   'the-guide' ),
 			'enabled' =>  __( 'Enabled', 'the-guide' ),
+            'id'      =>  __( 'ID',      'the-guide' ),
 
 			'date' => 'Date' // Moves it back to the end
 		];
@@ -82,6 +83,10 @@ class The_Guide_Columns {
 					?>
                 disabled class="the-guide-enabled" type="checkbox">
 				<?php
+
+				break;
+			case 'id':
+				echo '<span class="the-guide-id">' . $post_id . '</span>';
 
 				break;
 		}
