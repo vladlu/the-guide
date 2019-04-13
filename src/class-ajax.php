@@ -69,11 +69,12 @@ class The_Guide_Ajax {
 			$all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
 
 			foreach ( $all_enabled_tours as $tour_id ) {
-				$pattern = '~' . preg_quote( get_post_meta( $tour_id, 'the-guide-url', true ) ) . '~' . 'u';
+				$tour_url = get_post_meta( $tour_id, 'the-guide-url', true );
 
 				if (
-					get_post_status( $tour_id ) === 'publish' && // Only published posts
-					preg_match( $pattern, $current_url )         // that match the pattern
+					get_post_status( $tour_id ) === 'publish' && // Only published tours
+							// removes protocols
+					preg_replace("(^https?://)", "", $current_url ) === $tour_url  // that match the URL
 				) {
 					if ( ! $first_enabled_tour_id_for_this_url ) {
 						$first_enabled_tour_id_for_this_url = $tour_id;
@@ -150,7 +151,8 @@ class The_Guide_Ajax {
 
 
 	/*
-	 * Accepts: $_POST['id']
+	 * Accepts: $_POST['token']
+	 *          $_POST['id']
 	 */
 	public function public_get_tour_data_by_id() {
 		if ( wp_verify_nonce( $_POST['token'], 'the-guide-get-tour-data-by-id' ) ) {
@@ -168,6 +170,9 @@ class The_Guide_Ajax {
 
 
 
+	/*
+    * Accepts: $_POST['token']
+    */
 	public function public_get_custom_css() {
 		if ( wp_verify_nonce( $_POST['token'], 'the-guide-get-custom-css' ) ) {
 			$custom_css = $this->settings->get_plugin_setting( 'custom-css' );

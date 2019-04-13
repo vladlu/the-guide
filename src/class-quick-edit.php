@@ -121,7 +121,8 @@ class The_Guide_Quick_Edit {
          */
 
 		if ( isset( $_POST['the-guide-url'] ) ) {
-			$this->settings->save_post_meta( $post_id, 'the-guide-url', $_POST['the-guide-url'] );
+		    $url_with_no_proto = preg_replace("(^https?://)", "", $_POST['the-guide-url'] );
+            $this->settings->save_post_meta( $post_id, 'the-guide-url', $url_with_no_proto );
 		}
 
 
