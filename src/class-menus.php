@@ -56,7 +56,7 @@ class The_Guide_Menus {
 			'manage_options',
 			'the-guide-customize',
 			function () {
-				require_once( THE_GUIDE_DIR . 'src/templates/dashboard-menu-customize.php' );
+				require_once THE_GUIDE_DIR . 'src/templates/dashboard-menu-customize.php';
 			}
 		);
 
@@ -71,7 +71,7 @@ class The_Guide_Menus {
 			'manage_options',
 			'the-guide-controller',
 			function () {
-				require_once( THE_GUIDE_DIR . 'src/templates/dashboard-menu-controller.php' );
+				require_once THE_GUIDE_DIR . 'src/templates/dashboard-menu-controller.php';
 			}
 		);
 
@@ -84,7 +84,7 @@ class The_Guide_Menus {
 			'manage_options',
 			'the-guide-settings',
 			function () {
-				require_once( THE_GUIDE_DIR . 'src/templates/dashboard-menu-settings.php' );
+				require_once THE_GUIDE_DIR . 'src/templates/dashboard-menu-settings.php';
 			}
 		);
 
