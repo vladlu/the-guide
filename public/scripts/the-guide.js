@@ -58,7 +58,9 @@ class TheGuide {
 
                 this._tourData = tourData;
 
-                // Filters out all steps, so only existing elements on the page will be in the array
+                /*
+                 * Filters out all steps, so the only existing elements on the page will be in the array
+                 */
                 this._filteredSteps = [];
                 for ( let i = 0; i < this._tourData.steps.length; ++i ) {
                     if ( jQuery( this._tourData.steps[i] ).length ) {
@@ -66,8 +68,18 @@ class TheGuide {
                     }
                 }
 
+                /*
+                 * Gets the last step from the local storage.
+                 */
+                let theGuideLocalStorage = localStorage.getItem('theGuide') ? JSON.parse( localStorage.getItem('theGuide') ) : {};
+                if ( TourID in theGuideLocalStorage && theGuideLocalStorage[ TourID ] ) {
+                    this.currentStep = theGuideLocalStorage[ TourID ];
+                } else {
+                    this.currentStep = this._elemIndex + 1;
+                }
+
                 this.howManySteps = this._filteredSteps.length;
-                this.currentStep = this._elemIndex + 1;
+
 
                 resolve(0);
 
@@ -78,7 +90,9 @@ class TheGuide {
 
 
     show() {
-        // Shows shadow and modal window only if there are selected elements on the page
+        /*
+         * Shows shadow and modal window only if there are selected elements on the page
+         */
         if ( this._filteredSteps.length ) {
             if ( this._showPrelude )
                 this._useSelectedActivationMethod();
@@ -303,7 +317,9 @@ class TheGuide {
         this._$targetButtonNext.on( 'click', this.handleButtonNext );
 
 
-        // Detects a click outside of the modal window
+        /*
+         * Detects a click outside of the modal window
+         */
         this.handleClickOutsideModal = function( event ) {
             if ( ! jQuery( event.target ).closest( that._$targetModalWindow ).length  ) {
                 that.hide();
@@ -312,7 +328,9 @@ class TheGuide {
         jQuery(document).on( 'click', event, this.handleClickOutsideModal );
 
 
-        // Keyboard
+        /*
+         * Keyboard
+         */
         this.handleKeydown = function( event ) {
             // Arrow Left
             if ( event.which === 37 ) {
@@ -514,9 +532,31 @@ class TheGuide {
         if ( this.currentStep === this.howManySteps ) {
             this._$targetButtonNext.val( theGuide.translates.finish );
         }
+
         if ( this.currentStep > this.howManySteps ) {
+            /*
+             * Saves the current tour ID to the local storage when finished.
+             */
+            let tourID = this.currentTour,
+
+                theGuideLocalStorage = localStorage.getItem('theGuide') ? JSON.parse( localStorage.getItem('theGuide') ) : {},
+                dataToAdd = { [tourID]: '-1' };
+
+            localStorage.setItem( 'theGuide', JSON.stringify( Object.assign( theGuideLocalStorage, dataToAdd ) ) );
+
+
             this.hide();
             return 0;
+        } else {
+            /*
+             * Saves the last step to the local storage.
+             */
+            let tourID = this.currentTour,
+
+                theGuideLocalStorage = localStorage.getItem('theGuide') ? JSON.parse( localStorage.getItem('theGuide') ) : {},
+                dataToAdd = { [tourID]: this.currentStep };
+
+            localStorage.setItem( 'theGuide', JSON.stringify( Object.assign( theGuideLocalStorage, dataToAdd ) ) );
         }
 
 
@@ -550,9 +590,17 @@ jQuery(() => {
         } );
 
         if ( response === 0 ) {
-            window.TheGuideInst = new TheGuide();
-            showTheTour( theGuide.theGuideData.TourID );
-            theGuide_loadCustomCSS();
+            /*
+             * Runs the tour only if it has not been finished.
+             */
+            let tourID = theGuide.theGuideData.TourID,
+                theGuideLocalStorage = localStorage.getItem('theGuide') ? JSON.parse( localStorage.getItem('theGuide') ) : {};
+
+            if ( ! ( tourID in theGuideLocalStorage ) || theGuideLocalStorage[tourID] !== '-1' ) {
+                window.TheGuideInst = new TheGuide();
+                showTheTour( tourID );
+                theGuide_loadCustomCSS();
+            }
         }
     })();
 
