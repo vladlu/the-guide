@@ -247,9 +247,7 @@ class The_Guide_Ajax {
 	}
 
 
-
 	/*============================== TO BE REMOVED START ==============================*/
-
 
 
 	public function controller_menu() {
