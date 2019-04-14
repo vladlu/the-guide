@@ -66,26 +66,42 @@ class The_Guide_Ajax {
 			$first_enabled_tour_id_for_this_url = null;
 			$is_there_an_enabled_tour           = false;
 
-			$all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
 
-			foreach ( $all_enabled_tours as $tour_id ) {
-				$tour_url = get_post_meta( $tour_id, 'the-guide-url', true );
+			$all_enabled_tours = new WP_Query( [
+				'post_type'      => 'the-guide',
+				'posts_per_page' => -1,
+				'meta_query'     => [
+					[
+						'key'     => 'the-guide-is-enabled',
+						'value'   => true,
+						'compare' => '=',
+					]
+				]
+			] );
 
-				if (
-					get_post_status( $tour_id ) === 'publish' && // Only published tours
-							// removes protocols
-					preg_replace("(^https?://)", "", $current_url ) === $tour_url  // that match the URL
-				) {
-					if ( ! $first_enabled_tour_id_for_this_url ) {
-						$first_enabled_tour_id_for_this_url = $tour_id;
+			if ( $all_enabled_tours->have_posts() ) {
+				while ( $all_enabled_tours->have_posts() ) {
+					$all_enabled_tours->the_post();
+
+					$tour_id  = get_the_ID();
+					$tour_url = get_post_meta( $tour_id, 'the-guide-url', true );
+
+					if (
+						get_post_status( $tour_id ) === 'publish' && // Only published tours
+						// removes protocols
+						preg_replace("(^https?://)", "", $current_url ) === $tour_url  // that match the URL
+					) {
+						if ( ! $first_enabled_tour_id_for_this_url ) {
+							$first_enabled_tour_id_for_this_url = $tour_id;
+						}
+
+						array_push( $all_enabled_tours_for_this_url, (int) $tour_id );
+
+						$is_there_an_enabled_tour = true;
 					}
-
-					array_push( $all_enabled_tours_for_this_url, (int) $tour_id );
-
-					$is_there_an_enabled_tour = true;
 				}
+				wp_reset_postdata();
 			}
-
 
 
 			// Shortcode: the-guide-launch
@@ -119,7 +135,6 @@ class The_Guide_Ajax {
 					'elemIndex'                 => 0
 				];
 			}
-
 
 
 			if ( $the_guide_data ) {
@@ -254,11 +269,6 @@ class The_Guide_Ajax {
 		if ( wp_verify_nonce( $_POST['token'], 'the-guide-controller-menu' ) ) {
 
 			$this->settings->save_plugin_setting(
-				'enabled-tours',
-				$_POST['enabledTours']
-			);
-
-			$this->settings->save_plugin_setting(
 				'positions',
 				$_POST['positions']
 			);
@@ -300,16 +310,8 @@ class The_Guide_Ajax {
 					'post_status' => 'publish'
 				] );
 
-				// Adds a new tour to "enabled-tours" option
-				$all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
-
-				if ( $all_enabled_tours ) {
-					if ( ! in_array( $post_id, $all_enabled_tours ) ) {
-						$this->settings->save_plugin_setting( 'enabled-tours', array_push( $all_enabled_tours, $post_id ) );
-					}
-				} else {
-					$this->settings->save_plugin_setting( 'enabled-tours', [ $post_id ] );
-				}
+				// Enabled tour
+				$this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', true );
 
 			} else {
 

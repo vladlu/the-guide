@@ -36,7 +36,8 @@ Data Structure
                                                 [ selectors ]
 
   the-guide-who-watched                                                      Public                 Post Meta
-  enabled-tours                               enabledTours                   Settings|Controller    Option (the-guide-settings)
+  the-guide-is-enabled                        enabledTours                   Settings|Controller    Post Meta
+  ## enabled-tours                            enabledTours                   Settings|Controller    Option (the-guide-settings)
   positions                                   positions                      Controller             Option (the-guide-settings)
   custom-css                                  customCSS                      Customize              Option (the-guide-settings)
 

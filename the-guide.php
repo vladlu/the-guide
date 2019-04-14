@@ -140,15 +140,7 @@ final class The_Guide {
 				/*
                  * Adds a tour to enabled
                  */
-				$all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
-
-				if ( $all_enabled_tours ) {
-					if ( ! in_array( $post_id, $all_enabled_tours ) ) {
-						$this->settings->save_plugin_setting( 'enabled-tours', array_push( $all_enabled_tours, $post_id ) );
-					}
-				} else {
-					$this->settings->save_plugin_setting( 'enabled-tours', [ $post_id ] );
-				}
+				$this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', true );
 			}
 			$redirect_to = add_query_arg( 'enabled', count( $post_ids ), $redirect_to );
 			return $redirect_to;
@@ -205,14 +197,7 @@ final class The_Guide {
 				/*
 				 * Removes a tour from enabled
 				 */
-				$all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
-
-				if ( $all_enabled_tours && in_array( $post_id, $all_enabled_tours ) ) {
-					$post_index = array_search( $post_id, $all_enabled_tours );
-					unset( $all_enabled_tours[ $post_index ] );
-
-					$this->settings->save_plugin_setting( 'enabled-tours', $all_enabled_tours );
-				}
+				$this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', false );
 			}
 			$redirect_to = add_query_arg( 'disabled', count( $post_ids ), $redirect_to );
 			return $redirect_to;

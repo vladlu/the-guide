@@ -40,12 +40,9 @@ if ( ! defined( 'ABSPATH' ) ) {
                                     <input
                                         <?php
                                         $tour_id = get_the_ID();
-                                        $all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
 
-                                        if ( $all_enabled_tours ) {
-                                            if ( in_array( (string) $tour_id, $all_enabled_tours ) ) {
-                                                echo esc_attr( 'checked' );
-                                            }
+                                        if ( get_post_meta( get_the_ID(), 'the-guide-is-enabled', true ) ) {
+	                                        echo esc_attr( 'checked' );
                                         }
                                         ?>
                                             class="the-guide-checkbox" type="checkbox">

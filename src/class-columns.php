@@ -73,13 +73,9 @@ class The_Guide_Columns {
 				?>
                 <input
 					<?php
-					$all_enabled_tours = $this->settings->get_plugin_setting( 'enabled-tours' );
-
-					if ( $all_enabled_tours ) {
-						if ( in_array( (string) $post_id, $all_enabled_tours ) ) {
-							echo esc_attr( 'checked' );
-						}
-					}
+                    if ( get_post_meta( $post_id, 'the-guide-is-enabled', true ) ) {
+	                    echo esc_attr( 'checked' );
+                    }
 					?>
                 disabled class="the-guide-enabled" type="checkbox">
 				<?php
