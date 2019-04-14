@@ -57,16 +57,7 @@ final class The_Guide {
 
 
 	private function define_constants() {
-		/**
-		 * Don't touch this constant. Use the script in /dev instead.
-		 *
-		 * When DEV_MODE is TRUE:
-		 *
-		 * - The_Guide_Public_Assets->is_current_user_watched_this_tour() always returns FALSE so you can watch any tour.
-		 * - There's no caching in browsers because the version of the plugin used for assets' URLs is equal to the time.
-		 */
-		define( 'DEV_MODE', true );
-		define( 'THE_GUIDE_VERSION', DEV_MODE ? time() : '0.1.3' );
+		define( 'THE_GUIDE_VERSION', get_file_data( __FILE__, ['Version'] ) );
 
 		define( 'THE_GUIDE_URL', plugin_dir_url( __FILE__ ) );
 		define( 'THE_GUIDE_DIR', plugin_dir_path( __FILE__ ) );
