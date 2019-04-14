@@ -7,6 +7,7 @@ webpack		dashboard-menu-controller.dev.js	dashboard-menu-controller.js	admin/scr
 webpack		dashboard-menu-settings.dev.js	    	dashboard-menu-settings.js	admin/scripts/
 webpack		dashboard-menu-customize.dev.js		dashboard-menu-customize.js	admin/scripts/
 
+webpack		main.dev.css			        main.css			public/styles/
 webpack		dashboard-menu-controller.dev.css	dashboard-menu-controller.css	admin/styles/
 webpack		dashboard-menu-customize.dev.css	dashboard-menu-customize.css	admin/styles/
 webpack		dashboard-menu-settings.dev.css		dashboard-menu-settings.css	admin/styles/

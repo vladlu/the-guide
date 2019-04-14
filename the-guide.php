@@ -54,7 +54,7 @@ final class The_Guide {
 
 
 	private function define_constants() {
-		define( 'THE_GUIDE_VERSION', get_file_data( __FILE__, ['Version'] ) );
+		define( 'THE_GUIDE_VERSION', get_file_data( __FILE__, ['Version'] )[0] );
 
 		define( 'THE_GUIDE_URL', plugin_dir_url( __FILE__ ) );
 		define( 'THE_GUIDE_DIR', plugin_dir_path( __FILE__ ) );

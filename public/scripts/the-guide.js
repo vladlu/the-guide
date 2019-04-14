@@ -105,49 +105,51 @@ class TheGuide {
 
     _addHTML() {
         const html = `
-<div class="the-guide-floating-block the-guide-hidden">
-    <div class="the-guide-floating-block-container">
-        <div class="the-guide-floating-block-content"></div>
-        <div class="the-guide-floating-block-button-container">
-            <input class="the-guide-floating-block-button" type="button" value="${theGuide.translates.start}" >
+<div id="the-guide">
+    <div class="the-guide-floating-block the-guide-hidden">
+        <div class="the-guide-floating-block-container">
+            <div class="the-guide-floating-block-content"></div>
+            <div class="the-guide-floating-block-button-container">
+                <input class="the-guide-floating-block-button" type="button" value="${theGuide.translates.start}" >
+            </div>
         </div>
     </div>
-</div>
-
-
-<div class="the-guide-modal the-guide-hidden">
-    <div class="the-guide-modal-container">
-        <div class="the-guide-modal-current-elem"></div>
-        <div class="the-guide-modal-content"></div>
-        <div class="the-guide-modal-buttons">
-            <input id="the-guide-modal-button-prev" type="button" name="" value="${theGuide.translates.previous}">
-            <input id="the-guide-modal-button-next" type="button" name="" value="${theGuide.translates.next}">
+    
+    
+    <div class="the-guide-modal the-guide-modal-floating the-guide-hidden">
+        <div class="the-guide-modal-floating-container">
+            <div class="the-guide-modal-floating-current-elem"></div>
+            <div class="the-guide-modal-floating-content"></div>
+            <div class="the-guide-modal-floating-buttons">
+                <input id="the-guide-modal-floating-button-prev" type="button" name="" value="${theGuide.translates.previous}">
+                <input id="the-guide-modal-floating-button-next" type="button" name="" value="${theGuide.translates.next}">
+            </div>
         </div>
     </div>
-</div>
-
-
-<div class="the-guide-modal-next-to-the-elem the-guide-hidden">
-    <div class="the-guide-modal-next-to-the-elem-container">
-
-        <div class="the-guide-modal-next-to-the-elem-button-prev-container">
-            <input id="the-guide-modal-next-to-the-elem-button-prev" type="button" name="" value="${theGuide.translates.previous}">
+    
+    
+    <div class="the-guide-modal the-guide-modal-next-to-the-elem the-guide-hidden">
+        <div class="the-guide-modal-next-to-the-elem-container">
+    
+            <div class="the-guide-modal-next-to-the-elem-button-prev-container">
+                <input id="the-guide-modal-next-to-the-elem-button-prev" type="button" name="" value="${theGuide.translates.previous}">
+            </div>
+    
+            <div class="the-guide-modal-next-to-the-elem-current-elem"></div>
+    
+            <div class="the-guide-modal-next-to-the-elem-content"></div>
+    
+            <div class="the-guide-modal-next-to-the-elem-button-next-container">
+                <input id="the-guide-modal-next-to-the-elem-button-next" type="button" name="" value="${theGuide.translates.next}">
+            </div>
+    
         </div>
-
-        <div class="the-guide-modal-next-to-the-elem-current-elem"></div>
-
-        <div class="the-guide-modal-next-to-the-elem-content"></div>
-
-        <div class="the-guide-modal-next-to-the-elem-button-next-container">
-            <input id="the-guide-modal-next-to-the-elem-button-next" type="button" name="" value="${theGuide.translates.next}">
-        </div>
-
     </div>
-</div>
-
-
-<div class="the-guide-shadow the-guide-hidden"></div>
-    `;
+    
+    
+    <div class="the-guide-shadow the-guide-hidden"></div>
+</div>    
+`;
 
         jQuery( 'body' ).append( html );
     }
@@ -250,11 +252,11 @@ class TheGuide {
 
             this.controllerMethod = 'floating';
 
-            this._$targetModalWindow  = jQuery( '.the-guide-modal' );
-            this._$targetButtonPrev   = jQuery( '#the-guide-modal-button-prev' );
-            this._$targetButtonNext   = jQuery( '#the-guide-modal-button-next' );
-            this._$targetModalContent = jQuery( '.the-guide-modal-content' );
-            this._$targetCurrentElem  = jQuery( '.the-guide-modal-current-elem' );
+            this._$targetModalWindow  = jQuery( '.the-guide-modal-floating' );
+            this._$targetButtonPrev   = jQuery( '#the-guide-modal-floating-button-prev' );
+            this._$targetButtonNext   = jQuery( '#the-guide-modal-floating-button-next' );
+            this._$targetModalContent = jQuery( '.the-guide-modal-floating-content' );
+            this._$targetCurrentElem  = jQuery( '.the-guide-modal-floating-current-elem' );
 
 
             let obj = {};

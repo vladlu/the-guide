@@ -70,9 +70,15 @@ class The_Guide_Public_Assets {
 		 * loads CSS
 		 */
 		wp_enqueue_style(
+			'the-guide-style-public-main',
+			THE_GUIDE_URL . 'public/styles/main.css',
+			[],
+			THE_GUIDE_VERSION
+		);
+		wp_enqueue_style(
 			'the-guide-style-public',
 			THE_GUIDE_URL . 'public/styles/the-guide.css',
-			[],
+			[ 'the-guide-style-public-main' ],
 			THE_GUIDE_VERSION
 		);
 

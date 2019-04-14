@@ -42,15 +42,8 @@ Data Structure
 
 ___________________________________________________________________________________________________________
 
-
-        PHP format: this format is used within the server.
-
-
-        JS format:  this format is used in SERVER <=> CLIENT communication:
-
-            SERVER => CLIENT: wp_localize_script()
-            CLIENT => SERVER: AJAX
-
+        PHP format: this format is used on the server.
+        JS format:  this format is used for communication between the client and the server.
 
 ========================================================================================================================
 
