@@ -120,7 +120,14 @@ final class The_Guide {
 		 */
 
 		add_filter( 'bulk_actions-edit-the-guide', function( $bulk_actions ) {
+
+			/*
+             * Adds
+             */
+
 			$bulk_actions['enable'] = __( 'Enable', 'the-guide' );
+
+
 			return $bulk_actions;
 		} );
 
@@ -165,7 +172,27 @@ final class The_Guide {
 		 */
 
 		add_filter( 'bulk_actions-edit-the-guide', function( $bulk_actions ) {
+
+			/*
+			 * Adds
+			 */
+
 			$bulk_actions['disable'] = __( 'Disable', 'the-guide' );
+
+			/*
+			 * Moves
+			 */
+
+			$edit  = $bulk_actions['edit'];
+			$trash = $bulk_actions['trash'];
+
+			unset( $bulk_actions['edit'] );
+			unset( $bulk_actions['trash'] );
+
+			$bulk_actions['edit']  = $edit;
+			$bulk_actions['trash'] = $trash;
+
+
 			return $bulk_actions;
 		} );
 
