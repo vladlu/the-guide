@@ -49,7 +49,7 @@
 
 
 
-#the-guide .the-guide-modal-floating {
+#the-guide #the-guide-modal-floating {
     /* Better don't edit this "position" */
     position:         fixed;
     /* The default position of the element. */
@@ -65,29 +65,29 @@
     z-index:          1001;
 }
 
-    #the-guide .the-guide-modal-floating-container {
+    #the-guide #the-guide-modal-floating .the-guide-modal-floating-container {
         position: relative;
         height:   100%;
     }
 
-        #the-guide .the-guide-modal-floating-current-elem {
+        #the-guide #the-guide-modal-floating .the-guide-modal-floating-current-elem {
             text-align: center;
             height:     23px;
             font-size:  16px;
         }
 
-        #the-guide .the-guide-modal-floating-content {
+        #the-guide #the-guide-modal-floating .the-guide-modal-floating-content {
             height:     145px;
             font-size:  16px;
             overflow-y: auto;
         }
 
-        #the-guide .the-guide-modal-floating-buttons {
+        #the-guide #the-guide-modal-floating .the-guide-modal-floating-buttons {
             position:   relative;
             height:     30px;
         }
 
-            #the-guide #the-guide-modal-floating-button-prev {
+            #the-guide #the-guide-modal-floating #the-guide-modal-floating-button-prev {
                 position:   absolute;
                 bottom:     0;
                 left:       0;
@@ -97,7 +97,7 @@
                 padding:     1px;
             }
 
-            #the-guide #the-guide-modal-floating-button-next {
+            #the-guide #the-guide-modal-floating #the-guide-modal-floating-button-next {
                 position:   absolute;
                 bottom:     0;
                 right:      0;
@@ -109,7 +109,7 @@
 
 
 
-#the-guide .the-guide-modal-next-to-the-elem {
+#the-guide #the-guide-modal-next-to-the-elem {
     position:         absolute;
     width:            500px;
     height:           100px;
@@ -119,7 +119,7 @@
     overflow-x:       hidden;
     z-index:          1001;
 }
-    #the-guide .the-guide-modal-next-to-the-elem-container {
+    #the-guide #the-guide-modal-next-to-the-elem .the-guide-modal-next-to-the-elem-container {
         position:        relative;
         display:         flex;
         justify-content: space-between;
@@ -127,7 +127,7 @@
         height:          100%;
     }
 
-        #the-guide .the-guide-modal-next-to-the-elem-current-elem {
+        #the-guide #the-guide-modal-next-to-the-elem .the-guide-modal-next-to-the-elem-current-elem {
             position:    absolute;
             text-align:  left;
             font-size:   16px;
@@ -137,20 +137,20 @@
             z-index:     2;
         }
 
-        #the-guide .the-guide-modal-next-to-the-elem-button-prev-container {
+        #the-guide #the-guide-modal-next-to-the-elem .the-guide-modal-next-to-the-elem-button-prev-container {
             flex-basis: 17.5%;
             height:     100%;
             width:      100%;
         }
 
-            #the-guide #the-guide-modal-next-to-the-elem-button-prev {
+            #the-guide #the-guide-modal-next-to-the-elem #the-guide-modal-next-to-the-elem-button-prev {
                 height:     100%;
                 min-width:  100%;
                 font-size:  12px;
                 padding:    0;
             }
 
-        #the-guide .the-guide-modal-next-to-the-elem-content {
+        #the-guide #the-guide-modal-next-to-the-elem .the-guide-modal-next-to-the-elem-content {
             flex-basis: 65%;
             padding:    2px;
             height:     100%;
@@ -159,13 +159,13 @@
             overflow-y: auto;
         }
 
-        #the-guide .the-guide-modal-next-to-the-elem-button-next-container {
+        #the-guide #the-guide-modal-next-to-the-elem .the-guide-modal-next-to-the-elem-button-next-container {
             flex-basis: 17.5%;
             height:     100%;
             width:      100%;
         }
 
-            #the-guide #the-guide-modal-next-to-the-elem-button-next {
+            #the-guide #the-guide-modal-next-to-the-elem #the-guide-modal-next-to-the-elem-button-next {
                 height:     100%;
                 width:      100%;
                 font-size:  12px;

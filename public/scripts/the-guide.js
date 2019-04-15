@@ -17,6 +17,7 @@ class TheGuide {
         this._observer      = null;
         this._filteredSteps = null;
         this._htmlAdded     = null;
+        this._elemOldPositions = null;
 
         // API
         this.allTours     = theGuide.theGuideData.allEnabledToursForThisURL;
@@ -116,7 +117,7 @@ class TheGuide {
     </div>
     
     
-    <div class="the-guide-modal the-guide-modal-floating the-guide-hidden">
+    <div id="the-guide-modal-floating" class="the-guide-modal the-guide-hidden">
         <div class="the-guide-modal-floating-container">
             <div class="the-guide-modal-floating-current-elem"></div>
             <div class="the-guide-modal-floating-content"></div>
@@ -128,7 +129,7 @@ class TheGuide {
     </div>
     
     
-    <div class="the-guide-modal the-guide-modal-next-to-the-elem the-guide-hidden">
+    <div id="the-guide-modal-next-to-the-elem" class="the-guide-modal the-guide-hidden">
         <div class="the-guide-modal-next-to-the-elem-container">
     
             <div class="the-guide-modal-next-to-the-elem-button-prev-container">
@@ -252,7 +253,7 @@ class TheGuide {
 
             this.controllerMethod = 'floating';
 
-            this._$targetModalWindow  = jQuery( '.the-guide-modal-floating' );
+            this._$targetModalWindow  = jQuery( '#the-guide-modal-floating' );
             this._$targetButtonPrev   = jQuery( '#the-guide-modal-floating-button-prev' );
             this._$targetButtonNext   = jQuery( '#the-guide-modal-floating-button-next' );
             this._$targetModalContent = jQuery( '.the-guide-modal-floating-content' );
@@ -292,7 +293,7 @@ class TheGuide {
 
             this.controllerMethod = 'next-to';
 
-            this._$targetModalWindow  = jQuery( '.the-guide-modal-next-to-the-elem' );
+            this._$targetModalWindow  = jQuery( '#the-guide-modal-next-to-the-elem' );
             this._$targetButtonPrev   = jQuery( '#the-guide-modal-next-to-the-elem-button-prev' );
             this._$targetButtonNext   = jQuery( '#the-guide-modal-next-to-the-elem-button-next' );
             this._$targetModalContent = jQuery( '.the-guide-modal-next-to-the-elem-content' );
@@ -322,6 +323,7 @@ class TheGuide {
         /*
          * Detects a click outside of the modal window
          */
+
         this.handleClickOutsideModal = function( event ) {
             if ( ! jQuery( event.target ).closest( that._$targetModalWindow ).length  ) {
                 that.hide();
@@ -329,10 +331,10 @@ class TheGuide {
         };
         jQuery(document).on( 'click', event, this.handleClickOutsideModal );
 
-
         /*
          * Keyboard
          */
+
         this.handleKeydown = function( event ) {
             // Arrow Left
             if ( event.which === 37 ) {
@@ -347,73 +349,86 @@ class TheGuide {
         };
         jQuery(document).on( 'keydown', event, this.handleKeydown );
 
-    }
+        /*
+         * MutationObserver
+         */
 
+        if ( ! this._observer ) {
+            this._observer = new MutationObserver( mutations => {
+                this._reposfElemPosChanged();
+            });
+
+            this._observer.observe( document.body, {
+                childList: true,
+                attributes: true,
+                characterData: true,
+                subtree: true,
+            });
+        }
+
+        /*
+         * On resize
+         */
+
+        let timeoutID;
+        jQuery(window).resize(() => {
+            clearTimeout( timeoutID );
+            timeoutID = setTimeout( this._reposfElemPosChanged.bind(this), 500 );
+        });
+    }
 
 
     _setShadowAndScroll() {
         if ( this.isActive ) {
             this._$selectedElem  = jQuery( this._filteredSteps[ this._elemIndex ] );
-
-
-            const $elemToAnimate = jQuery( 'html, body' ),
-
-                  that = this;
-
             let width  = this._$selectedElem.innerWidth(),
                 height = this._$selectedElem.innerHeight(),
-                offset = this._$selectedElem.offset(),
+                offset = this._$selectedElem.offset();
 
-                elemOldState = 'w' + width + 'h' + height + 'ot' + offset.top + 'ol' + offset.left;
+            this._elemOldPositions = 'w' + width + 'h' + height + 'ot' + offset.top + 'ol' + offset.left;
 
-
-            function makePositioning() {
-                // Shows and moves the elem with shadow to the selected elem
-                that._$shadow.show().css({
-                    width:  width,
-                    height: height,
-                    left:   offset.left,
-                    top:    offset.top,
-                });
-
-                that._moveTheTourControllerToTheElement();
-
-                $elemToAnimate.stop();
-                // Scrolls to the selected element
-                $elemToAnimate.animate( { scrollTop: offset.top - jQuery(window).height() / 2 } );
-            }
-            makePositioning();
-
-
-            if ( ! this._observer ) {
-                this._observer = new MutationObserver( mutations => {
-                    width  = this._$selectedElem.innerWidth();
-                    height = this._$selectedElem.innerHeight();
-                    offset = this._$selectedElem.offset();
-
-                    const elemCurrentState = 'w' + width + 'h' + height + 'ot' + offset.top + 'ol' + offset.left;
-
-                    if( elemOldState !== elemCurrentState ) {
-                        elemOldState = elemCurrentState;
-
-                        makePositioning();
-                    }
-                });
-
-                this._observer.observe( document.body, {
-                    childList: true,
-                    attributes: true,
-                    characterData: true,
-                    subtree: true,
-                });
-            }
-
-
+            this._makePositioning();
             this._print();
         }
     }
 
 
+    _reposfElemPosChanged() {
+        let width  = this._$selectedElem.innerWidth(),
+            height = this._$selectedElem.innerHeight(),
+            offset = this._$selectedElem.offset();
+    
+        const elemCurrentPositions = 'w' + width + 'h' + height + 'ot' + offset.top + 'ol' + offset.left;
+    
+        if( this._elemOldPositions !== elemCurrentPositions ) {
+            this._elemOldPositions = elemCurrentPositions;
+        
+            this._makePositioning();
+        }
+    }
+    
+
+    _makePositioning() {
+        const $elemToAnimate = jQuery( 'html, body' );
+        let width  = this._$selectedElem.innerWidth(),
+            height = this._$selectedElem.innerHeight(),
+            offset = this._$selectedElem.offset();
+        
+        // Shows and moves the elem with shadow to the selected elem
+        this._$shadow.show().css({
+            width:  width,
+            height: height,
+            left:   offset.left,
+            top:    offset.top,
+        });
+
+        this._moveTheTourControllerToTheElement();
+
+        $elemToAnimate.stop();
+        // Scrolls to the selected element
+        $elemToAnimate.animate( { scrollTop: offset.top - jQuery(window).height() / 2 } );
+    }
+    
 
     _moveTheTourControllerToTheElement() {
 
