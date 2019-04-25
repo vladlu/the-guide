@@ -240,7 +240,7 @@ class TheGuide {
 
         this._initController();
         this._addListeners();
-        this._setShadowAndScroll();
+        this.goToTheStep( this.currentStep );
     }
 
 
