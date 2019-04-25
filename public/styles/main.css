@@ -19,6 +19,3 @@
     z-index:     1000;
     box-shadow:  0 0 0 100000px rgba(0,0,0,.85);
 }
-#the-guide .the-guide-hidden {
-    display: none;
-}

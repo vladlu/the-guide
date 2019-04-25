@@ -95,10 +95,11 @@ class TheGuide {
          * Shows shadow and modal window only if there are selected elements on the page
          */
         if ( this._filteredSteps.length ) {
-            if ( this._showPrelude )
+            if ( this._showPrelude ) {
                 this._useSelectedActivationMethod();
-            else
+            } else {
                 this._initEverything();
+            }
         }
     }
 
@@ -107,8 +108,8 @@ class TheGuide {
     _addHTML() {
         const html = `
 <div id="the-guide">
-    <div class="the-guide-floating-block the-guide-hidden">
-        <div class="the-guide-floating-block-container">
+    <div class="the-guide-floating-block">
+        <div class="the-guide-floating-block-container" style="display: none">
             <div class="the-guide-floating-block-content"></div>
             <div class="the-guide-floating-block-button-container">
                 <input class="the-guide-floating-block-button" type="button" value="${theGuide.translates.start}" >
@@ -117,7 +118,7 @@ class TheGuide {
     </div>
     
     
-    <div id="the-guide-modal-floating" class="the-guide-modal the-guide-hidden">
+    <div id="the-guide-modal-floating" class="the-guide-modal" style="display: none">
         <div class="the-guide-modal-floating-container">
             <div class="the-guide-modal-floating-current-elem"></div>
             <div class="the-guide-modal-floating-content"></div>
@@ -129,7 +130,7 @@ class TheGuide {
     </div>
     
     
-    <div id="the-guide-modal-next-to-the-elem" class="the-guide-modal the-guide-hidden">
+    <div id="the-guide-modal-next-to-the-elem" class="the-guide-modal" style="display: none">
         <div class="the-guide-modal-next-to-the-elem-container">
     
             <div class="the-guide-modal-next-to-the-elem-button-prev-container">
@@ -148,7 +149,7 @@ class TheGuide {
     </div>
     
     
-    <div class="the-guide-shadow the-guide-hidden"></div>
+    <div class="the-guide-shadow" style="display: none"></div>
 </div>    
 `;
 
