@@ -36,7 +36,7 @@ final class The_Guide {
 		add_action( 'init', function () {
 			$this->settings = new The_Guide_Settings;
 
-			new The_Guide_Misc();
+			new The_Guide_Misc( $this->settings );
 			new The_Guide_Shortcodes();
 			if ( wp_doing_ajax() ) {
 				new The_Guide_Ajax( $this->settings );

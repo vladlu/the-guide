@@ -9,6 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class The_Guide_Quick_Edit {
 
+
 	/**
 	 * Settings object.
 	 *

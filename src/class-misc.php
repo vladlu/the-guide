@@ -10,7 +10,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 class The_Guide_Misc {
 
 
-	public function __construct() {
+	/**
+	 * Settings object.
+	 *
+	 * @since 0.1.0
+	 * @var object The_Guide_Settings
+	 */
+	private $settings;
+
+
+
+	public function __construct( The_Guide_Settings $settings_inst ) {
+		$this->settings = $settings_inst;
+
 		$this->load_plugin_textdomain();
 		$this->register_post_type();
 		$this->custom_bulk_actions();
