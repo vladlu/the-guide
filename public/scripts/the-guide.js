@@ -108,8 +108,8 @@ class TheGuide {
     _addHTML() {
         const html = `
 <div id="the-guide">
-    <div class="the-guide-floating-block">
-        <div class="the-guide-floating-block-container" style="display: none">
+    <div class="the-guide-floating-block" style="display: none">
+        <div class="the-guide-floating-block-container">
             <div class="the-guide-floating-block-content"></div>
             <div class="the-guide-floating-block-button-container">
                 <input class="the-guide-floating-block-button" type="button" value="${theGuide.translates.start}" >
