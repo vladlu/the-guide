@@ -5,38 +5,37 @@ Data Structure
 
   PHP format                                  JS format                      Parent                 Type
 
-
   post_title                                  name                           Settings               Post Data
+  the-guide-is-enabled                        enabledTours                   Settings|Controller    Post Meta
+  the-guide-activation-method-and-its-data    activationMethodAndItsData     Settings               Post Meta
+
+                                            [ method ]
+                                        - on-load
+                                        - floating
+                                            [ floatingText ]
+                                            [ position ]
+                                                [ top ]
+                                                [ bottom ]
+                                                [ left ]
+                                                [ right ]
+                                        - on-click
+                                            [ selectors ]
+
+  the-guide-controller-method-and-its-data    controllerMethodAndItsData     Settings               Post Meta
+
+                                            [ method ]
+                                        - next-to-the-selected-elem
+                                        - floating
+                                            [ position ]
+                                                [ top ]
+                                                [ bottom ]
+                                                [ left ]
+                                                [ right ]
+
   the-guide-url                               url                            Settings               Post Meta
   the-guide-steps                             steps                          Settings               Post Meta
   the-guide-steps-content                     stepsContent                   Settings               Post Meta
-  the-guide-controller-method-and-its-data    controllerMethodAndItsData     Settings               Post Meta
-
-                                        [ method ]
-                                            - next-to-the-selected-elem
-                                            - floating
-                                                [ position ]
-                                                    [ top ]
-                                                    [ bottom ]
-                                                    [ left ]
-                                                    [ right ]
-
-  the-guide-activation-method-and-its-data    activationMethodAndItsData     Settings               Post Meta
-
-                                        [ method ]
-                                            - on-load
-                                            - floating
-                                                [ floatingText ]
-                                                [ position ]
-                                                    [ top ]
-                                                    [ bottom ]
-                                                    [ left ]
-                                                    [ right ]
-                                            - on-click
-                                                [ selectors ]
-
   the-guide-who-watched                                                      Public                 Post Meta
-  the-guide-is-enabled                        enabledTours                   Settings|Controller    Post Meta
   positions                                   positions                      Controller             Option (the-guide-settings)
   custom-css                                  customCSS                      Customize              Option (the-guide-settings)
 

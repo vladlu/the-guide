@@ -125,7 +125,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 </label>
             </div>
             <div class="the-guide-flex-input">
-                <select autofocus id="the-guide-select-controller-position">
+                <select id="the-guide-select-controller-position">
                     <option class="the-guide-controller" value="next-to-the-selected-elem"><?php esc_html_e( 'Next to the selected element', 'the-guide' ) ?></option>
                     <option class="the-guide-controller" value="floating"><?php esc_html_e( 'Floating block', 'the-guide' ) ?></option>
                 </select>

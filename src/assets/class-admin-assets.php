@@ -72,7 +72,7 @@ class The_Guide_Admin_Assets {
 		/**
 		 * GENERAL
 		 *
-		 * Babel polyfill
+		 *      Babel Polyfill
 		 */
 		wp_enqueue_script(
 			'the-guide-script-babel-polyfill',
@@ -82,10 +82,11 @@ class The_Guide_Admin_Assets {
 		);
 
 
+
 		/**
 		 * All Tours menu
 		 *
-		 * JS
+		 *      JS
 		 */
 		wp_enqueue_script(
 			'the-guide-script-admin-all-tours-menu',
@@ -96,11 +97,36 @@ class The_Guide_Admin_Assets {
 
 
 		/**
-		 * CSS
+		 *      CSS
 		 */
 		wp_enqueue_style(
 			'the-guide-style-admin-all-tours-menu',
 			THE_GUIDE_URL . 'admin/styles/dashboard-all-tours.css',
+			[],
+			THE_GUIDE_VERSION
+		);
+
+
+
+		/**
+		 * Add/Edit Tour menu
+		 *
+		 *      JS
+		 */
+		wp_enqueue_script(
+			'the-guide-script-admin-add-edit-tour-menu',
+			THE_GUIDE_URL . 'admin/scripts/dashboard-add-edit-tour.js',
+			[],
+			THE_GUIDE_VERSION
+		);
+
+
+		/**
+		 *      CSS
+		 */
+		wp_enqueue_style(
+			'the-guide-style-admin-add-edit-tour-menu',
+			THE_GUIDE_URL . 'admin/styles/dashboard-add-edit-tour.css',
 			[],
 			THE_GUIDE_VERSION
 		);

@@ -80,7 +80,7 @@ class The_Guide_Quick_Edit {
                                     <?php esc_attr_e( 'Enabled', 'the-guide' ) ?>
                                 </span>
                                 <span class="input-text-wrap">
-                                    <input name="the-guide-enabled" class="the-guide-enabled" type="checkbox">
+                                    <input name="the-guide-is-enabled" class="the-guide-is-enabled" type="checkbox">
                                 </span>
                             </label>
                         </div>
@@ -141,18 +141,9 @@ class The_Guide_Quick_Edit {
 		 * Enabled (checkbox)
 		 */
 
-		if ( isset( $_POST['the-guide-enabled'] ) ) {
-            /*
-             * Adds a tour to enabled
-             */
-
+		if ( isset( $_POST['the-guide-is-enabled'] ) ) {
             $this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', true );
-
 		} else {
-			/*
-             * Removes a tour from enabled
-             */
-
 			$this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', false );
         }
 	}

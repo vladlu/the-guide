@@ -44,6 +44,7 @@ final class The_Guide {
 			if ( is_admin() ) {
 				new The_Guide_Admin_Assets( $this->settings );
 				new The_Guide_Menus       ( $this->settings );
+				new The_Guide_Meta_Boxes  ( $this->settings );
 				new The_Guide_Columns     ( $this->settings );
 				new The_Guide_Quick_Edit  ( $this->settings );
 			} else {
@@ -65,6 +66,7 @@ final class The_Guide {
 		require_once THE_GUIDE_DIR . 'src/class-ajax.php';
 		require_once THE_GUIDE_DIR . 'src/class-columns.php';
 		require_once THE_GUIDE_DIR . 'src/class-menus.php';
+		require_once THE_GUIDE_DIR . 'src/class-meta-boxes.php';
 		require_once THE_GUIDE_DIR . 'src/class-misc.php';
 		require_once THE_GUIDE_DIR . 'src/class-quick-edit.php';
 		require_once THE_GUIDE_DIR . 'src/class-settings.php';
