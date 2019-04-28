@@ -56,7 +56,8 @@ class The_Guide_Misc {
 			'show_ui' => true,
 			'show_in_menu' => 'the-guide-menu',
 			'supports'=> [
-				'title'
+				'title',
+				'revisions'
 			]
 		] );
 	}
