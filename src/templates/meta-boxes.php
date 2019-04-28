@@ -278,24 +278,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- Selected elements (steps) Content -->
 <div class="the-guide-steps-content">
 	<?php
-	$steps_content = get_post_meta( $post->ID, 'the-guide-steps-content', true );
-	$i = 0;
-	foreach( $steps as $step ):
-	?>
-    <div class="the-guide-flex-container">
-        <div class="the-guide-flex-title-content">
-            <label for="the-guide-step-content-<?php echo $i ?>">
-                <?php echo $steps[$i] ?>
-            </label>
+	if ( is_array( $steps ) ):
+        $steps_content = get_post_meta( $post->ID, 'the-guide-steps-content', true );
+        $i = 0;
+        foreach( $steps as $step ):
+        ?>
+        <div class="the-guide-flex-container">
+            <div class="the-guide-flex-title-content">
+                <label for="the-guide-step-content-<?php echo $i ?>">
+                    <?php echo $steps[$i] ?>
+                </label>
+                </div>
+            <div class="the-guide-flex-input">
+                <textarea class="the-guide-step-content"
+                    name="the-guide-step-content-<?php echo $i ?>" id="the-guide-step-content-<?php echo $i ?>" rows="5"
+                    ><?php echo $steps_content[$i] ?></textarea>
             </div>
-        <div class="the-guide-flex-input">
-            <textarea class="the-guide-step-content"
-                name="the-guide-step-content-<?php echo $i ?>" id="the-guide-step-content-<?php echo $i ?>" rows="5"
-                ><?php echo $steps_content[$i] ?></textarea>
         </div>
-    </div>
-    <?php
-    $i++;
-	endforeach;
+        <?php
+        $i++;
+        endforeach;
+    endif;
 	?>
 </div>
