@@ -22,7 +22,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 	<div class="the-guide-flex-input">
 		<input class="the-guide-is-enabled" name="the-guide-is-enabled" type="checkbox"
-			<?php checked( get_post_meta( $post->ID, 'the-guide-is-enabled', true ) ) ?>
+			<?php
+			$is_enabled = get_post_meta( $post->ID, 'the-guide-is-enabled', true );
+            if ( '1' === $is_enabled || '' === $is_enabled ) { // Enabled or not the post not created yet (so makes it  enabled by default).
+	            checked( true );
+            }
+            ?>
 		>
 	</div>
 </div>

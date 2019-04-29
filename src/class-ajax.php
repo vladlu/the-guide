@@ -73,7 +73,7 @@ class The_Guide_Ajax {
 				'meta_query'     => [
 					[
 						'key'     => 'the-guide-is-enabled',
-						'value'   => true,
+						'value'   => 1,
 						'compare' => '=',
 					]
 				]

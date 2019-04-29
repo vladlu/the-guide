@@ -72,11 +72,7 @@ class The_Guide_Columns {
 			case 'enabled':
 				?>
                 <input
-					<?php
-                    if ( get_post_meta( $post_id, 'the-guide-is-enabled', true ) ) {
-	                    echo esc_attr( 'checked' );
-                    }
-					?>
+					<?php checked( get_post_meta( $post_id, 'the-guide-is-enabled', true ) ) ?>
                 disabled class="the-guide-enabled" type="checkbox">
 				<?php
 

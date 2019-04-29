@@ -142,9 +142,9 @@ class The_Guide_Quick_Edit {
 		 */
 
 		if ( isset( $_POST['the-guide-is-enabled'] ) ) {
-            $this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', true );
+            $this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', 1 );
 		} else {
-			$this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', false );
+			$this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', 0 );
         }
 	}
 }
