@@ -26,11 +26,13 @@ class The_Guide_Misc {
 		$this->load_plugin_textdomain();
 		$this->register_post_type();
 		$this->custom_bulk_actions();
+
+		add_filter( 'post_updated_messages', [ $this, 'custom_post_admin_notices' ] );
 	}
 
 
 
-	public function load_plugin_textdomain() {
+	private function load_plugin_textdomain() {
 		load_plugin_textdomain( 'the-guide' );
 	}
 
@@ -166,5 +168,33 @@ class The_Guide_Misc {
 				        ) . '</p></div>', $disabled_count );
 			}
 		} );
+	}
+
+
+
+	public function custom_post_admin_notices( $messages ) {
+
+		$post = get_post();
+
+		$messages['the-guide'] = array(
+			0  => '', // Unused. Messages start at index 1.
+			1  => __( 'Tour updated.', 'the-guide' ), // It may contain link "View tour"
+			2  => __( 'Custom field updated.' ),
+			3  => __( 'Custom field deleted.'),
+			4  => __( 'Tour updated.', 'the-guide' ), // It doesn't contain link. Just message, as it is
+			/* translators: %s: date and time of the revision */
+			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Tour restored to revision from %s' ),
+				wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+			6  => __( 'Tour published.', 'the-guide' ),
+			7  => __( 'Tour saved.',     'the-guide' ),
+			8  => __( 'Tour submitted.', 'the-guide' ),
+			9  => sprintf(
+				__( 'Tour scheduled for: <strong>%1$s</strong>.' ),
+				date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) )
+			),
+			10 => __( 'Tour draft updated.', 'the-guide' )
+		);
+
+		return $messages;
 	}
 }
