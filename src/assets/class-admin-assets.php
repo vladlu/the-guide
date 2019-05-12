@@ -9,19 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class The_Guide_Admin_Assets {
 
-	/**
-	 * Settings object.
-	 *
-	 * @since 0.1.0
-	 * @var object The_Guide_Settings
-	 */
-	private $settings;
 
-
-
-	public function __construct( The_Guide_Settings $settings_inst ) {
-		$this->settings = $settings_inst;
-
+	public function __construct() {
 		$this->load_admin_assets();
 	}
 
@@ -43,25 +32,6 @@ class The_Guide_Admin_Assets {
 		add_action( 'load-the-guide_page_the-guide-customize', [
 			$this, 'load_customize_menu_assets'
 		] );
-
-		/*============================== TO BE REMOVED START ==============================*/
-
-		/**
-		 * Controller menu
-		 */
-		add_action( 'load-the-guide_page_the-guide-controller', [
-			$this, 'load_controller_menu_assets'
-		] );
-
-
-		/**
-		 * Settings menu
-		 */
-		add_action( 'load-the-guide_page_the-guide-settings', [
-			$this, 'load_settings_menu_assets'
-		] );
-
-		/*============================== TO BE REMOVED END ==============================*/
 	}
 
 
@@ -191,113 +161,4 @@ class The_Guide_Admin_Assets {
 			'token' => wp_create_nonce( 'the-guide-customize-menu' ),
 		] );
 	}
-
-
-	/*============================== TO BE REMOVED START ==============================*/
-
-
-
-	private function get_admin_js_data() {
-		$all_posts_data = [];
-
-		$query = new WP_Query( [ 'post_type' => 'the-guide', 'posts_per_page' => - 1 ] );
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-
-				$the_post_data = [];
-				$the_post_ID   = get_the_ID();
-
-				$the_post_data['id']                         = $the_post_ID;
-				$the_post_data['name']                       = get_the_title();
-				$the_post_data['url']                        = get_post_meta( $the_post_ID, 'the-guide-url', true );
-				$the_post_data['steps']                      = get_post_meta( $the_post_ID, 'the-guide-steps', true );
-				$the_post_data['stepsContent']               = get_post_meta( $the_post_ID, 'the-guide-steps-content', true );
-				$the_post_data['activationMethodAndItsData'] = get_post_meta( $the_post_ID, 'the-guide-activation-method-and-its-data', true );
-				$the_post_data['controllerMethodAndItsData'] = get_post_meta( $the_post_ID, 'the-guide-controller-method-and-its-data', true );
-
-
-				array_push( $all_posts_data, $the_post_data );
-			}
-			wp_reset_postdata();
-		}
-
-		return $all_posts_data;
-	}
-
-
-
-	public function load_controller_menu_assets() {
-
-		/**
-		 * loads CSS
-		 */
-		wp_enqueue_style(
-			'the-guide-style-admin-controller-menu',
-			THE_GUIDE_URL . 'admin/styles/dashboard-menu-controller.css',
-			[],
-			THE_GUIDE_VERSION
-		);
-
-
-		/**
-		 * loads JS
-		 */
-		wp_enqueue_script(
-			'the-guide-script-admin-controller-menu',
-			THE_GUIDE_URL . 'admin/scripts/dashboard-menu-controller.js',
-			[ 'jquery-ui-sortable' ],
-			THE_GUIDE_VERSION
-		);
-
-
-		/**
-		 * data to JS
-		 */
-		wp_localize_script( 'the-guide-script-admin-controller-menu', 'theGuide', [
-			'positions' => $this->settings->get_plugin_setting( 'positions' ),
-
-			'token' => wp_create_nonce( 'the-guide-controller-menu' ),
-		] );
-	}
-
-
-
-	public function load_settings_menu_assets() {
-
-		/**
-		 * loads CSS
-		 */
-		wp_enqueue_style(
-			'the-guide-style-admin-settings-menu',
-			THE_GUIDE_URL . 'admin/styles/dashboard-menu-settings.css',
-			[],
-			THE_GUIDE_VERSION
-		);
-
-
-		/**
-		 * loads JS
-		 */
-		wp_enqueue_script(
-			'the-guide-script-admin-settings-menu',
-			THE_GUIDE_URL . 'admin/scripts/dashboard-menu-settings.js',
-			[ 'jquery' ],
-			THE_GUIDE_VERSION
-		);
-
-
-		/**
-		 * data to JS
-		 */
-		wp_localize_script( 'the-guide-script-admin-settings-menu', 'theGuide', [
-			'postsData' => $this->get_admin_js_data(),
-			'positions' => $this->settings->get_plugin_setting( 'positions' ),
-
-			'token' => wp_create_nonce( 'the-guide-settings-menu' ),
-		] );
-	}
-
-	/*============================== TO BE REMOVED END ==============================*/
 }

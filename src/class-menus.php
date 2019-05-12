@@ -9,18 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class The_Guide_Menus {
 
-	/**
-	 * Settings object.
-	 *
-	 * @since 0.1.0
-	 * @var object The_Guide_Settings
-	 */
-	private $settings;
 
-
-	public function __construct( The_Guide_Settings $settings_inst ) {
-		$this->settings = $settings_inst;
-
+	public function __construct() {
 		// Inits dashboard menus
 		add_action( 'admin_menu', [ $this, 'init_dashboard_menus' ] );
 	}
@@ -59,35 +49,5 @@ class The_Guide_Menus {
 				require_once THE_GUIDE_DIR . 'src/templates/dashboard-menu-customize.php';
 			}
 		);
-
-		/*============================== TO BE REMOVED START ==============================*/
-
-		// Controller
-
-		add_submenu_page(
-			'the-guide-menu',
-			__( '// Controller', 'the-guide' ),
-			__( '// Controller', 'the-guide' ),
-			'manage_options',
-			'the-guide-controller',
-			function () {
-				require_once THE_GUIDE_DIR . 'src/templates/dashboard-menu-controller.php';
-			}
-		);
-
-		// Settings
-
-		add_submenu_page(
-			'the-guide-menu',
-			__( '// Settings' ),
-			__( '// Settings' ),
-			'manage_options',
-			'the-guide-settings',
-			function () {
-				require_once THE_GUIDE_DIR . 'src/templates/dashboard-menu-settings.php';
-			}
-		);
-
-		/*============================== TO BE REMOVED END ==============================*/
 	}
 }

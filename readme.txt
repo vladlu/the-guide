@@ -3,11 +3,11 @@ Data Structure
 
 
 
-  PHP format                                  JS format                      Parent                 Type
+  PHP format                                  JS format                          Type
 
-  post_title                                  name                           Settings               Post Data
-  the-guide-is-enabled                        enabledTours                   Settings|Controller    Post Meta
-  the-guide-activation-method-and-its-data    activationMethodAndItsData     Settings               Post Meta
+  post_title                                  name                               Post Data
+  the-guide-is-enabled                        enabledTours                       Post Meta
+  the-guide-activation-method-and-its-data    activationMethodAndItsData         Post Meta
 
                                             [ method ]
                                         - on-load
@@ -21,7 +21,7 @@ Data Structure
                                         - on-click
                                             [ selectors ]
 
-  the-guide-controller-method-and-its-data    controllerMethodAndItsData     Settings               Post Meta
+  the-guide-controller-method-and-its-data    controllerMethodAndItsData         Post Meta
 
                                             [ method ]
                                         - next-to-the-selected-elem
@@ -32,12 +32,12 @@ Data Structure
                                                 [ left ]
                                                 [ right ]
 
-  the-guide-url                               url                            Settings               Post Meta
-  the-guide-steps                             steps                          Settings               Post Meta
-  the-guide-steps-content                     stepsContent                   Settings               Post Meta
-  the-guide-who-watched                                                      Public                 Post Meta
-  positions                                   positions                      Controller             Option (the-guide-settings)
-  custom-css                                  customCSS                      Customize              Option (the-guide-settings)
+  the-guide-url                               url                                Post Meta
+  the-guide-steps                             steps                              Post Meta
+  the-guide-steps-content                     stepsContent                       Post Meta
+  the-guide-who-watched                                                          Post Meta
+  positions                                   positions                          Option (the-guide-settings)
+  custom-css                                  customCSS                          Option (the-guide-settings)
 
 ___________________________________________________________________________________________________________
 
