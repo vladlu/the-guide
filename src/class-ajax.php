@@ -128,7 +128,7 @@ class The_Guide_Ajax {
 			}
 
 
-			if ( $the_guide_data ) {
+			if ( isset( $the_guide_data ) ) {
 
 				/*
 				 * Adds nonce
