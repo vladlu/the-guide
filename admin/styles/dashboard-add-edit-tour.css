@@ -106,3 +106,34 @@ textarea {
 .the-guide-hidden {
     display: none;
 }
+
+
+@media all and (max-width: 1080px) {
+    .the-guide-flex-container {
+        flex-wrap: wrap;
+        margin-bottom: .7em;
+    }
+
+    .the-guide-flex-title {
+        flex-basis: 100%;
+        margin: .4em 0;
+    }
+
+    .the-guide-flex-title-content {
+        flex-basis: 100%;
+        justify-content: flex-start;
+        margin: .4em 0;
+    }
+
+    .the-guide-flex-item-text,
+    .the-guide-flex-item-position-title,
+    .the-guide-flex-item-position-input {
+        flex-grow: 1;
+    }
+}
+
+
+/* Resets styles */
+#the-guide-tour-data textarea {
+    margin-left: 0 !important;
+}
