@@ -93,9 +93,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- Position -->
 		<div class="the-guide-flex-container-activation-method">
 
-			<div class="the-guide-flex-item-text">
+			<label class="the-guide-flex-item-text" for="the-guide-activation-position-top">
 				<?php esc_html_e( 'Position (CSS)', 'the-guide' ) ?>
-			</div>
+			</label>
 
 			<div class="the-guide-flex-item-position-title">
 				<label class="the-guide-position-title" for="the-guide-activation-position-top">
@@ -195,9 +195,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div class="the-guide-controller-position-floating the-guide-hidden">
         <div class="the-guide-flex-container">
 
-            <div class="the-guide-flex-item-text">
+            <label class="the-guide-flex-item-text" for="the-guide-controller-position-top">
 				<?php esc_html_e( 'Position (CSS)', 'the-guide' ) ?>
-            </div>
+            </label>
 
             <div class="the-guide-flex-item-position-title">
                 <label class="the-guide-position-title" for="the-guide-controller-position-top">
