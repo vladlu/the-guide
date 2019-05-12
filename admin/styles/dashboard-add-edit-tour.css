@@ -16,6 +16,7 @@
 .the-guide-flex-container-primary {
     display:        flex;
     align-items:    center;
+    margin:         .4em 0;
 }
 
 .the-guide-flex-item-text {
