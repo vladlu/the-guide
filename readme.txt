@@ -3,7 +3,7 @@ Data Structure
 
 
 
-  PHP format                                  JS format                          Type
+  PHP format                                  JS format                          Type                           Description
 
   post_title                                  name                               Post Data
   the-guide-is-enabled                        enabledTours                       Post Meta
@@ -35,9 +35,8 @@ Data Structure
   the-guide-url                               url                                Post Meta
   the-guide-steps                             steps                              Post Meta
   the-guide-steps-content                     stepsContent                       Post Meta
-  the-guide-who-watched                                                          Post Meta
-  positions                                   positions                          Option (the-guide-settings)
-  custom-css                                  customCSS                          Option (the-guide-settings)
+  positions                                   positions                          Option (the-guide-settings)    Positions of the tours (their priority)
+  custom-css                                  customCSS                          Option (the-guide-settings)    Custom CSS applied to all tours.
 
 ___________________________________________________________________________________________________________
 
