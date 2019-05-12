@@ -27,9 +27,6 @@ jQuery( $ => {
 
 
     $selectControllerMethod.change( () => {
-        /*
-         * Here was the search
-         */
         const $selectedControllerPositionMethod = $( '#the-guide-select-controller-method option:selected' );
 
         if ( $selectedControllerPositionMethod.val() === 'next-to-the-selected-elem' ) {
