@@ -2,9 +2,7 @@
 
 jQuery( $ => {
     const $selectActivationMethod =   $( '#the-guide-select-activation-method' ),
-          $selectControllerMethod =   $( '#the-guide-select-controller-method' ),
-          $stepsContent =             $( '.the-guide-steps-content' );
-
+          $selectControllerMethod =   $( '#the-guide-select-controller-method' );
 
 
     $selectActivationMethod.change( () => {
