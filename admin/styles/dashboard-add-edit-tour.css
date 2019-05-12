@@ -52,7 +52,7 @@
 }
 
 .the-guide-flex-input {
-    flex-basis: 20%;
+    flex-basis: 100%;
 }
 
 
@@ -84,7 +84,8 @@
 #the-guide-activation-selectors,
 #the-guide-steps,
 #the-guide-url {
-    width: 400px;
+    width: 95%;
+    max-width: 850px;
 }
 
 .the-guide-step-content {
