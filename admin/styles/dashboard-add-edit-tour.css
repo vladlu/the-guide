@@ -13,11 +13,6 @@
     align-items:   center;
     margin-bottom: .4em;
 }
-.the-guide-flex-container-primary {
-    display:        flex;
-    align-items:    center;
-    margin:         .4em 0;
-}
 
 .the-guide-flex-item-text {
     flex-basis: 11.25%;

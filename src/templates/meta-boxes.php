@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="the-guide-tour-activation">
 
 	<!-- Selector -->
-	<div class="the-guide-flex-container-primary">
+	<div class="the-guide-flex-container">
 
 		<div class="the-guide-flex-title">
 			<label class="the-guide-bold" for="the-guide-select-activation-method">
@@ -167,7 +167,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- Tour controller position -->
 <div class="the-guide-controller-position">
 
-    <div class="the-guide-flex-container-primary">
+    <div class="the-guide-flex-container">
         <div class="the-guide-flex-title">
             <label class="the-guide-bold" for="the-guide-select-controller-method">
 				<?php esc_html_e( 'Tour controller position', 'the-guide' ) ?>
