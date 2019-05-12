@@ -42,13 +42,6 @@ jQuery( $ => {
                 $( '.the-guide-enabled', $edit_row ).prop( 'checked', $enabled );
                 $( '.the-guide-url',     $edit_row ).val( $url );
                 $( '.the-guide-steps',   $edit_row ).val( $steps );
-
-                /**
-                 * Rearranges Blocks
-                 */
-
-                $( '.inline-edit-the-guide', $edit_row ).detach().insertAfter( $( '.inline-edit-col-left', $edit_row ) );
-
             }
         };
     }
