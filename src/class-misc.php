@@ -93,7 +93,7 @@ class The_Guide_Misc {
 				/*
                  * Adds a tour to enabled
                  */
-				$this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', 1 );
+				update_post_meta( $post_id, 'the-guide-is-enabled', 1 );
 			}
 			$redirect_to = add_query_arg( 'enabled', count( $post_ids ), $redirect_to );
 			return $redirect_to;
@@ -150,7 +150,7 @@ class The_Guide_Misc {
 				/*
 				 * Removes a tour from enabled
 				 */
-				$this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', 0 );
+				update_post_meta( $post_id, 'the-guide-is-enabled', 0 );
 			}
 			$redirect_to = add_query_arg( 'disabled', count( $post_ids ), $redirect_to );
 			return $redirect_to;

@@ -65,9 +65,9 @@ class The_Guide_Meta_Boxes{
          */
 
 		if ( isset( $_POST['the-guide-is-enabled'] ) ) {
-			$this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', 1 );
+			update_post_meta( $post_id, 'the-guide-is-enabled', 1 );
 		} else {
-			$this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', 0 );
+			update_post_meta( $post_id, 'the-guide-is-enabled', 0 );
 		}
 
 
@@ -75,7 +75,7 @@ class The_Guide_Meta_Boxes{
          * Activation Method
          */
 
-		$this->settings->save_post_meta( $post_id, 'the-guide-activation-method-and-its-data', [
+		update_post_meta( $post_id, 'the-guide-activation-method-and-its-data', [
 			'method'       => $_POST['the-guide-select-activation-method'],
             'floatingText' => $_POST['the-guide-activation-floating-text'],
             'position'     => [
@@ -93,7 +93,7 @@ class The_Guide_Meta_Boxes{
          * Tour controller position
          */
 
-		$this->settings->save_post_meta( $post_id, 'the-guide-controller-method-and-its-data', [
+		update_post_meta( $post_id, 'the-guide-controller-method-and-its-data', [
 			'method'       => $_POST['the-guide-select-controller-method'],
 			'position'     => [
 				'top'    => $_POST['the-guide-controller-position-top'],
@@ -109,7 +109,7 @@ class The_Guide_Meta_Boxes{
          */
 
 		$url_with_no_proto = preg_replace("(^https?://)", "", $_POST['the-guide-url'] );
-		$this->settings->save_post_meta( $post_id, 'the-guide-url', $url_with_no_proto );
+		update_post_meta( $post_id, 'the-guide-url', $url_with_no_proto );
 
 
 		/*
@@ -118,7 +118,7 @@ class The_Guide_Meta_Boxes{
 
 		// Translates a comma-separated string into an array
 		$steps = array_map( 'trim', explode( ',',  $_POST['the-guide-steps'] ) );
-		$this->settings->save_post_meta( $post_id, 'the-guide-steps', $steps );
+		update_post_meta( $post_id, 'the-guide-steps', $steps );
 
 
 		/*
@@ -129,6 +129,6 @@ class The_Guide_Meta_Boxes{
 		for ( $i = 0; $i < count( $steps ); ++$i ) {
 			$steps_content[] = $_POST["the-guide-step-content-$i"];
 		}
-		$this->settings->save_post_meta( $post_id, 'the-guide-steps-content', $steps_content );
+		update_post_meta( $post_id, 'the-guide-steps-content', $steps_content );
 	}
 }

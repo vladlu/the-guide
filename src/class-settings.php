@@ -22,13 +22,4 @@ class The_Guide_Settings {
 		$all_settings[ $setting_name ] = $data_to_save;
 		update_option( 'the-guide-settings', $all_settings );
 	}
-
-
-	public function save_post_meta( $post_id, $meta_key, $meta_value ) {
-		if ( get_post_meta( $post_id, $meta_key ) ) {
-			update_post_meta( $post_id, $meta_key, $meta_value );
-		} else {
-			add_post_meta( $post_id, $meta_key, $meta_value, true );
-		}
-	}
 }

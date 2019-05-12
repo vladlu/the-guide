@@ -123,7 +123,7 @@ class The_Guide_Quick_Edit {
 
 		if ( isset( $_POST['the-guide-url'] ) ) {
 		    $url_with_no_proto = preg_replace("(^https?://)", "", $_POST['the-guide-url'] );
-            $this->settings->save_post_meta( $post_id, 'the-guide-url', $url_with_no_proto );
+            update_post_meta( $post_id, 'the-guide-url', $url_with_no_proto );
 		}
 
 
@@ -133,7 +133,7 @@ class The_Guide_Quick_Edit {
 
 		if ( isset( $_POST['the-guide-steps'] ) ) {
 		    $steps = explode( ',', $_POST['the-guide-steps'] );
-			$this->settings->save_post_meta( $post_id, 'the-guide-steps', $steps );
+			update_post_meta( $post_id, 'the-guide-steps', $steps );
 		}
 
 
@@ -142,9 +142,9 @@ class The_Guide_Quick_Edit {
 		 */
 
 		if ( isset( $_POST['the-guide-is-enabled'] ) ) {
-            $this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', 1 );
+            update_post_meta( $post_id, 'the-guide-is-enabled', 1 );
 		} else {
-			$this->settings->save_post_meta( $post_id, 'the-guide-is-enabled', 0 );
+			update_post_meta( $post_id, 'the-guide-is-enabled', 0 );
         }
 	}
 }
