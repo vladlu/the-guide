@@ -116,7 +116,7 @@ textarea {
 
     .the-guide-flex-title {
         flex-basis: 100%;
-        margin: .4em 0;
+        margin: .2em 0;
     }
 
     .the-guide-flex-title-content {
@@ -129,6 +129,12 @@ textarea {
     .the-guide-flex-item-position-title,
     .the-guide-flex-item-position-input {
         flex-grow: 1;
+    }
+}
+
+@media all and (max-width: 782px) {
+    .the-guide-flex-title {
+        margin: .6em 0;
     }
 }
 
