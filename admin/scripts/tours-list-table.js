@@ -36,12 +36,12 @@ jQuery( $ => {
                     $edit_row = $( '#edit-' + $post_id ),
 
                     // Gets the data
-                    $enabled = !! $( '.the-guide-enabled', $post_row ).prop( 'checked' ),
+                    $enabled = !! $( '.the-guide-is-enabled', $post_row ).prop( 'checked' ),
                     $url     =    $( '.the-guide-url',     $post_row ).text(),
                     $steps   =    $( '.the-guide-steps',   $post_row ).data( 'steps' ).replace(/\s{2,}/g, ''); // Removes double spaces
 
                 // Populates the data
-                $( '.the-guide-enabled', $edit_row ).prop( 'checked', $enabled );
+                $( '.the-guide-is-enabled', $edit_row ).prop( 'checked', $enabled );
                 $( '.the-guide-url',     $edit_row ).val( $url );
                 $( '.the-guide-steps',   $edit_row ).val( $steps );
             }

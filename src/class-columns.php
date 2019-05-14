@@ -72,7 +72,7 @@ class The_Guide_Columns {
 				?>
                 <input
 					<?php checked( get_post_meta( $post_id, 'the-guide-is-enabled', true ) ) ?>
-                disabled class="the-guide-enabled" type="checkbox">
+                disabled class="the-guide-is-enabled" type="checkbox">
 				<?php
 
 				break;

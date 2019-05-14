@@ -3,12 +3,12 @@
     Checkboxes (Enabled)
  */
 
-tr[id^="post-"] input.the-guide-enabled {
+tr[id^="post-"] input.the-guide-is-enabled {
     background: transparent;
 }
 
 
-tr[id^="post-"] input.the-guide-enabled {
+tr[id^="post-"] input.the-guide-is-enabled {
     border: 0;
     opacity: 1;
     box-shadow: none;
@@ -16,7 +16,7 @@ tr[id^="post-"] input.the-guide-enabled {
 }
 
 
-tr[id^="post-"] input.the-guide-enabled:checked:before {
+tr[id^="post-"] input.the-guide-is-enabled:checked:before {
     opacity: 1;
     color: green;
 }”
