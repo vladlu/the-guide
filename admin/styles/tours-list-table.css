@@ -18,5 +18,4 @@ tr[id^="post-"] input.the-guide-is-enabled {
 
 tr[id^="post-"] input.the-guide-is-enabled:checked:before {
     opacity: 1;
-    color: green;
-}”
+}
