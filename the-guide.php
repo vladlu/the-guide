@@ -43,7 +43,7 @@ final class The_Guide {
 			}
 			if ( is_admin() ) {
 				new The_Guide_Admin_Assets();
-				new The_Guide_Menus       ();
+				new The_Guide_Menus       ( $this->settings );
 				new The_Guide_Meta_Boxes  ( $this->settings );
 				new The_Guide_Columns     ( $this->settings );
 				new The_Guide_Quick_Edit  ( $this->settings );

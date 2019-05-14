@@ -29,7 +29,8 @@ class The_Guide_Ajax {
 		add_action(        'wp_ajax_the_guide_public_get_custom_css', [ $this, 'public_get_custom_css' ] );
 		add_action( 'wp_ajax_nopriv_the_guide_public_get_custom_css', [ $this, 'public_get_custom_css' ] );
 		if ( current_user_can( 'list_users' ) ) {
-			add_action( 'wp_ajax_the_guide_customize_menu', [ $this, 'customize_menu' ] );
+			add_action( 'wp_ajax_the_guide_reorder_tours',    [ $this, 'reorder_tours' ] );
+			add_action( 'wp_ajax_the_guide_customize_menu',   [ $this, 'customize_menu' ] );
 		}
 	}
 
@@ -154,7 +155,7 @@ class The_Guide_Ajax {
 	 *          $_POST['id']
 	 */
 	public function public_get_tour_data_by_id() {
-		if ( wp_verify_nonce( $_POST['token'], 'the-guide-get-tour-data-by-id' ) ) {
+		if ( isset( $_POST['token']) && wp_verify_nonce( $_POST['token'], 'the-guide-get-tour-data-by-id' ) ) {
 			$the_tour_data = [];
 
 			$the_tour_data['steps']                      = get_post_meta( $_POST['id'], 'the-guide-steps', true );
@@ -173,7 +174,7 @@ class The_Guide_Ajax {
      * Accepts: $_POST['token']
      */
 	public function public_get_custom_css() {
-		if ( wp_verify_nonce( $_POST['token'], 'the-guide-get-custom-css' ) ) {
+		if ( isset( $_POST['token']) && wp_verify_nonce( $_POST['token'], 'the-guide-get-custom-css' ) ) {
 			$custom_css = $this->settings->get_plugin_setting( 'custom-css' );
 			echo $custom_css;
 		}
@@ -187,9 +188,72 @@ class The_Guide_Ajax {
 	 *          $_POST['customCSS']
 	 */
 	public function customize_menu() {
-		if ( wp_verify_nonce( $_POST['token'], 'the-guide-customize-menu' ) ) {
+		if ( isset( $_POST['token']) && wp_verify_nonce( $_POST['token'], 'the-guide-customize-menu' ) ) {
 			$this->settings->save_plugin_setting( 'custom-css', stripslashes( $_POST['customCSS'] ) );
 		}
 		wp_die();
+	}
+
+
+
+	/**
+	 * Ajax request handling for tours ordering.
+	 *
+	 * Based on WooCommerce sorting
+	 * includes/class-wc-ajax.php
+	 *
+	 * Accepts: $_POST['token']
+	 *          $_POST['id']
+	 *          $_POST['previd']
+	 *          $_POST['nextid']
+	 */
+	public function reorder_tours() {
+		if ( isset( $_POST['token']) && wp_verify_nonce( $_POST['token'], 'the-guide-reorder-tours' ) ) {
+			global $wpdb;
+
+			if ( empty( $_POST['id'] ) ) {
+				wp_die( -1 );
+			}
+
+			$sorting_id  = absint( $_POST['id'] );
+			$previd      = absint( isset( $_POST['previd'] ) ? $_POST['previd'] : 0 );
+			$nextid      = absint( isset( $_POST['nextid'] ) ? $_POST['nextid'] : 0 );
+			$menu_orders = wp_list_pluck( $wpdb->get_results( "SELECT ID, menu_order FROM {$wpdb->posts} WHERE post_type = 'the-guide' ORDER BY menu_order ASC, post_title ASC" ), 'menu_order', 'ID' );
+			$index       = 0;
+
+			foreach ( $menu_orders as $id => $menu_order ) {
+				$id = absint( $id );
+
+				if ( $sorting_id === $id ) {
+					continue;
+				}
+				if ( $nextid === $id ) {
+					$index ++;
+				}
+				$index ++;
+				$menu_orders[ $id ] = $index;
+				$wpdb->update( $wpdb->posts, array( 'menu_order' => $index ), array( 'ID' => $id ) );
+
+				/**
+				 * When a single tour has gotten it's ordering updated.
+				 * $id The product ID
+				 * $index The new menu order
+				 */
+				do_action( 'the-guide_after_single_tour_ordering', $id, $index );
+			}
+
+			if ( isset( $menu_orders[ $previd ] ) ) {
+				$menu_orders[ $sorting_id ] = $menu_orders[ $previd ] + 1;
+			} elseif ( isset( $menu_orders[ $nextid ] ) ) {
+				$menu_orders[ $sorting_id ] = $menu_orders[ $nextid ] - 1;
+			} else {
+				$menu_orders[ $sorting_id ] = 0;
+			}
+
+			$wpdb->update( $wpdb->posts, array( 'menu_order' => $menu_orders[ $sorting_id ] ), array( 'ID' => $sorting_id ) );
+
+			do_action( 'the-guide_after_tour_ordering', $sorting_id, $menu_orders );
+			wp_send_json( $menu_orders );
+		}
 	}
 }

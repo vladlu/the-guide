@@ -17,7 +17,8 @@
 }
 
 .the-guide-flex-item-input {
-    flex-basis: 640px;
+    flex-basis: 90%;
+    max-width: 1000px;
 }
 
 .the-guide-submit-button {

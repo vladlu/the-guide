@@ -9,8 +9,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class The_Guide_Menus {
 
+	/**
+	 * Settings object.
+	 *
+	 * @since 0.1.0
+	 * @var object The_Guide_Settings
+	 */
+	private $settings;
 
-	public function __construct() {
+
+	public function __construct( The_Guide_Settings $settings_inst ) {
+		$this->settings = $settings_inst;
+
 		// Inits dashboard menus
 		add_action( 'admin_menu', [ $this, 'init_dashboard_menus' ] );
 	}
@@ -25,7 +35,6 @@ class The_Guide_Menus {
 			null,
 			'dashicons-analytics'
 		);
-
 
 		// Add New (the-guide)
 
@@ -46,7 +55,7 @@ class The_Guide_Menus {
 			'manage_options',
 			'the-guide-customize',
 			function () {
-				require_once THE_GUIDE_DIR . 'src/templates/dashboard-menu-customize.php';
+				require_once THE_GUIDE_DIR . 'src/templates/menu-customize.php';
 			}
 		);
 	}

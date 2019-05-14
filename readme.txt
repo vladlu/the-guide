@@ -35,7 +35,6 @@ Data Structure
   the-guide-url                               url                                Post Meta
   the-guide-steps                             steps                              Post Meta
   the-guide-steps-content                     stepsContent                       Post Meta
-  positions                                   positions                          Option (the-guide-settings)    Positions of the tours (their priority)
   custom-css                                  customCSS                          Option (the-guide-settings)    Custom CSS applied to all tours.
 
 ___________________________________________________________________________________________________________
@@ -105,6 +104,14 @@ Shortcodes
 
 [the-guide-launch id=”tour_id” step=”tour_step_number” ] - launch a new tour. has higher priority than [the-guide-go]
 [the-guide-go step=”tour_step_number”] - go to the step of the current tour
+
+========================================================================================================================
+
+Actions
+
+
+the-guide_after_single_tour_ordering
+the-guide_after_tour_ordering
 
 ========================================================================================================================
 

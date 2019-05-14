@@ -54,49 +54,56 @@ class The_Guide_Admin_Assets {
 
 
 		/**
-		 * All Tours menu
+		 * Tours List Table
 		 *
-		 *      JS
-		 */
-		wp_enqueue_script(
-			'the-guide-script-admin-all-tours-menu',
-			THE_GUIDE_URL . 'admin/scripts/dashboard-all-tours.js',
-			[],
-			THE_GUIDE_VERSION
-		);
-
-
-		/**
 		 *      CSS
 		 */
 		wp_enqueue_style(
 			'the-guide-style-admin-all-tours-menu',
-			THE_GUIDE_URL . 'admin/styles/dashboard-all-tours.css',
+			THE_GUIDE_URL . 'admin/styles/tours-list-table.css',
 			[],
 			THE_GUIDE_VERSION
 		);
 
 
-
 		/**
-		 * Add/Edit Tour menu
-		 *
 		 *      JS
 		 */
 		wp_enqueue_script(
-			'the-guide-script-admin-add-edit-tour-menu',
-			THE_GUIDE_URL . 'admin/scripts/dashboard-add-edit-tour.js',
-			[],
+			'the-guide-script-admin-all-tours-menu',
+			THE_GUIDE_URL . 'admin/scripts/tours-list-table.js',
+			[ 'jquery-ui-sortable' ],
 			THE_GUIDE_VERSION
 		);
 
 
 		/**
+		 *      Data to JS
+		 */
+		wp_localize_script( 'the-guide-script-admin-all-tours-menu', 'theGuide', [
+			'tokenReorderTours' => wp_create_nonce( 'the-guide-reorder-tours' ),
+		] );
+
+
+		/**
+		 * Add/Edit Tour
+		 *
 		 *      CSS
 		 */
 		wp_enqueue_style(
 			'the-guide-style-admin-add-edit-tour-menu',
-			THE_GUIDE_URL . 'admin/styles/dashboard-add-edit-tour.css',
+			THE_GUIDE_URL . 'admin/styles/add-edit-tour.css',
+			[],
+			THE_GUIDE_VERSION
+		);
+
+
+		/*
+		 *      JS
+		 */
+		wp_enqueue_script(
+			'the-guide-script-admin-add-edit-tour-menu',
+			THE_GUIDE_URL . 'admin/scripts/add-edit-tour.js',
 			[],
 			THE_GUIDE_VERSION
 		);
@@ -133,29 +140,29 @@ class The_Guide_Admin_Assets {
 
 
 		/**
-		 * loads CSS
+		 * CSS
 		 */
 		wp_enqueue_style(
 			'the-guide-style-admin-customize-menu',
-			THE_GUIDE_URL . 'admin/styles/dashboard-menu-customize.css',
+			THE_GUIDE_URL . 'admin/styles/menu-customize.css',
 			[],
 			THE_GUIDE_VERSION
 		);
 
 
 		/**
-		 * loads JS
+		 * JS
 		 */
 		wp_enqueue_script(
 			'the-guide-script-admin-customize-menu',
-			THE_GUIDE_URL . 'admin/scripts/dashboard-menu-customize.js',
+			THE_GUIDE_URL . 'admin/scripts/menu-customize.js',
 			[ 'jquery' ],
 			THE_GUIDE_VERSION
 		);
 
 
 		/**
-		 * data to JS
+		 * Data to JS
 		 */
 		wp_localize_script( 'the-guide-script-admin-customize-menu', 'theGuide', [
 			'token' => wp_create_nonce( 'the-guide-customize-menu' ),

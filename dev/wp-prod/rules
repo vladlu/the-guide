@@ -3,10 +3,17 @@ plugin
 
 webpack		the-guide.dev.js			the-guide.js			public/scripts/
 webpack		custom-css.dev.js			custom-css.js			public/scripts/
-webpack		dashboard-menu-customize.dev.js		dashboard-menu-customize.js	admin/scripts/
+
+webpack		menu-customize.dev.js			menu-customize.js		admin/scripts/
+webpack		add-edit-tour.dev.js			add-edit-tour.js		admin/scripts/
+webpack		tours-list-table.dev.js			tours-list-table.js		admin/scripts/
+
 
 webpack		main.dev.css			        main.css			public/styles/
-webpack		dashboard-menu-customize.dev.css	dashboard-menu-customize.css	admin/styles/
+
+webpack		menu-customize.dev.css			menu-customize.css		admin/styles/
+webpack		add-edit-tour.dev.css			add-edit-tour.css		admin/styles/
+webpack		tours-list-table.css			tours-list-table.css		admin/styles/
 
 
 # Libraries

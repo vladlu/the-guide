@@ -28,6 +28,7 @@ class The_Guide_Misc {
 		$this->custom_bulk_actions();
 
 		add_filter( 'post_updated_messages', [ $this, 'custom_post_admin_notices' ] );
+		add_filter( 'views_edit-the-guide',  [ $this, 'tours_views' ] );
 	}
 
 
@@ -196,5 +197,28 @@ class The_Guide_Misc {
 		);
 
 		return $messages;
+	}
+
+
+
+	/**
+	 * Change views on the edit tours screen.
+	 *
+	 * @param  array $views Array of views.
+	 * @return array
+	 */
+	public function tours_views( $views ) {
+		global $wp_query;
+
+		// Add reprioritize link.
+		if ( current_user_can( 'edit_others_pages' ) ) {
+			$class            = ( isset( $wp_query->query['orderby'] ) && 'menu_order title' === $wp_query->query['orderby'] ) ? 'current' : '';
+			$query_string     = remove_query_arg( [ 'orderby', 'order' ] );
+			$query_string     = add_query_arg( 'orderby', rawurlencode( 'menu_order title' ), $query_string );
+			$query_string     = add_query_arg( 'order',   rawurlencode( 'ASC' ),              $query_string );
+			$views['byorder'] = '<a href="' . esc_url( $query_string ) . '" class="' . esc_attr( $class ) . '">' . __( 'Reprioritize', 'the-guide' ) . '</a>';
+		}
+
+		return $views;
 	}
 }
