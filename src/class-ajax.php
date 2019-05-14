@@ -30,7 +30,7 @@ class The_Guide_Ajax {
 		add_action( 'wp_ajax_nopriv_the_guide_public_get_custom_css', [ $this, 'public_get_custom_css' ] );
 		if ( current_user_can( 'list_users' ) ) {
 			add_action( 'wp_ajax_the_guide_reorder_tours',    [ $this, 'reorder_tours' ] );
-			add_action( 'wp_ajax_the_guide_customize_menu',   [ $this, 'customize_menu' ] );
+			add_action( 'wp_ajax_the_guide_menu_customize',   [ $this, 'menu_customize' ] );
 		}
 	}
 
@@ -187,8 +187,8 @@ class The_Guide_Ajax {
 	 * Accepts: $_POST['token']
 	 *          $_POST['customCSS']
 	 */
-	public function customize_menu() {
-		if ( isset( $_POST['token']) && wp_verify_nonce( $_POST['token'], 'the-guide-customize-menu' ) ) {
+	public function menu_customize() {
+		if ( isset( $_POST['token']) && wp_verify_nonce( $_POST['token'], 'the-guide-menu-customize' ) ) {
 			$this->settings->save_plugin_setting( 'custom-css', stripslashes( $_POST['customCSS'] ) );
 		}
 		wp_die();
