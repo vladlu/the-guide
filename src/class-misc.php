@@ -125,19 +125,6 @@ class The_Guide_Misc {
 
 			$bulk_actions['disable'] = __( 'Disable', 'the-guide' );
 
-			/*
-			 * Moves
-			 */
-
-			$edit  = $bulk_actions['edit'];
-			$trash = $bulk_actions['trash'];
-
-			unset( $bulk_actions['edit'] );
-			unset( $bulk_actions['trash'] );
-
-			$bulk_actions['edit']  = $edit;
-			$bulk_actions['trash'] = $trash;
-
 
 			return $bulk_actions;
 		} );
@@ -167,6 +154,50 @@ class The_Guide_Misc {
 					        $disabled_count,
 					        'the-guide'
 				        ) . '</p></div>', $disabled_count );
+			}
+		} );
+
+		/*
+         * Duplicate
+         */
+
+		add_filter( 'bulk_actions-edit-the-guide', function( $bulk_actions ) {
+
+			/*
+			 * Adds
+			 */
+
+			$bulk_actions['duplicate'] = __( 'Duplicate', 'the-guide' );
+
+
+			return $bulk_actions;
+		} );
+
+
+		add_filter( 'handle_bulk_actions-edit-the-guide', function( $redirect_to, $doaction, $post_ids ) {
+			if ( $doaction !== 'duplicate' ) {
+				return $redirect_to;
+			}
+			foreach ( $post_ids as $post_id ) {
+				/*
+				 * Removes a tour from enabled
+				 */
+				the_guide_duplicate_post( $post_id );
+			}
+			$redirect_to = add_query_arg( 'duplicated', count( $post_ids ), $redirect_to );
+			return $redirect_to;
+		}, 10, 3 );
+
+
+		add_action( 'admin_notices', function() {
+			if ( ! empty( $_REQUEST['duplicated'] ) ) {
+				$duplicated_count = $_REQUEST['duplicated'];
+				printf( '<div id="message" class="notice notice-success is-dismissible"><p>' .
+				        _n( '%s tour duplicated.',
+					        '%s tours duplicated.',
+					        $duplicated_count,
+					        'the-guide'
+				        ) . '</p></div>', $duplicated_count );
 			}
 		} );
 	}
@@ -208,16 +239,14 @@ class The_Guide_Misc {
 	 * @return array
 	 */
 	public function tours_views( $views ) {
-		global $wp_query;
+		$the_guide_sorting = '&#038;the-guide-sorting=true';
 
-		// Add reprioritize link.
-		if ( current_user_can( 'edit_others_pages' ) ) {
-			$class            = ( isset( $wp_query->query['orderby'] ) && 'menu_order title' === $wp_query->query['orderby'] ) ? 'current' : '';
-			$query_string     = remove_query_arg( [ 'orderby', 'order' ] );
-			$query_string     = add_query_arg( 'orderby', rawurlencode( 'menu_order title' ), $query_string );
-			$query_string     = add_query_arg( 'order',   rawurlencode( 'ASC' ),              $query_string );
-			$views['byorder'] = '<a href="' . esc_url( $query_string ) . '" class="' . esc_attr( $class ) . '">' . __( 'Reprioritize', 'the-guide' ) . '</a>';
-		}
+		// Also these URLs used in JS script to start jQueryUI sorting for table items
+		$replaceString1 = '?post_type=the-guide&orderby=menu_order+title&order=ASC';
+		$replaceString2 = '&#038;post_type=the-guide&orderby=menu_order+title&order=ASC';
+
+		$views = str_replace( '?post_type=the-guide"',      "$replaceString1$the_guide_sorting\"", $views );
+		$views = str_replace( '&#038;post_type=the-guide"', "$replaceString2$the_guide_sorting\"", $views );
 
 		return $views;
 	}

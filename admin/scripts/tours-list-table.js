@@ -57,16 +57,11 @@ jQuery( $ => {
      */
 
 
-    let currentURL =  window.location.href,
-        sortingText = 'post_type=the-guide&orderby=menu_order+title&order=ASC';
-
-    if ( currentURL.includes( sortingText ) ) {
-        $( 'table.widefat tbody th, table.widefat tbody td' ).css( 'cursor', 'move' );
-
+    if ( window.location.href.includes( 'the-guide-sorting=true' ) ) {
         jQuery( 'table.widefat tbody' ).sortable( {
             items: 'tr:not(.inline-edit-row)',
-            cursor: 'move',
             axis: 'y',
+            cursor: 'move',
             containment: 'table.widefat',
             scrollSensitivity: 40,
             helper: function( event, ui ) {
@@ -85,7 +80,6 @@ jQuery( $ => {
                 ui.item.children( 'td,th' ).css( 'border-bottom-width', '1px' );
             },
             update: function( event, ui ) {
-                $( 'table.widefat tbody th, table.widefat tbody td' ).css( 'cursor', 'default' );
                 $( 'table.widefat tbody' ).sortable( 'disable' );
 
                 var postid     = ui.item.find( '.check-column input' ).val();
@@ -103,7 +97,6 @@ jQuery( $ => {
                         $( '#inline_' + key + ' .menu_order' ).html( value );
                     });
                     ui.item.find( '.check-column input' ).show().siblings( 'img' ).remove();
-                    $( 'table.widefat tbody th, table.widefat tbody td' ).css( 'cursor', 'move' );
                     $( 'table.widefat tbody' ).sortable( 'enable' );
                 });
 

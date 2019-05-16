@@ -63,6 +63,8 @@ final class The_Guide {
 
 
 	private function import_files() {
+		require_once THE_GUIDE_DIR . 'src/functions.php';
+
 		require_once THE_GUIDE_DIR . 'src/class-ajax.php';
 		require_once THE_GUIDE_DIR . 'src/class-columns.php';
 		require_once THE_GUIDE_DIR . 'src/class-menus.php';

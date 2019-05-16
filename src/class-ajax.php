@@ -68,7 +68,9 @@ class The_Guide_Ajax {
 						'value'   => 1,
 						'compare' => '=',
 					]
-				]
+				],
+				'orderby' => 'menu_order title',
+				'order'   => 'ASC'
 			] );
 
 			if ( $all_enabled_tours->have_posts() ) {
