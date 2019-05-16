@@ -50,7 +50,7 @@ jQuery( $ => {
 
 
     /**
-     * Reprioritizing
+     * Prioritizing
      *
      * Based on WooCommerce sorting
      * assets/js/admin/product-ordering.js
