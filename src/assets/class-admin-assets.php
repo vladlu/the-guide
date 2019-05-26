@@ -31,9 +31,7 @@ class The_Guide_Admin_Assets {
 	private function load_admin_assets() {
 
 		/**
-		 * - General
-		 *
-		 * - All Tours menu
+		 * General
 		 */
 		add_action( 'admin_enqueue_scripts', [ $this, 'load_general_assets' ] );
 
@@ -52,13 +50,13 @@ class The_Guide_Admin_Assets {
 
 
 		/**
-		 * GENERAL
+		 * General
 		 *
 		 *      Babel Polyfill
 		 */
 		wp_enqueue_script(
 			'the-guide-script-babel-polyfill',
-			THE_GUIDE_URL . 'libs/babel-polyfill/babel-polyfill' . $this->assets_suffix . '.js',
+			THE_GUIDE_URL . 'libs/babel-polyfill/babel-polyfill.js',
 			[],
 			THE_GUIDE_VERSION
 		);
@@ -97,6 +95,7 @@ class The_Guide_Admin_Assets {
 		] );
 
 
+
 		/**
 		 * Add/Edit Tour
 		 *
@@ -127,31 +126,6 @@ class The_Guide_Admin_Assets {
 
 
 		/**
-		 * Codemirror
-		 */
-		wp_enqueue_script(
-			'the-guide-script-admin-customize-codemirror-main',
-			THE_GUIDE_URL . 'libs/codemirror/codemirror' . $this->assets_suffix . '.js',
-			[],
-			THE_GUIDE_VERSION
-		);
-
-		wp_enqueue_script(
-			'the-guide-script-admin-customize-codemirror-css',
-			THE_GUIDE_URL . 'libs/codemirror/css' . $this->assets_suffix . '.js',
-			[],
-			THE_GUIDE_VERSION
-		);
-
-		wp_enqueue_style(
-			'the-guide-style-admin-menu-customize-codemirror',
-			THE_GUIDE_URL . 'libs/codemirror/codemirror' . $this->assets_suffix . '.css',
-			[],
-			THE_GUIDE_VERSION
-		);
-
-
-		/**
 		 * CSS
 		 */
 		wp_enqueue_style(
@@ -169,6 +143,31 @@ class The_Guide_Admin_Assets {
 			'the-guide-script-admin-menu-customize',
 			THE_GUIDE_URL . 'admin/scripts/menu-customize' . $this->assets_suffix . '.js',
 			[ 'jquery' ],
+			THE_GUIDE_VERSION
+		);
+
+
+		/**
+		 * Codemirror
+		 */
+		wp_enqueue_script(
+			'the-guide-script-admin-customize-codemirror-main',
+			THE_GUIDE_URL . 'libs/codemirror/codemirror.js',
+			[],
+			THE_GUIDE_VERSION
+		);
+
+		wp_enqueue_script(
+			'the-guide-script-admin-customize-codemirror-css',
+			THE_GUIDE_URL . 'libs/codemirror/css.js',
+			[],
+			THE_GUIDE_VERSION
+		);
+
+		wp_enqueue_style(
+			'the-guide-style-admin-menu-customize-codemirror',
+			THE_GUIDE_URL . 'libs/codemirror/codemirror.css',
+			[],
 			THE_GUIDE_VERSION
 		);
 

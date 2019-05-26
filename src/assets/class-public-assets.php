@@ -66,19 +66,9 @@ class The_Guide_Public_Assets {
 	 */
 	public function load_public_assets() {
 
-		/**
-		 * loads Babel polyfill
-		 */
-		wp_enqueue_script(
-			'the-guide-script-babel-polyfill',
-			THE_GUIDE_URL . 'libs/babel-polyfill/babel-polyfill' . $this->assets_suffix . '.js',
-			[],
-			THE_GUIDE_VERSION
-		);
-
 
 		/**
-		 * loads CSS
+		 * CSS
 		 */
 		wp_enqueue_style(
 			'the-guide-style-public-main',
@@ -93,8 +83,9 @@ class The_Guide_Public_Assets {
 			THE_GUIDE_VERSION
 		);
 
+
 		/**
-		 * loads JS
+		 * JS
 		 */
 		wp_enqueue_script(
 			'the-guide-script-public',
@@ -111,7 +102,18 @@ class The_Guide_Public_Assets {
 
 
 		/**
-		 * data to JS
+		 * Babel Polyfill
+		 */
+		wp_enqueue_script(
+			'the-guide-script-babel-polyfill',
+			THE_GUIDE_URL . 'libs/babel-polyfill/babel-polyfill.js',
+			[],
+			THE_GUIDE_VERSION
+		);
+
+
+		/**
+		 * Data to JS
 		 */
 		wp_localize_script( 'the-guide-script-public', 'theGuide', [
 			'translates' => [
