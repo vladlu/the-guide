@@ -13,7 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 0.1.0
  */
 class The_Guide_Public_Assets {
-
+	
+	
 	/**
 	 * Settings object.
 	 *
@@ -21,6 +22,15 @@ class The_Guide_Public_Assets {
 	 * @var The_Guide_Settings
 	 */
 	private $settings;
+
+
+	/**
+	 * Suffix for assets.
+	 * Either empty string or ".min"
+	 *
+	 * @var string
+	 */
+	public $assets_suffix;
 
 
 
@@ -33,6 +43,7 @@ class The_Guide_Public_Assets {
 	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
+		$this->assets_suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'load_public_assets' ] );
 	}
@@ -60,7 +71,7 @@ class The_Guide_Public_Assets {
 		 */
 		wp_enqueue_script(
 			'the-guide-script-babel-polyfill',
-			THE_GUIDE_URL . 'libs/babel-polyfill/babel-polyfill.js',
+			THE_GUIDE_URL . 'libs/babel-polyfill/babel-polyfill' . $this->assets_suffix . '.js',
 			[],
 			THE_GUIDE_VERSION
 		);
@@ -71,13 +82,13 @@ class The_Guide_Public_Assets {
 		 */
 		wp_enqueue_style(
 			'the-guide-style-public-main',
-			THE_GUIDE_URL . 'public/styles/main.css',
+			THE_GUIDE_URL . 'public/styles/main' . $this->assets_suffix . '.css',
 			[],
 			THE_GUIDE_VERSION
 		);
 		wp_enqueue_style(
 			'the-guide-style-public',
-			THE_GUIDE_URL . 'public/styles/the-guide.css',
+			THE_GUIDE_URL . 'public/styles/the-guide' . $this->assets_suffix . '.css',
 			[ 'the-guide-style-public-main' ],
 			THE_GUIDE_VERSION
 		);
@@ -87,13 +98,13 @@ class The_Guide_Public_Assets {
 		 */
 		wp_enqueue_script(
 			'the-guide-script-public',
-			THE_GUIDE_URL . 'public/scripts/the-guide.js',
+			THE_GUIDE_URL . 'public/scripts/the-guide' . $this->assets_suffix . '.js',
 			[ 'jquery-ui-draggable' ],
 			THE_GUIDE_VERSION
 		);
 		wp_enqueue_script(
 			'the-guide-script-custom-css',
-			THE_GUIDE_URL . 'public/scripts/custom-css.js',
+			THE_GUIDE_URL . 'public/scripts/custom-css' . $this->assets_suffix . '.js',
 			[ 'the-guide-script-public', 'jquery' ],
 			THE_GUIDE_VERSION
 		);
