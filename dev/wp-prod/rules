@@ -1,19 +1,19 @@
 plugin
 
 
-webpack		the-guide.dev.js			the-guide.js			public/scripts/
-webpack		custom-css.dev.js			custom-css.js			public/scripts/
+webpack		public/scripts/the-guide.js
+webpack		public/scripts/custom-css.js
 
-webpack		menu-customize.dev.js			menu-customize.js		admin/scripts/
-webpack		add-edit-tour.dev.js			add-edit-tour.js		admin/scripts/
-webpack		tours-list-table.dev.js			tours-list-table.js		admin/scripts/
+webpack		admin/scripts/menu-customize.js
+webpack		admin/scripts/add-edit-tour.js
+webpack		admin/scripts/tours-list-table.js
 
 
-webpack		main.dev.css			        main.css			public/styles/
+webpack		public/styles/main.css
 
-webpack		menu-customize.dev.css			menu-customize.css		admin/styles/
-webpack		add-edit-tour.dev.css			add-edit-tour.css		admin/styles/
-webpack		tours-list-table.css			tours-list-table.css		admin/styles/
+webpack		admin/styles/menu-customize.css
+webpack		admin/styles/add-edit-tour.css
+webpack		admin/styles/tours-list-table.css
 
 
 # Libraries
