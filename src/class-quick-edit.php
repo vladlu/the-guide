@@ -35,7 +35,7 @@ class The_Guide_Quick_Edit {
 
 		static $first_run = true;
 		if ( $first_run ) {
-			wp_nonce_field( 'the-guide-quick-edit', 'the-guide_edit_nonce' );
+			wp_nonce_field( 'the-guide-quick-edit', 'the-guide_edit_nonce-token' );
 
 			$first_run = false;
 		}
@@ -106,8 +106,8 @@ class The_Guide_Quick_Edit {
             $slug !== $_POST['post_type']   ||
 
             // nonce
-            ! isset(           $_POST["{$slug}_edit_nonce"] )                         ||
-            ! wp_verify_nonce( $_POST["{$slug}_edit_nonce"], 'the-guide-quick-edit' ) ||
+            ! isset(           $_POST["{$slug}_edit_nonce-token"] )                         ||
+            ! wp_verify_nonce( $_POST["{$slug}_edit_nonce-token"], 'the-guide-quick-edit' ) ||
 
             // user has capabilities
             ! current_user_can( 'edit_post', $post_id )

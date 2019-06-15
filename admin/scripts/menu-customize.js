@@ -14,7 +14,7 @@ jQuery( $ => {
         // Sends
         let data = {
             'action':      'the_guide_menu_customize',
-            'token':       theGuide.token,
+            'nonceToken':       theGuide.nonceToken,
 
             'customCSS':  cm.getValue(),
         };

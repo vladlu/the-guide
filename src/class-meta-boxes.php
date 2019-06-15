@@ -47,8 +47,8 @@ class The_Guide_Meta_Boxes{
 
 		if (
 			// nonce
-			! isset( $_POST['the-guide_edit_tour'] ) ||
-			! wp_verify_nonce( $_POST['the-guide_edit_tour'], 'the-guide-edit-tour' ) ||
+			! isset( $_POST['the-guide_edit_tour_nonce-token'] ) ||
+			! wp_verify_nonce( $_POST['the-guide_edit_tour_nonce-token'], 'the-guide-edit-tour' ) ||
 
 			// autosave
 			defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ||

@@ -7,7 +7,7 @@ function theGuide_loadCustomCSS() {
      */
     let data = {
         'action': 'the_guide_public_get_custom_css',
-        'token':  theGuide.theGuideData.nonceGetCustomCSS
+        'nonceToken':  theGuide.theGuideData.nonceTokenGetCustomCSS
     };
     jQuery.post( theGuide.ajaxurl, data, customCSS => {
         if ( customCSS ) {

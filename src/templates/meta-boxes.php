@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-<?php wp_nonce_field( 'the-guide-edit-tour', 'the-guide_edit_tour' ); ?>
+<?php wp_nonce_field( 'the-guide-edit-tour', 'the-guide_edit_tour_nonce-token' ); ?>
 
 
 

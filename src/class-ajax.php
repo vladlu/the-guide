@@ -137,8 +137,8 @@ class The_Guide_Ajax {
 				 * Adds nonce
 				 */
 				$the_guide_data = array_merge($the_guide_data, [
-					'nonceGetTourDataByID' => wp_create_nonce( 'the-guide-get-tour-data-by-id' ),
-					'nonceGetCustomCSS'    => wp_create_nonce( 'the-guide-get-custom-css' ),
+					'nonceTokenGetTourDataByID' => wp_create_nonce( 'the-guide-get-tour-data-by-id' ),
+					'nonceTokenGetCustomCSS'    => wp_create_nonce( 'the-guide-get-custom-css' ),
 				]);
 
 				/*
@@ -153,11 +153,11 @@ class The_Guide_Ajax {
 
 
 	/*
-	 * Accepts: $_POST['token']
+	 * Accepts: $_POST['nonceToken']
 	 *          $_POST['id']
 	 */
 	public function public_get_tour_data_by_id() {
-		if ( isset( $_POST['token']) && wp_verify_nonce( $_POST['token'], 'the-guide-get-tour-data-by-id' ) ) {
+		if ( isset( $_POST['nonceToken']) && wp_verify_nonce( $_POST['nonceToken'], 'the-guide-get-tour-data-by-id' ) ) {
 			$the_tour_data = [];
 
 			$the_tour_data['steps']                      = get_post_meta( $_POST['id'], 'the-guide-steps', true );
@@ -173,10 +173,10 @@ class The_Guide_Ajax {
 
 
 	/*
-     * Accepts: $_POST['token']
+     * Accepts: $_POST['nonceToken']
      */
 	public function public_get_custom_css() {
-		if ( isset( $_POST['token']) && wp_verify_nonce( $_POST['token'], 'the-guide-get-custom-css' ) ) {
+		if ( isset( $_POST['nonceToken']) && wp_verify_nonce( $_POST['nonceToken'], 'the-guide-get-custom-css' ) ) {
 			$custom_css = $this->settings->get_plugin_setting( 'custom-css' );
 			echo $custom_css;
 		}
@@ -186,11 +186,11 @@ class The_Guide_Ajax {
 
 
 	/*
-	 * Accepts: $_POST['token']
+	 * Accepts: $_POST['nonceToken']
 	 *          $_POST['customCSS']
 	 */
 	public function menu_customize() {
-		if ( isset( $_POST['token']) && wp_verify_nonce( $_POST['token'], 'the-guide-menu-customize' ) ) {
+		if ( isset( $_POST['nonceToken']) && wp_verify_nonce( $_POST['nonceToken'], 'the-guide-menu-customize' ) ) {
 			$this->settings->save_plugin_setting( 'custom-css', stripslashes( $_POST['customCSS'] ) );
 		}
 		wp_die();
@@ -204,13 +204,13 @@ class The_Guide_Ajax {
 	 * Based on WooCommerce sorting
 	 * includes/class-wc-ajax.php
 	 *
-	 * Accepts: $_POST['token']
+	 * Accepts: $_POST['nonceToken']
 	 *          $_POST['id']
 	 *          $_POST['previd']
 	 *          $_POST['nextid']
 	 */
 	public function reorder_tours() {
-		if ( isset( $_POST['token']) && wp_verify_nonce( $_POST['token'], 'the-guide-reorder-tours' ) ) {
+		if ( isset( $_POST['nonceToken']) && wp_verify_nonce( $_POST['nonceToken'], 'the-guide-reorder-tours' ) ) {
 			global $wpdb;
 
 			if ( empty( $_POST['id'] ) ) {

@@ -91,7 +91,7 @@ jQuery( $ => {
 
                 // Go do the sorting stuff via ajax
                 $.post( ajaxurl,
-                        { action: 'the_guide_reorder_tours', token: theGuide.tokenReorderTours, id: postid, previd: prevpostid, nextid: nextpostid },
+                        { action: 'the_guide_reorder_tours', nonceToken: theGuide.nonceTokenReorderTours, id: postid, previd: prevpostid, nextid: nextpostid },
                         function( response ) {
                     $.each( response, function( key, value ) {
                         $( '#inline_' + key + ' .menu_order' ).html( value );

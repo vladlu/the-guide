@@ -91,7 +91,7 @@ class The_Guide_Admin_Assets {
 		 *      Data to JS
 		 */
 		wp_localize_script( 'the-guide-script-admin-tours-list-table', 'theGuide', [
-			'tokenReorderTours' => wp_create_nonce( 'the-guide-reorder-tours' ),
+			'nonceTokenReorderTours' => wp_create_nonce( 'the-guide-reorder-tours' ),
 		] );
 
 
@@ -176,7 +176,7 @@ class The_Guide_Admin_Assets {
 		 * Data to JS
 		 */
 		wp_localize_script( 'the-guide-script-admin-menu-customize', 'theGuide', [
-			'token' => wp_create_nonce( 'the-guide-menu-customize' ),
+			'nonceToken' => wp_create_nonce( 'the-guide-menu-customize' ),
 		] );
 	}
 }

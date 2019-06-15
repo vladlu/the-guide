@@ -49,7 +49,7 @@ class TheGuide {
         // Receives the selected tour's data from the server and handles it
         let data = {
             'action': 'the_guide_public_get_tour_data_by_id',
-            'token':  theGuide.theGuideData.nonceGetTourDataByID,
+            'nonceToken':  theGuide.theGuideData.nonceTokenGetTourDataByID,
 
             'id':     this.currentTour,
         };
