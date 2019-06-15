@@ -12,20 +12,6 @@ cd "$SCRIPTPATH"
 
 
 ##
-# Checks for the version
-##
-
-current_version=$(cat "wp-prod/version")
-specified_version=$(cat version)
-
-if [[ "$current_version" != "$specified_version" ]]; then
-    echo -e "The currently installed version ($current_version) differs from the specified ($specified_version).
-Deleting it and installing the specified version.. \n"
-
-    "$SCRIPTPATH/uninstall.sh"
-fi
-
-##
 # Runs wp-prod.
 ##
 
@@ -36,6 +22,30 @@ if [ ! -d "$SCRIPTPATH/wp-prod" ]; then
     rm -f "$version.tar.gz"
     mv "wp-prod-$version" "wp-prod"
 fi
+
+
+
+##
+# Checks for the version
+##
+
+current_version=$(cat "wp-prod/version")
+specified_version=$(cat version)
+
+if [[ "$current_version" != "$specified_version" ]]; then
+    echo -e "The currently installed version ($current_version) differs from the specified ($specified_version).
+Deleting it and installing the specified version.. \n"
+
+    # If they differ:
+    #   Deletes the currently installed wp-prod
+
+    "$SCRIPTPATH/uninstall.sh"
+
+    #   And installes the actual version
+
+    "$SCRIPTPATH/run.sh"
+fi
+
 
 
 wp-prod/bin/run.sh
