@@ -208,7 +208,7 @@ class The_Guide_Misc {
 
 		$post = get_post();
 
-		$messages['the-guide'] = array(
+		$messages['the-guide'] = [
 			0  => '', // Unused. Messages start at index 1.
 			1  => __( 'Tour updated.', 'the-guide' ), // It may contain link "View tour"
 			2  => __( 'Custom field updated.' ),
@@ -225,7 +225,7 @@ class The_Guide_Misc {
 				date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) )
 			),
 			10 => __( 'Tour draft updated.', 'the-guide' )
-		);
+		];
 
 		return $messages;
 	}

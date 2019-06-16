@@ -21,16 +21,34 @@ class The_Guide_Ajax {
 
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
+		$this->add_ajax_events();
+	}
 
-		add_action(        'wp_ajax_the_guide_public_init', [ $this, 'public_init' ] );
-		add_action( 'wp_ajax_nopriv_the_guide_public_init', [ $this, 'public_init' ] );
-		add_action(        'wp_ajax_the_guide_public_get_tour_data_by_id', [ $this, 'public_get_tour_data_by_id' ] );
-		add_action( 'wp_ajax_nopriv_the_guide_public_get_tour_data_by_id', [ $this, 'public_get_tour_data_by_id' ] );
-		add_action(        'wp_ajax_the_guide_public_get_custom_css', [ $this, 'public_get_custom_css' ] );
-		add_action( 'wp_ajax_nopriv_the_guide_public_get_custom_css', [ $this, 'public_get_custom_css' ] );
-		if ( current_user_can( 'list_users' ) ) {
-			add_action( 'wp_ajax_the_guide_reorder_tours',    [ $this, 'reorder_tours' ] );
-			add_action( 'wp_ajax_the_guide_menu_customize',   [ $this, 'menu_customize' ] );
+
+
+	private function add_ajax_events() {
+
+		$ajax_events_nopriv = [
+			'public_init',
+			'public_get_tour_data_by_id',
+			'public_get_custom_css'
+		];
+
+
+		foreach ( $ajax_events_nopriv as $ajax_event ) {
+			add_action( 'wp_ajax_the_guide_'        . $ajax_event, [ __CLASS__, $ajax_event ] );
+			add_action( 'wp_ajax_nopriv_the_guide_' . $ajax_event, [ __CLASS__, $ajax_event ] );
+		}
+
+
+		$ajax_events = [
+			'reorder_tours',
+			'menu_customize'
+		];
+
+
+		foreach ( $ajax_events as $ajax_event ) {
+			add_action( 'wp_ajax_the_guide_' . $ajax_event, [ __CLASS__, $ajax_event ] );
 		}
 	}
 
@@ -272,7 +290,7 @@ class The_Guide_Ajax {
 			}
 			$index ++;
 			$menu_orders[ $id ] = $index;
-			$wpdb->update( $wpdb->posts, array( 'menu_order' => $index ), array( 'ID' => $id ) );
+			$wpdb->update( $wpdb->posts, [ 'menu_order' => $index ], [ 'ID' => $id ] );
 
 			/**
 			 * When a single tour has gotten it's ordering updated.
@@ -290,7 +308,7 @@ class The_Guide_Ajax {
 			$menu_orders[ $sorting_id ] = 0;
 		}
 
-		$wpdb->update( $wpdb->posts, array( 'menu_order' => $menu_orders[ $sorting_id ] ), array( 'ID' => $sorting_id ) );
+		$wpdb->update( $wpdb->posts, [ 'menu_order' => $menu_orders[ $sorting_id ] ], [ 'ID' => $sorting_id ] );
 
 		do_action( 'the-guide_after_tour_ordering', $sorting_id, $menu_orders );
 		wp_send_json( $menu_orders );
