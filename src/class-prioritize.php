@@ -24,8 +24,6 @@ class The_Guide_Prioritize {
 	 * @return array
 	 */
 	public function tours_views( $views ) {
-		global $wp_query;
-
 		// Add a prioritize link.
 		if ( current_user_can( 'edit_others_pages' ) ) {
 			$arg_name  = "the-guide-sorting";
