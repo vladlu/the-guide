@@ -1,5 +1,5 @@
 /**
-    Checkboxes (Enabled)
+ *  Checkboxes (Enabled)
  */
 
 tr[id^="post-"] input.the-guide-is-enabled {
@@ -17,4 +17,12 @@ tr[id^="post-"] input.the-guide-is-enabled {
 
 tr[id^="post-"] input.the-guide-is-enabled:checked:before {
     opacity: 1;
+}
+
+/**
+ *  Prioritize
+ */
+
+table.widefat tbody th, table.widefat tbody td {
+    cursor: move;
 }

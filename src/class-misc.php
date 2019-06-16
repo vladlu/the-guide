@@ -28,7 +28,6 @@ class The_Guide_Misc {
 		$this->custom_bulk_actions();
 
 		add_filter( 'post_updated_messages', [ $this, 'custom_post_admin_notices' ] );
-		add_filter( 'views_edit-the-guide',  [ $this, 'tours_views' ] );
 	}
 
 
@@ -228,26 +227,5 @@ class The_Guide_Misc {
 		];
 
 		return $messages;
-	}
-
-
-
-	/**
-	 * Change views on the edit tours screen.
-	 *
-	 * @param  array $views Array of views.
-	 * @return array
-	 */
-	public function tours_views( $views ) {
-		$the_guide_sorting = '&#038;the-guide-sorting=true';
-
-		// Also these URLs used in JS script to start jQueryUI sorting for table items
-		$replaceString1 = '?post_type=the-guide&orderby=menu_order+title&order=ASC';
-		$replaceString2 = '&#038;post_type=the-guide&orderby=menu_order+title&order=ASC';
-
-		$views = str_replace( '?post_type=the-guide"',      "$replaceString1$the_guide_sorting\"", $views );
-		$views = str_replace( '&#038;post_type=the-guide"', "$replaceString2$the_guide_sorting\"", $views );
-
-		return $views;
 	}
 }

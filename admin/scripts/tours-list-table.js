@@ -50,7 +50,7 @@ jQuery( $ => {
 
 
     /**
-     * Prioritizing
+     * Prioritize
      *
      * Based on WooCommerce sorting
      * assets/js/admin/product-ordering.js
@@ -80,6 +80,7 @@ jQuery( $ => {
                 ui.item.children( 'td,th' ).css( 'border-bottom-width', '1px' );
             },
             update: function( event, ui ) {
+                $( 'table.widefat tbody th, table.widefat tbody td' ).css( 'cursor', 'default' );
                 $( 'table.widefat tbody' ).sortable( 'disable' );
 
                 var postid     = ui.item.find( '.check-column input' ).val();
@@ -91,14 +92,15 @@ jQuery( $ => {
 
                 // Go do the sorting stuff via ajax
                 $.post( ajaxurl,
-                        { action: 'the_guide_reorder_tours', nonceToken: theGuide.nonceTokenReorderTours, id: postid, previd: prevpostid, nextid: nextpostid },
-                        function( response ) {
-                    $.each( response, function( key, value ) {
-                        $( '#inline_' + key + ' .menu_order' ).html( value );
+                    { action: 'the_guide_reorder_tours', nonceToken: theGuide.nonceTokenReorderTours, id: postid, previd: prevpostid, nextid: nextpostid },
+                    function( response ) {
+                        $.each( response, function( key, value ) {
+                            $( '#inline_' + key + ' .menu_order' ).html( value );
+                        });
+                        ui.item.find( '.check-column input' ).show().siblings( 'img' ).remove();
+                        $( 'table.widefat tbody th, table.widefat tbody td' ).css( 'cursor', 'move' );
+                        $( 'table.widefat tbody' ).sortable( 'enable' );
                     });
-                    ui.item.find( '.check-column input' ).show().siblings( 'img' ).remove();
-                    $( 'table.widefat tbody' ).sortable( 'enable' );
-                });
 
                 // fix cell colors
                 $( 'table.widefat tbody tr' ).each( function() {

@@ -46,6 +46,7 @@ final class The_Guide {
 				new The_Guide_Menus       ( $this->settings );
 				new The_Guide_Meta_Boxes  ( $this->settings );
 				new The_Guide_Columns     ( $this->settings );
+				new The_Guide_Prioritize();
 				new The_Guide_Quick_Edit  ( $this->settings );
 			} else {
 				new The_Guide_Public_Assets( $this->settings );
@@ -70,6 +71,7 @@ final class The_Guide {
 		require_once THE_GUIDE_DIR . 'src/class-menus.php';
 		require_once THE_GUIDE_DIR . 'src/class-meta-boxes.php';
 		require_once THE_GUIDE_DIR . 'src/class-misc.php';
+		require_once THE_GUIDE_DIR . 'src/class-prioritize.php';
 		require_once THE_GUIDE_DIR . 'src/class-quick-edit.php';
 		require_once THE_GUIDE_DIR . 'src/class-settings.php';
 		require_once THE_GUIDE_DIR . 'src/class-shortcodes.php';
