@@ -14,13 +14,17 @@ function the_guide_duplicate_post( $post_id ) {
 	$post = get_post( $post_id );
 
 
+
+	/* Verifications */
+
 	if ( ! isset( $post ) || $post == null) {
 		return;
 	}
 
 
+
 	/*
-	 * new post data array
+	 * New post data array
 	 */
 	$args = [
 		'comment_status' => $post->comment_status,
@@ -39,21 +43,21 @@ function the_guide_duplicate_post( $post_id ) {
 	];
 
 	/*
-	 * insert the post by wp_insert_post() function
+	 * Insert the post by wp_insert_post() function
 	 */
 	$new_post_id = wp_insert_post( $args );
 
 	/*
-	 * get all current post terms ad set them to the new post draft
+	 * Get all current post terms ad set them to the new post draft
 	 */
-	$taxonomies = get_object_taxonomies( $post->post_type ); // returns array of taxonomy names for post type, ex array("category", "post_tag");
+	$taxonomies = get_object_taxonomies( $post->post_type ); // Returns array of taxonomy names for post type, ex array("category", "post_tag");
 	foreach ( $taxonomies as $taxonomy ) {
 		$post_terms = wp_get_object_terms( $post_id, $taxonomy, [ 'fields' => 'slugs' ] );
 		wp_set_object_terms( $new_post_id, $post_terms, $taxonomy, false );
 	}
 
 	/*
-	 * duplicate all post meta just in two SQL queries
+	 * Duplicate all post meta just in two SQL queries
 	 */
 	$post_meta_infos = $wpdb->get_results( "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id" );
 	if ( count( $post_meta_infos ) != 0 ) {
