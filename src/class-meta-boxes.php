@@ -1,4 +1,13 @@
 <?php
+/**
+ * Metaboxes
+ *
+ * - Adds new metaboxes;
+ * - Handles their saving.
+ *
+ * @package The Guide
+ * @since 0.1.3
+ */
 
 
 // Exits if accessed directly.
@@ -7,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-class The_Guide_Meta_Boxes{
+class The_Guide_Meta_Boxes {
 
 
 	/**

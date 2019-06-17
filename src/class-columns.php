@@ -1,4 +1,12 @@
 <?php
+/**
+ * Columns
+ *
+ * Adds new columns, edits/deletes the old columns (WP List Table for the-guide).
+ *
+ * @package The Guide
+ * @since 0.1.3
+ */
 
 
 // Exits if accessed directly.

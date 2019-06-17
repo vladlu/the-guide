@@ -1,4 +1,12 @@
 <?php
+/**
+ * Menus
+ *
+ * Adds a new menus.
+ *
+ * @package The Guide
+ * @since 0.1.3
+ */
 
 
 // Exits if accessed directly.

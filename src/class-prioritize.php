@@ -1,4 +1,13 @@
 <?php
+/**
+ * Tours prioritizing
+ *
+ * - Change views, adding the prioritizing button;
+ * - Change tours sorting based on their priority using "pre_get_posts".
+ *
+ * @package The Guide
+ * @since 0.1.3
+ */
 
 
 // Exits if accessed directly.

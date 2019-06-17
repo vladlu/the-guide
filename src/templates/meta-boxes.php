@@ -1,12 +1,19 @@
 <?php
+/**
+ * The template for meta boxes (when adding/editing a tour)
+ *
+ * @package The Guide
+ * @since 0.1.3
+ */
+
 
 // Exits if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-?>
 
+?>
 
 
 <?php wp_nonce_field( 'the-guide-edit-tour', 'the-guide_edit_tour_nonce-token' ); ?>

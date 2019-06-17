@@ -1,4 +1,10 @@
 <?php
+/**
+ * AJAX handlers
+ *
+ * @package The Guide
+ * @since 0.1.3
+ */
 
 
 // Exits if accessed directly.

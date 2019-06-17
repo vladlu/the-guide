@@ -1,4 +1,15 @@
 <?php
+/**
+ * Miscellaneous functionality
+ *
+ * - Loads textdomain;
+ * - Registers post type "the-guide";
+ * - Adds bulk actions;
+ * - Changes admin notices for this post type.
+ *
+ * @package The Guide
+ * @since 0.1.3
+ */
 
 
 // Exits if accessed directly.

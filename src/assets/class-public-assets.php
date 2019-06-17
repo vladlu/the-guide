@@ -1,4 +1,13 @@
 <?php
+/**
+ * Public assets (JS, CSS) files
+ *
+ * The assets for the frontend of the site:
+ * Loads them, adds some data for them etc.
+ *
+ * @package The Guide
+ * @since 0.1.3
+ */
 
 
 // Exits if accessed directly.

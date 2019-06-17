@@ -1,9 +1,17 @@
 <?php
+/**
+ * The template for Customize menu
+ *
+ * @package The Guide
+ * @since 0.1.3
+ */
+
 
 // Exits if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 
 ?>
 
