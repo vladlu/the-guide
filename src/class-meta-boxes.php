@@ -16,6 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+/**
+ * Metaboxes.
+ *
+ * @since 0.1.3
+ */
 class The_Guide_Meta_Boxes {
 
 

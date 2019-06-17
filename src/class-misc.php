@@ -18,6 +18,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+/**
+ * Miscellaneous functionality.
+ *
+ * @since 0.1.3
+ */
 class The_Guide_Misc {
 
 

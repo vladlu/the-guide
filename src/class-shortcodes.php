@@ -13,6 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+/**
+ * Shortcodes.
+ *
+ * @since 0.1.3
+ */
 class The_Guide_Shortcodes {
 
 

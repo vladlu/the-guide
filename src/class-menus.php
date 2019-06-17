@@ -15,6 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+/**
+ * Menus.
+ *
+ * @since 0.1.3
+ */
 class The_Guide_Menus {
 
 	/**

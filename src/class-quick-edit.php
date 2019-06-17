@@ -1,6 +1,9 @@
 <?php
 /**
+ * Quick Edit
  *
+ * - Adds new quick edit fields;
+ * - Handles their saving.
  *
  * @package The Guide
  * @since 0.1.3
@@ -13,6 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+/**
+ * Quick Edit.
+ *
+ * @since 0.1.3
+ */
 class The_Guide_Quick_Edit {
 
 

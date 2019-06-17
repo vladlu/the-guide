@@ -13,6 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+/**
+ * A helper class that handles plugin's settings.
+ *
+ * @since 0.1.3
+ */
 class The_Guide_Settings {
 
 

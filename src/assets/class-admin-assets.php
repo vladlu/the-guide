@@ -16,6 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+/**
+ * Manages admin assets.
+ *
+ * @since 0.1.0
+ */
 class The_Guide_Admin_Assets {
 
 	
