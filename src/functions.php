@@ -1,6 +1,6 @@
 <?php
 /**
- * A file that contains different function.
+ * A file that contains different functions
  *
  * @package The Guide
  * @since 0.1.3
