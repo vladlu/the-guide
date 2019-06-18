@@ -70,10 +70,32 @@ final class The_Guide {
 	 * @since 0.1.0
 	 */
 	private function define_constants() {
-		define( 'THE_GUIDE_VERSION', get_file_data( __FILE__, ['Version'] )[0] );
 
+		/**
+		 * The URL to the plugin.
+		 *
+		 * @since 0.1.0
+		 * @var string THE_GUIDE_URL
+		 */
 		define( 'THE_GUIDE_URL', plugin_dir_url( __FILE__ ) );
+
+
+		/**
+		 * The filesystem directory path to the plugin.
+		 *
+		 * @since 0.1.0
+		 * @var string THE_GUIDE_DIR
+		 */
 		define( 'THE_GUIDE_DIR', plugin_dir_path( __FILE__ ) );
+
+
+		/**
+		 * The version of the plugin.
+		 *
+		 * @since 0.1.0
+		 * @var string THE_GUIDE_URL
+		 */
+		define( 'THE_GUIDE_VERSION', get_file_data( __FILE__, ['Version'] )[0] );
 	}
 
 

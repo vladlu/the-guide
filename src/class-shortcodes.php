@@ -64,13 +64,35 @@ class The_Guide_Shortcodes {
 	public function shortcode_the_guide_launch( $atts ) {
 		// Checks if the shortcode doesn't exist yet.
 		if ( ! defined( 'THE_GUIDE_DOING_SHORTCODE_LAUNCH' ) ) {
+
+			/**
+			 * If doing shortcode "the-guide-launch".
+			 *
+			 * @since 0.1.0
+			 * @var string
+			 */
 			define( 'THE_GUIDE_DOING_SHORTCODE_LAUNCH', true );
 
 			if ( isset( $atts['id'] ) ) {
+
+				/**
+				 * The ID of the tour to launch.
+				 *
+				 * @since 0.1.0
+				 * @var string
+				 */
 				define( 'THE_GUIDE_SHORTCODE_LAUNCH_ID', (int) $atts['id'] );
 			}
 			if ( isset( $atts['step'] ) ) {
-				// Reduces by 1 to use as index
+
+				/**
+				 * The step from which to start the tour.
+				 *
+				 * Reduces by 1 to use as index.
+				 *
+				 * @since 0.1.0
+				 * @var string
+				 */
 				define( 'THE_GUIDE_SHORTCODE_LAUNCH_STEP', (int) $atts['step'] - 1 );
 			}
 		}
@@ -89,10 +111,25 @@ class The_Guide_Shortcodes {
 	public function shortcode_the_guide_go( $atts ) {
 		// Checks if the shortcode doesn't exist yet.
 		if ( ! defined( 'THE_GUIDE_DOING_SHORTCODE_GO' ) ) {
+
+			/**
+			 * If doing shortcode "the-guide-go".
+			 *
+			 * @since 0.1.0
+			 * @var string
+			 */
 			define( 'THE_GUIDE_DOING_SHORTCODE_GO', true );
 
 			if ( isset( $atts['step'] ) ) {
-				// Reduces by 1 to use as index
+
+				/**
+				 * The step from which to start the tour.
+				 *
+				 * Reduces by 1 to use as index.
+				 *
+				 * @since 0.1.0
+				 * @var string
+				 */
 				define( 'THE_GUIDE_SHORTCODE_GO_STEP', (int) $atts['step'] - 1 );
 			}
 		}
