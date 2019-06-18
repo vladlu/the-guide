@@ -17,6 +17,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+/**
+ * Main The Guide class.
+ *
+ * @since 0.1.0
+ */
 final class The_Guide {
 
 
@@ -29,8 +34,12 @@ final class The_Guide {
 	private $settings;
 
 
+	/**
+	 * Constructor.
+	 *
+	 * @since 0.1.0
+	 */
 	public function __construct() {
-
 		$this->define_constants();
 		$this->import_files();
 		add_action( 'init', function () {
@@ -55,6 +64,11 @@ final class The_Guide {
 	}
 
 
+	/**
+	 * Defines constants.
+	 *
+	 * @since 0.1.0
+	 */
 	private function define_constants() {
 		define( 'THE_GUIDE_VERSION', get_file_data( __FILE__, ['Version'] )[0] );
 
@@ -63,6 +77,11 @@ final class The_Guide {
 	}
 
 
+	/**
+	 * Imports files.
+	 *
+	 * @since 0.1.0
+	 */
 	private function import_files() {
 		require_once THE_GUIDE_DIR . 'src/functions.php';
 
@@ -80,4 +99,4 @@ final class The_Guide {
 	}
 }
 
-new The_Guide;
+new The_Guide();
