@@ -36,6 +36,8 @@ class The_Guide_Shortcodes {
 	/**
 	 * Inits shortcodes.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @global WP_Post $post
 	 */
 	public function init_shortcodes() {
@@ -54,6 +56,8 @@ class The_Guide_Shortcodes {
 
 	/**
 	 * "the-guide-launch" shortcode callback.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param array $atts Shortcode attributes.
 	 */
@@ -77,6 +81,8 @@ class The_Guide_Shortcodes {
 
 	/**
 	 * "the-guide-go" shortcode callback.
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param array $atts Shortcode attributes.
 	 */

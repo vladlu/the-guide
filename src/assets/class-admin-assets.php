@@ -26,9 +26,11 @@ class The_Guide_Admin_Assets {
 	
 	/**
 	 * Suffix for assets.
-	 * Can be either empty string or ".min"
 	 *
-	 * @var string
+	 * Either empty string or ".min".
+	 *
+	 * @since 0.1.0
+	 * @var string $assets_suffix
 	 */
 	public $assets_suffix;
 

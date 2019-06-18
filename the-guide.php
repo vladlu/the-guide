@@ -29,7 +29,7 @@ final class The_Guide {
 	 * Settings object.
 	 *
 	 * @since 0.1.0
-	 * @var object The_Guide_Settings
+	 * @var The_Guide_Settings $settings
 	 */
 	private $settings;
 

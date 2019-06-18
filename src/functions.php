@@ -15,6 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Duplicates a post by its id.
  *
+ * @since 0.1.3
+ *
  * @param int $post_id The id of the post to duplicate.
  * @global wpdb $wpdb WordPress database abstraction object.
  */

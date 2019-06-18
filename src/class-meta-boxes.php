@@ -28,7 +28,7 @@ class The_Guide_Meta_Boxes {
 	 * Settings object.
 	 *
 	 * @since 0.1.0
-	 * @var object The_Guide_Settings.
+	 * @var The_Guide_Settings $settings
 	 */
 	private $settings;
 
@@ -38,6 +38,7 @@ class The_Guide_Meta_Boxes {
 	 * Constructor.
 	 *
 	 * @since 0.1.0
+	 *
 	 * @param The_Guide_Settings $settings_inst Settings Object.
 	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
@@ -64,6 +65,7 @@ class The_Guide_Meta_Boxes {
 	 * Loads metabox content.
 	 *
 	 * @since 0.1.0
+	 *
 	 * @param WP_Post $post Post object (used in the imported file).
 	 */
     public function content( $post ) {
@@ -76,6 +78,7 @@ class The_Guide_Meta_Boxes {
 	 * Saves data from the metaboxes.
 	 *
 	 * @since 0.1.0
+	 *
 	 * @param int $post_id The ID of the post.
 	 */
 	public function save( $post_id ) {

@@ -24,6 +24,8 @@ class The_Guide_Settings {
 	/**
 	 * Returns the plugin's setting decomposing it from the array of plugin settings (wp option).
 	 *
+	 * @since 0.1.0
+	 *
 	 * @param string $setting_name The name of the setting to get.
 	 * @return mixed The data of the setting.
 	 */
@@ -36,6 +38,8 @@ class The_Guide_Settings {
 
 	/**
 	 * Adds the plugin's setting composing it to the array of plugin settings (wp option).
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param string $setting_name The name of the setting.
 	 * @param mixed $data_to_save The data to save to the setting.

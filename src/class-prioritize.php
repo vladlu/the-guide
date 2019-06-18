@@ -39,6 +39,8 @@ class The_Guide_Prioritize {
 	/**
 	 * Change views, adding the prioritizing button.
 	 *
+	 * @since 0.1.0
+	 *
 	 * @param  array $views Array of views.
 	 * @return array Array of views.
 	 */
@@ -61,6 +63,8 @@ class The_Guide_Prioritize {
 
 	/**
 	 * Change tours sorting based on their priority using "pre_get_posts".
+	 *
+	 * @since 0.1.0
 	 *
 	 * @param WP_Query $query The current WP_Query instance.
 	 */

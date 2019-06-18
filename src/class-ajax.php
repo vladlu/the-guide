@@ -25,7 +25,7 @@ class The_Guide_Ajax {
 	 * Settings object.
 	 *
 	 * @since 0.1.0
-	 * @var object The_Guide_Settings.
+	 * @var The_Guide_Settings $settings
 	 */
 	private $settings;
 
@@ -35,6 +35,7 @@ class The_Guide_Ajax {
 	 * Constructor.
 	 *
 	 * @since 0.1.0
+	 *
 	 * @param The_Guide_Settings $settings_inst Settings Object.
 	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
@@ -97,12 +98,6 @@ class The_Guide_Ajax {
 
 
 
-		/**
-		 * URL.
-		 *
-		 * @since 0.1.0
-		 * @var string URL.
-		 */
 		$current_url = $_POST['url'];
 
 		$all_enabled_tours_for_this_url     = [];
@@ -296,6 +291,7 @@ class The_Guide_Ajax {
 	 *          $_POST['nextid'].
 	 *
 	 * @since 0.1.0
+	 *
 	 * @global wpdb $wpdb WordPress database abstraction object.
 	 */
 	public function reorder_tours() {
@@ -334,10 +330,13 @@ class The_Guide_Ajax {
 
 			/**
 			 * When a single tour has gotten it's ordering updated.
-			 * $id The product ID
-			 * $index The new menu order
+			 *
+			 * @since 0.1.0
+			 *
+			 * @param int $id The tour ID.
+			 * @param int $menu_orders The new tours order.
 			 */
-			do_action( 'the-guide_after_single_tour_ordering', $id, $index );
+			do_action( 'the-guide_after_single_tour_ordering', $id, $menu_orders );
 		}
 
 		if ( isset( $menu_orders[ $previd ] ) ) {
@@ -350,6 +349,15 @@ class The_Guide_Ajax {
 
 		$wpdb->update( $wpdb->posts, [ 'menu_order' => $menu_orders[ $sorting_id ] ], [ 'ID' => $sorting_id ] );
 
+
+		/**
+		 * When ordering of all tours have been updated.
+		 *
+		 * @since 0.1.0
+		 *
+		 * @param int $sorting_id The tour that have been reordered.
+		 * @param int $menu_orders The new tours order.
+		 */
 		do_action( 'the-guide_after_tour_ordering', $sorting_id, $menu_orders );
 		wp_send_json( $menu_orders );
 	}

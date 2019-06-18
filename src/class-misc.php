@@ -30,7 +30,7 @@ class The_Guide_Misc {
 	 * Settings object.
 	 *
 	 * @since 0.1.0
-	 * @var object The_Guide_Settings.
+	 * @var The_Guide_Settings $settings
 	 */
 	private $settings;
 
@@ -40,6 +40,7 @@ class The_Guide_Misc {
 	 * Constructor.
 	 *
 	 * @since 0.1.0
+	 *
 	 * @param The_Guide_Settings $settings_inst Settings Object.
 	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
@@ -244,6 +245,7 @@ class The_Guide_Misc {
 	 * Changes admin notices for post type "the-guide".
 	 *
 	 * @since 0.1.0
+	 *
 	 * @param array $messages Admin notices for custom post type "the-guide".
 	 * @return array Admin notices for custom post type "the-guide".
 	 */

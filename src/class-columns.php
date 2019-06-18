@@ -27,7 +27,7 @@ class The_Guide_Columns {
 	 * Settings object.
 	 *
 	 * @since 0.1.0
-	 * @var object The_Guide_Settings
+	 * @var The_Guide_Settings $settings
 	 */
 	private $settings;
 
@@ -37,7 +37,8 @@ class The_Guide_Columns {
 	 * Constructor.
 	 *
 	 * @since 0.1.0
-	 * @param The_Guide_Settings $settings_inst Settings Object.
+	 *
+     * @param The_Guide_Settings $settings_inst Settings Object.
 	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
@@ -52,7 +53,8 @@ class The_Guide_Columns {
 	 * Adds new columns and rearranges the old columns.
 	 *
 	 * @since 0.1.0
-	 * @param array $columns The list of columns.
+	 *
+     * @param array $columns The list of columns.
      * @return array The list of columns.
 	 */
 	public function columns( $columns ) {
@@ -80,7 +82,8 @@ class The_Guide_Columns {
 	 * Prints the content of the column.
 	 *
 	 * @since 0.1.0
-	 * @param string $column The name of the column
+	 *
+     * @param string $column The name of the column
 	 * @param int $post_id The ID of the post.
 	 */
 	public function custom_column( $column, $post_id ) {

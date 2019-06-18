@@ -28,7 +28,7 @@ class The_Guide_Public_Assets {
 	 * Settings object.
 	 *
 	 * @since 0.1.0
-	 * @var The_Guide_Settings.
+	 * @var The_Guide_Settings $settings
 	 */
 	private $settings;
 
@@ -38,7 +38,8 @@ class The_Guide_Public_Assets {
 	 *
 	 * Either empty string or ".min".
 	 *
-	 * @var string
+	 * @since 0.1.0
+	 * @var string $assets_suffix
 	 */
 	public $assets_suffix;
 

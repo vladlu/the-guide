@@ -27,7 +27,7 @@ class The_Guide_Menus {
 	 * Settings object.
 	 *
 	 * @since 0.1.0
-	 * @var object The_Guide_Settings.
+	 * @var The_Guide_Settings $settings
 	 */
 	private $settings;
 
@@ -37,6 +37,7 @@ class The_Guide_Menus {
 	 * Constructor.
 	 *
 	 * @since 0.1.0
+	 *
 	 * @param The_Guide_Settings $settings_inst Settings Object.
 	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
