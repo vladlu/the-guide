@@ -99,4 +99,5 @@ final class The_Guide {
 	}
 }
 
+
 new The_Guide();
