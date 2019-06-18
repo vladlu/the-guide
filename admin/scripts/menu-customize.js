@@ -13,7 +13,7 @@ jQuery( $ => {
 
         // Sends
         let data = {
-            'action':      'the_guide_menu_customize',
+            'action':      'the_guide_save_custom_css',
             'nonceToken':       theGuide.nonceToken,
 
             'customCSS':  cm.getValue(),

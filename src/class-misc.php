@@ -4,8 +4,8 @@
  *
  * - Loads textdomain;
  * - Registers post type "the-guide";
- * - Adds bulk actions;
- * - Changes admin notices for this post type.
+ * - Adds custom bulk actions;
+ * - Changes admin notices for post type "the-guide".
  *
  * @package The Guide
  * @since 0.1.3
@@ -30,12 +30,18 @@ class The_Guide_Misc {
 	 * Settings object.
 	 *
 	 * @since 0.1.0
-	 * @var object The_Guide_Settings
+	 * @var object The_Guide_Settings.
 	 */
 	private $settings;
 
 
 
+	/**
+	 * Constructor.
+	 *
+	 * @since 0.1.0
+	 * @param The_Guide_Settings $settings_inst Settings Object.
+	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
 
@@ -48,12 +54,22 @@ class The_Guide_Misc {
 
 
 
+	/**
+	 * Loads textdomain.
+	 *
+	 * @since 0.1.0
+	 */
 	private function load_plugin_textdomain() {
 		load_plugin_textdomain( 'the-guide' );
 	}
 
 
 
+	/**
+	 * Register post type "the-guide".
+	 *
+	 * @since 0.1.0
+	 */
 	private function register_post_type() {
 		register_post_type( 'the-guide', [
 			'labels' => [
@@ -82,6 +98,11 @@ class The_Guide_Misc {
 
 
 
+	/**
+	 * Adds custom bulk actions.
+	 *
+	 * @since 0.1.0
+	 */
 	private function custom_bulk_actions() {
 
 		/*
@@ -219,6 +240,13 @@ class The_Guide_Misc {
 
 
 
+	/**
+	 * Changes admin notices for post type "the-guide".
+	 *
+	 * @since 0.1.0
+	 * @param array $messages Admin notices for custom post type "the-guide".
+	 * @return array Admin notices for custom post type "the-guide".
+	 */
 	public function custom_post_admin_notices( $messages ) {
 
 		$post = get_post();

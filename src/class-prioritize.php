@@ -24,6 +24,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class The_Guide_Prioritize {
 
 
+	/**
+	 * Constructor.
+	 *
+	 * @since 0.1.0
+	 */
 	public function __construct() {
 		add_filter( 'views_edit-the-guide', [ $this, 'tours_views' ] );
 		add_action( 'pre_get_posts',        [ $this, 'change_sorting' ] );
@@ -32,10 +37,10 @@ class The_Guide_Prioritize {
 
 
 	/**
-	 * Change views on the edit tours screen (Adds a "Prioritize" button).
+	 * Change views, adding the prioritizing button.
 	 *
 	 * @param  array $views Array of views.
-	 * @return array
+	 * @return array Array of views.
 	 */
 	public function tours_views( $views ) {
 		// Add a prioritize link.
@@ -55,10 +60,9 @@ class The_Guide_Prioritize {
 
 
 	/**
-	 * Changes the sorting of the tours for List Table.
+	 * Change tours sorting based on their priority using "pre_get_posts".
 	 *
 	 * @param WP_Query $query The current WP_Query instance.
-	 * @return array
 	 */
 	public function change_sorting( $query) {
 		$screen = get_current_screen();

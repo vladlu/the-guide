@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class The_Guide_Ajax {
 
+
 	/**
 	 * Settings object.
 	 *
@@ -30,6 +31,12 @@ class The_Guide_Ajax {
 
 
 
+	/**
+	 * Constructor.
+	 *
+	 * @since 0.1.0
+	 * @param The_Guide_Settings $settings_inst Settings Object.
+	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
 		$this->add_ajax_events();
@@ -37,6 +44,11 @@ class The_Guide_Ajax {
 
 
 
+	/**
+	 * Loads public assets.
+	 *
+	 * @since 0.1.0
+	 */
 	private function add_ajax_events() {
 
 		$ajax_events_nopriv = [
@@ -54,7 +66,7 @@ class The_Guide_Ajax {
 
 		$ajax_events = [
 			'reorder_tours',
-			'menu_customize'
+			'save_custom_css'
 		];
 
 
@@ -65,13 +77,15 @@ class The_Guide_Ajax {
 
 
 
-	/*
-	 * Returns the tour data by the URL (if there no shortcodes –
+	/**
+	 * Returns the tour data by the URL (if there are no shortcodes –
 	 * otherwise returns the tour data from the shortcode).
 	 *
 	 * Accepts: $_POST['url']
 	 *
-	 * No nonce check
+	 * No nonce check.
+	 *
+	 * @since 0.1.0
 	 */
 	public function public_init() {
 
@@ -84,7 +98,7 @@ class The_Guide_Ajax {
 
 
 		/**
-		 * URL
+		 * URL.
 		 *
 		 * @since 0.1.0
 		 * @var string URL.
@@ -191,9 +205,13 @@ class The_Guide_Ajax {
 
 
 
-	/*
+	/**
+	 * Returns the data of the tour by its ID.
+	 *
 	 * Accepts: $_POST['nonceToken']
-	 *          $_POST['id']
+	 *          $_POST['id'].
+	 *
+	 * @since 0.1.0
 	 */
 	public function public_get_tour_data_by_id() {
 
@@ -218,8 +236,12 @@ class The_Guide_Ajax {
 
 
 
-	/*
-     * Accepts: $_POST['nonceToken']
+	/**
+	 * Get the custom css (that was added on the customize menu).
+	 *
+     * Accepts: $_POST['nonceToken'].
+	 *
+	 * @since 0.1.0
      */
 	public function public_get_custom_css() {
 
@@ -238,11 +260,15 @@ class The_Guide_Ajax {
 
 
 
-	/*
+	/**
+	 * Save the custom css (customize menu).
+	 *
 	 * Accepts: $_POST['nonceToken']
-	 *          $_POST['customCSS']
+	 *          $_POST['customCSS'].
+	 *
+	 * @since 0.1.0
 	 */
-	public function menu_customize() {
+	public function save_custom_css() {
 
 		/* Nonce Check */
 		check_ajax_referer( 'the-guide-menu-customize', 'nonceToken' );
@@ -267,7 +293,10 @@ class The_Guide_Ajax {
 	 * Accepts: $_POST['nonceToken']
 	 *          $_POST['id']
 	 *          $_POST['previd']
-	 *          $_POST['nextid']
+	 *          $_POST['nextid'].
+	 *
+	 * @since 0.1.0
+	 * @global wpdb $wpdb WordPress database abstraction object.
 	 */
 	public function reorder_tours() {
 		global $wpdb;

@@ -21,6 +21,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 class The_Guide_Settings {
 
 
+	/**
+	 * Returns the plugin's setting decomposing it from the array of plugin settings (wp option).
+	 *
+	 * @param string $setting_name The name of the setting to get.
+	 * @return mixed The data of the setting.
+	 */
 	public function get_plugin_setting( $setting_name ) {
 		$all_settings = get_option( 'the-guide-settings' );
 
@@ -28,6 +34,12 @@ class The_Guide_Settings {
 	}
 
 
+	/**
+	 * Adds the plugin's setting composing it to the array of plugin settings (wp option).
+	 *
+	 * @param string $setting_name The name of the setting.
+	 * @param mixed $data_to_save The data to save to the setting.
+	 */
 	public function save_plugin_setting( $setting_name, $data_to_save ) {
 		$all_settings                  = get_option( 'the-guide-settings' );
 		$all_settings[ $setting_name ] = $data_to_save;

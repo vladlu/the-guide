@@ -26,7 +26,7 @@ class The_Guide_Admin_Assets {
 	
 	/**
 	 * Suffix for assets.
-	 * Either empty string or ".min"
+	 * Can be either empty string or ".min"
 	 *
 	 * @var string
 	 */
@@ -34,6 +34,11 @@ class The_Guide_Admin_Assets {
 
 
 
+	/**
+	 * Constructor.
+	 *
+	 * @since 0.1.0
+	 */
 	public function __construct() {
 		$this->assets_suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		
@@ -42,6 +47,11 @@ class The_Guide_Admin_Assets {
 
 
 
+	/**
+	 * The entrypoint to load admin assets.
+	 *
+	 * @since 0.1.0
+	 */
 	private function load_admin_assets() {
 
 		/**
@@ -60,6 +70,14 @@ class The_Guide_Admin_Assets {
 
 
 
+	/**
+	 * Loads general assets.
+	 *
+	 * Loads assets that are not specific to some pages,
+	 * so these assets reside on all dashboard pages.
+	 *
+	 * @since 0.1.0
+	 */
 	public function load_general_assets() {
 
 
@@ -136,6 +154,11 @@ class The_Guide_Admin_Assets {
 
 
 
+	/**
+	 * Loads assets for Customize menu.
+	 *
+	 * @since 0.1.0
+	 */
 	public function load_menu_customize_assets() {
 
 

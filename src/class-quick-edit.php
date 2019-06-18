@@ -3,7 +3,7 @@
  * Quick Edit
  *
  * - Adds new quick edit fields;
- * - Handles their saving.
+ * - Handles the saving of quick edit fields.
  *
  * @package The Guide
  * @since 0.1.3
@@ -28,12 +28,18 @@ class The_Guide_Quick_Edit {
 	 * Settings object.
 	 *
 	 * @since 0.1.0
-	 * @var object The_Guide_Settings
+	 * @var object The_Guide_Settings.
 	 */
 	private $settings;
 
 
 
+	/**
+	 * Constructor.
+	 *
+	 * @since 0.1.0
+	 * @param The_Guide_Settings $settings_inst Settings Object.
+	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
 
@@ -43,6 +49,13 @@ class The_Guide_Quick_Edit {
 
 
 
+	/**
+	 * Adds quick edit fields (displays their content) based on columns.
+	 *
+	 * @since 0.1.0
+	 * @param The_Guide_Settings $column_name The name of the column (for which quick edit field displayed).
+     * @param string $post_type Post type.
+	 */
 	public function add( $column_name, $post_type ) {
 
 	    /* Adds nonce */
@@ -108,6 +121,13 @@ class The_Guide_Quick_Edit {
     }
 
 
+
+	/**
+	 * Handles the saving of quick edit fields.
+	 *
+	 * @since 0.1.0
+	 * @param int $post_id The ID of the post.
+	 */
 	public function save( $post_id ) {
 
 	    /* Verifications */

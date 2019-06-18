@@ -22,15 +22,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class The_Guide_Menus {
 
+
 	/**
 	 * Settings object.
 	 *
 	 * @since 0.1.0
-	 * @var object The_Guide_Settings
+	 * @var object The_Guide_Settings.
 	 */
 	private $settings;
 
 
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 0.1.0
+	 * @param The_Guide_Settings $settings_inst Settings Object.
+	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
 
@@ -39,6 +47,12 @@ class The_Guide_Menus {
 	}
 
 
+
+	/**
+	 * Adds menus.
+	 *
+	 * @since 0.1.0
+	 */
 	public function init_dashboard_menus() {
 		add_menu_page(
 			'The Guide',

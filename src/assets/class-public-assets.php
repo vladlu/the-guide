@@ -28,14 +28,15 @@ class The_Guide_Public_Assets {
 	 * Settings object.
 	 *
 	 * @since 0.1.0
-	 * @var The_Guide_Settings
+	 * @var The_Guide_Settings.
 	 */
 	private $settings;
 
 
 	/**
 	 * Suffix for assets.
-	 * Either empty string or ".min"
+	 *
+	 * Either empty string or ".min".
 	 *
 	 * @var string
 	 */
@@ -48,7 +49,7 @@ class The_Guide_Public_Assets {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param The_Guide_Settings $settings_inst Settings object
+	 * @param The_Guide_Settings $settings_inst Settings Object.
 	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
@@ -62,16 +63,7 @@ class The_Guide_Public_Assets {
 	/**
 	 * Loads public assets.
 	 *
-	 * Possible Environment Influence:
-	 *  -
-	 *
 	 * @since 0.1.0
-	 *
-	 * @see The_Guide_Public_Assets::public_assets_controller()
-	 *
-	 * @param string[] $all_enabled_tours_for_this_url
-	 * @param string $tour_id ID of the current post with type 'the-guide'
-	 * @param int $first_tour_step The step number with which the tour will appear
 	 */
 	public function load_public_assets() {
 

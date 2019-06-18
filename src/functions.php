@@ -12,7 +12,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
+/**
+ * Duplicates a post by its id.
+ *
+ * @param int $post_id The id of the post to duplicate.
+ * @global wpdb $wpdb WordPress database abstraction object.
+ */
 function the_guide_duplicate_post( $post_id ) {
 	global $wpdb;
 
