@@ -54,8 +54,8 @@ class The_Guide_Columns {
 	 *
 	 * @since 0.1.0
 	 *
-     * @param array $columns The list of columns.
-     * @return array The list of columns.
+     * @param  array $columns The list of columns.
+     * @return array          The list of columns.
 	 */
 	public function columns( $columns ) {
 
@@ -83,8 +83,8 @@ class The_Guide_Columns {
 	 *
 	 * @since 0.1.0
 	 *
-     * @param string $column The name of the column
-	 * @param int $post_id The ID of the post.
+     * @param string $column  The name of the column
+	 * @param int    $post_id The ID of the post.
 	 */
 	public function custom_column( $column, $post_id ) {
 		switch ( $column ) {

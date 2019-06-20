@@ -2,7 +2,7 @@
 /**
  * Menus
  *
- * Adds a new menus.
+ * Adds new menus.
  *
  * @package The Guide
  * @since 0.1.3

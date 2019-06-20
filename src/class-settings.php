@@ -26,8 +26,8 @@ class The_Guide_Settings {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param string $setting_name The name of the setting to get.
-	 * @return mixed The data of the setting.
+	 * @param  string $setting_name The name of the setting to get.
+	 * @return mixed                The data of the setting.
 	 */
 	public function get_plugin_setting( $setting_name ) {
 		$all_settings = get_option( 'the-guide-settings' );
@@ -42,7 +42,7 @@ class The_Guide_Settings {
 	 * @since 0.1.0
 	 *
 	 * @param string $setting_name The name of the setting.
-	 * @param mixed $data_to_save The data to save to the setting.
+	 * @param mixed  $data_to_save The data to save to the setting.
 	 */
 	public function save_plugin_setting( $setting_name, $data_to_save ) {
 		$all_settings                  = get_option( 'the-guide-settings' );

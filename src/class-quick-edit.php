@@ -56,7 +56,7 @@ class The_Guide_Quick_Edit {
 	 * @since 0.1.0
 	 *
      * @param The_Guide_Settings $column_name The name of the column (for which quick edit field displayed).
-     * @param string $post_type Post type.
+     * @param string             $post_type   Post type.
 	 */
 	public function add( $column_name, $post_type ) {
 

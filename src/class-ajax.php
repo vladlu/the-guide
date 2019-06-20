@@ -333,7 +333,7 @@ class The_Guide_Ajax {
 			 *
 			 * @since 0.1.0
 			 *
-			 * @param int $id The tour ID.
+			 * @param int $id          The tour ID.
 			 * @param int $menu_orders The new tours order.
 			 */
 			do_action( 'the-guide_after_single_tour_ordering', $id, $menu_orders );
@@ -355,7 +355,7 @@ class The_Guide_Ajax {
 		 *
 		 * @since 0.1.0
 		 *
-		 * @param int $sorting_id The tour that have been reordered.
+		 * @param int $sorting_id  The tour that have been reordered.
 		 * @param int $menu_orders The new tours order.
 		 */
 		do_action( 'the-guide_after_tour_ordering', $sorting_id, $menu_orders );

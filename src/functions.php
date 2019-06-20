@@ -17,8 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 0.1.3
  *
- * @param int $post_id The id of the post to duplicate.
- * @global wpdb $wpdb WordPress database abstraction object.
+ * @param  int  $post_id The id of the post to duplicate.
+ * @global wpdb $wpdb    WordPress database abstraction object.
  */
 function the_guide_duplicate_post( $post_id ) {
 	global $wpdb;

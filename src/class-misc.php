@@ -246,8 +246,8 @@ class The_Guide_Misc {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param array $messages Admin notices for custom post type "the-guide".
-	 * @return array Admin notices for custom post type "the-guide".
+	 * @param  array $messages Admin notices for custom post type "the-guide".
+	 * @return array           Admin notices for custom post type "the-guide".
 	 */
 	public function custom_post_admin_notices( $messages ) {
 

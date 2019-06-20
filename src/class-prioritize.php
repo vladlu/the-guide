@@ -42,7 +42,7 @@ class The_Guide_Prioritize {
 	 * @since 0.1.0
 	 *
 	 * @param  array $views Array of views.
-	 * @return array Array of views.
+	 * @return array        Array of views.
 	 */
 	public function tours_views( $views ) {
 		// Add a prioritize link.
