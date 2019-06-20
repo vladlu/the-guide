@@ -8,6 +8,8 @@
  * Author URI:  https://vlad.lu/
  * Text Domain: the-guide
  * License:     MIT
+ *
+ * @package The Guide
  */
 
 
