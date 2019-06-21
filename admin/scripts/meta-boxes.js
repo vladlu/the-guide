@@ -1,8 +1,16 @@
 'use strict';
 
+/**
+ * Functionality for tour meta boxes.
+ *
+ * @since 0.1.0
+ *
+ * @return {void}
+ */
 jQuery( $ => {
     const $selectActivationMethod =   $( '#the-guide-select-activation-method' ),
           $selectControllerMethod =   $( '#the-guide-select-controller-method' );
+
 
 
     $selectActivationMethod.change( () => {

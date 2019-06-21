@@ -5,14 +5,14 @@ webpack		public/scripts/the-guide.js
 webpack		public/scripts/custom-css.js
 
 webpack		admin/scripts/menu-customize.js
-webpack		admin/scripts/add-edit-tour.js
+webpack		admin/scripts/meta-boxes.js
 webpack		admin/scripts/tours-list-table.js
 
 
 webpack		public/styles/main.css
 
 webpack		admin/styles/menu-customize.css
-webpack		admin/styles/add-edit-tour.css
+webpack		admin/styles/meta-boxes.css
 webpack		admin/styles/tours-list-table.css
 
 

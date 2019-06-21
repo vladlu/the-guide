@@ -136,8 +136,8 @@ class The_Guide_Admin_Assets {
 		 *      CSS
 		 */
 		wp_enqueue_style(
-			'the-guide-style-admin-add-edit-tour',
-			THE_GUIDE_URL . 'admin/styles/add-edit-tour' . $this->assets_suffix . '.css',
+			'the-guide-style-admin-meta-boxes',
+			THE_GUIDE_URL . 'admin/styles/meta-boxes' . $this->assets_suffix . '.css',
 			[],
 			THE_GUIDE_VERSION
 		);
@@ -147,8 +147,8 @@ class The_Guide_Admin_Assets {
 		 *      JS
 		 */
 		wp_enqueue_script(
-			'the-guide-script-admin-add-edit-tour',
-			THE_GUIDE_URL . 'admin/scripts/add-edit-tour' . $this->assets_suffix . '.js',
+			'the-guide-script-admin-meta-boxes',
+			THE_GUIDE_URL . 'admin/scripts/meta-boxes' . $this->assets_suffix . '.js',
 			[],
 			THE_GUIDE_VERSION
 		);
