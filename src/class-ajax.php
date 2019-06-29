@@ -147,13 +147,13 @@ class The_Guide_Ajax {
 		// Shortcode: the-guide-launch
 		if (
 			defined( 'THE_GUIDE_DOING_SHORTCODE_LAUNCH' ) &&
-			defined( 'THE_GUIDE_SHORTCODE_LAUNCH_ID' ) &&
+			defined( 'THE_GUIDE_SHORTCODE_LAUNCH_ID'    ) &&
 			defined( 'THE_GUIDE_SHORTCODE_LAUNCH_STEP' )
 		) {
 			$the_guide_data = [
 				'allEnabledToursForThisURL' => $all_enabled_tours_for_this_url,
-				'TourID'                    => THE_GUIDE_SHORTCODE_LAUNCH_ID,
-				'elemIndex'                 => THE_GUIDE_SHORTCODE_GO_STEP
+				'tourID'                    => THE_GUIDE_SHORTCODE_LAUNCH_ID,
+				'elemIndex'                 => THE_GUIDE_SHORTCODE_LAUNCH_STEP - 1
 			];
 		// Shortcode: the-guide-go
 		} elseif (
@@ -162,16 +162,16 @@ class The_Guide_Ajax {
 		) {
 			$the_guide_data = [
 				'allEnabledToursForThisURL' => $all_enabled_tours_for_this_url,
-				'TourID'                    => $first_enabled_tour_id_for_this_url,
-				'elemIndex'                 => THE_GUIDE_SHORTCODE_GO_STEP
+				'tourID'                    => $first_enabled_tour_id_for_this_url,
+				'elemIndex'                 => THE_GUIDE_SHORTCODE_GO_STEP - 1
 			];
 		// Without shortcodes
 		} elseif (
-		$is_there_an_enabled_tour
+			$is_there_an_enabled_tour
 		) {
 			$the_guide_data = [
 				'allEnabledToursForThisURL' => $all_enabled_tours_for_this_url,
-				'TourID'                    => $first_enabled_tour_id_for_this_url,
+				'tourID'                    => $first_enabled_tour_id_for_this_url,
 				'elemIndex'                 => 0
 			];
 		}
@@ -280,10 +280,10 @@ class The_Guide_Ajax {
 
 
 	/**
-	 * Ajax request handling for tours ordering.
+	 * AJAX request handling for tours ordering.
 	 *
-	 * Based on WooCommerce sorting
-	 * includes/class-wc-ajax.php
+	 * Based on WooCommerce sorting.
+	 * From the file: includes/class-wc-ajax.php
 	 *
 	 * Accepts: $_POST['nonceToken']
 	 *          $_POST['id']

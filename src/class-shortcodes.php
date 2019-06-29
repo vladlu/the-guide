@@ -93,7 +93,7 @@ class The_Guide_Shortcodes {
 				 * @since 0.1.0
 				 * @var string
 				 */
-				define( 'THE_GUIDE_SHORTCODE_LAUNCH_STEP', (int) $atts['step'] - 1 );
+				define( 'THE_GUIDE_SHORTCODE_LAUNCH_STEP', (int) $atts['step'] );
 			}
 		}
 
@@ -130,7 +130,7 @@ class The_Guide_Shortcodes {
 				 * @since 0.1.0
 				 * @var string
 				 */
-				define( 'THE_GUIDE_SHORTCODE_GO_STEP', (int) $atts['step'] - 1 );
+				define( 'THE_GUIDE_SHORTCODE_GO_STEP', (int) $atts['step'] );
 			}
 		}
 	}
