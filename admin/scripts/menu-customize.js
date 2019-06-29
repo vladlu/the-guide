@@ -1,14 +1,36 @@
+/**
+ * Functionality for Customize menu.
+ *
+ * @since 0.1.0
+ */
 'use strict';
+
 
 jQuery( $ => {
 
+    /**
+     * Inits CodeMirror for the form.
+     *
+     * @since 0.1.0
+     */
     let cm = CodeMirror.fromTextArea(
         document.querySelector( '.the-guide-customize-input-area' ),
         { lineNumbers: true, lineWrapping: true }
     );
 
 
-    $( '.the-guide-submit-form' ).submit( (event) => {
+    /**
+     * On submit action: sends the data using AjAX.
+     *
+     * @since 0.1.0
+     *
+     * @listens .the-guide-submit-form:submit
+     *
+     * @param {Event} event The event object.
+     *
+     * @return {void}
+     */
+    $( '.the-guide-submit-form' ).submit( event => {
         event.preventDefault();
 
         // Sends

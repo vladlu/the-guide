@@ -1,18 +1,25 @@
-'use strict';
-
 /**
  * Functionality for tour meta boxes.
  *
  * @since 0.1.0
- *
- * @return {void}
  */
+'use strict';
+
+
 jQuery( $ => {
-    const $selectActivationMethod =   $( '#the-guide-select-activation-method' ),
-          $selectControllerMethod =   $( '#the-guide-select-controller-method' );
+    const $selectActivationMethod =  $( '#the-guide-select-activation-method' ),
+          $selectControllerMethod =  $( '#the-guide-select-controller-method' );
 
 
-
+    /**
+     * When Activation Method is changed.
+     *
+     * @since 0.1.0
+     *
+     * @listens $selectActivationMethod:change
+     *
+     * @return {void}
+     */
     $selectActivationMethod.change( () => {
         const $selectedActivationMethod = $( '#the-guide-select-activation-method option:selected' );
 
@@ -33,7 +40,15 @@ jQuery( $ => {
     $selectActivationMethod.change();
 
 
-
+    /**
+     * When Tour Controller Position is changed.
+     *
+     * @since 0.1.0
+     *
+     * @listens $selectControllerMethod:change
+     *
+     * @return {void}
+     */
     $selectControllerMethod.change( () => {
         const $selectedControllerPositionMethod = $( '#the-guide-select-controller-method option:selected' );
 

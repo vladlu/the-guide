@@ -1,3 +1,8 @@
+/**
+ * Functionality for Tours List Table.
+ *
+ * @since 0.1.0
+ */
 'use strict';
 
 
@@ -5,21 +10,25 @@ jQuery( $ => {
 
 
     /**
-     * Quick Edit
+     * Quick Edit.
+     *
+     * Populates the quick edit fields with the actual data.
+     *
+     * @since 0.1.0
      */
-
-
     if ( typeof inlineEditPost !== 'undefined' ) {
-        // we create a copy of the WP inline edit post function
+        // We create a copy of the WP inline edit post function.
         var $wp_inline_edit = inlineEditPost.edit;
 
-        // and then we overwrite the function with our own code
+        // And then we overwrite the function with our own code.
         inlineEditPost.edit = function( id ) {
-            // "call" the original WP edit function
-            // we don't want to leave WordPress hanging
+            /*
+             * "call" the original WP edit function
+             * we don't want to leave WordPress hanging.
+             */
             $wp_inline_edit.apply( this, arguments );
 
-            // now we take care of our business
+            // Now we take care of our business.
 
             var $post_id = 0;
             if ( typeof( id ) == 'object' ) {
@@ -28,19 +37,19 @@ jQuery( $ => {
 
             if ( $post_id > 0 ) {
 
-                /**
-                 * Inserts Data
+                /*
+                 * Inserts data.
                  */
 
                 let $post_row = $( '#post-' + $post_id ),
                     $edit_row = $( '#edit-' + $post_id ),
 
-                    // Gets the data
+                    // Gets the data.
                     $enabled = !! $( '.the-guide-is-enabled', $post_row ).prop( 'checked' ),
                     $url     =    $( '.the-guide-url',     $post_row ).text(),
                     $steps   =    $( '.the-guide-steps',   $post_row ).data( 'steps' ).replace(/\s{2,}/g, ''); // Removes double spaces
 
-                // Populates the data
+                // Populates the data.
                 $( '.the-guide-is-enabled', $edit_row ).prop( 'checked', $enabled );
                 $( '.the-guide-url',     $edit_row ).val( $url );
                 $( '.the-guide-steps',   $edit_row ).val( $steps );
@@ -50,13 +59,15 @@ jQuery( $ => {
 
 
     /**
-     * Prioritize
+     * Tours Prioritizing.
      *
-     * Based on WooCommerce sorting
-     * assets/js/admin/product-ordering.js
+     * Enables tours prioritizing functionality if the condition is met.
+     *
+     * Based on WooCommerce sorting.
+     * From the file: assets/js/admin/product-ordering.js
+     *
+     * @since 0.1.0
      */
-
-
     if ( window.location.href.includes( 'the-guide-sorting=true' ) ) {
         jQuery( 'table.widefat tbody' ).sortable( {
             items: 'tr:not(.inline-edit-row)',

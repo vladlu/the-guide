@@ -1,13 +1,16 @@
-
-Data Structure
-
+========================================================================================================================
+                                                    DATA STRUCTURE
+========================================================================================================================
 
 
   PHP format                                  JS format                          Type                           Description
 
-  post_title                                  name                               Post Data
-  the-guide-is-enabled                        enabledTours                       Post Meta
-  the-guide-activation-method-and-its-data    activationMethodAndItsData         Post Meta
+  post_title                                  name                               Post Data                      Tour title.
+  the-guide-is-enabled                        enabledTours                       Post Meta                      Whether the tour is enabled.
+  the-guide-url                               url                                Post Meta                      A URL on which the tour is intended to work.
+  the-guide-steps                             steps                              Post Meta                      An array of tour's steps (CSS selectors).
+  the-guide-steps-content                     stepsContent                       Post Meta                      Content of the steps.
+  the-guide-activation-method-and-its-data    activationMethodAndItsData         Post Meta                      Tour's activation method with the settings.
 
                                             [ method ]
                                         - on-load
@@ -21,7 +24,7 @@ Data Structure
                                         - on-click
                                             [ selectors ]
 
-  the-guide-controller-method-and-its-data    controllerMethodAndItsData         Post Meta
+  the-guide-controller-method-and-its-data    controllerMethodAndItsData         Post Meta                      Tour's controller method with the settings.
 
                                             [ method ]
                                         - next-to-the-selected-elem
@@ -32,10 +35,7 @@ Data Structure
                                                 [ left ]
                                                 [ right ]
 
-  the-guide-url                               url                                Post Meta
-  the-guide-steps                             steps                              Post Meta
-  the-guide-steps-content                     stepsContent                       Post Meta
-  custom-css                                  customCSS                          Option (the-guide-settings)    Custom CSS applied to all tours.
+  custom-css                                  customCSS                          Option (the-guide-settings)    Custom CSS that is applied to all tours.
 
 ___________________________________________________________________________________________________________
 
@@ -43,8 +43,8 @@ ________________________________________________________________________________
         JS format:  this format is used for communication between the client and the server.
 
 ========================================================================================================================
-
-JS public API
+                                                    JS PUBLIC API
+========================================================================================================================
 
 
 
@@ -74,16 +74,28 @@ ________________________________________________________________________________
 
 
     Methods                     Arguments                           Description                              Returns
-_____________________________________________________________________________________________________________________________
-    .go             ( (int)TourID, (bool)showPrelude ) | Select the tour to work with           | "Promise" which should return 0 [1]
+______________________________________________________________________________________________________________________________________
+    .go             ( (int)tourID, (bool)showPrelude ) | Select the tour to work with.          | "Promise" which should return 0 [1]
+                                                       |                                        |
+                                                       | The second parameter specifies whether |
+                                                       | to show the prelude (like "start the   |
+                                                       | tour" button) or start the tour        |
+                                                       | immediately.                           |
+--------------------------------------------------------------------------------------------------------------------------------------
     .show()                                            | Activate(show) the selected tour       | -
+--------------------------------------------------------------------------------------------------------------------------------------
     .hide()                                            | Hide the selected tour                 | -
-    .getStepSelector( (int)stepNumber )                | Get the selector of the tour by number |            string
-    .getStepContent ( (int)stepNumber )                | Get the content of the tour by number  |            string
-    .setStepSelector( (int)stepNumber, (str)selector ) | Set the selector of the tour by number |       0 when finished
-    .setStepContent ( (int)stepNumber, (str)content )  | Set the content of the tour by number  |       0 when finished
-    .goToTheStep    ( (int)stepNumber )                | Go to the specified step               |       0 when finished
-_____________________________________________________________________________________________________________________________
+--------------------------------------------------------------------------------------------------------------------------------------
+    .getStepSelector( (int)stepNumber )                | Get the selector of the step           |               String
+--------------------------------------------------------------------------------------------------------------------------------------
+    .getStepContent ( (int)stepNumber )                | Get the content of the step            |               String
+--------------------------------------------------------------------------------------------------------------------------------------
+    .setStepSelector( (int)stepNumber, (str)selector ) | Set the selector of the step           |    0 when finished successfully
+--------------------------------------------------------------------------------------------------------------------------------------
+    .setStepContent ( (int)stepNumber, (str)content )  | Set the content of the step            |    0 when finished successfully
+--------------------------------------------------------------------------------------------------------------------------------------
+    .goToTheStep    ( (int)stepNumber )                | Go to the step                         |    0 when finished successfully
+______________________________________________________________________________________________________________________________________
 
 [1] Use async/await. Example:
 
@@ -98,24 +110,26 @@ async function showTheTour(tourID) {
 showTheTour( theGuideInst.allTours[0] );
 
 ========================================================================================================================
-
-Shortcodes
+                                                    SHORTCODES
+========================================================================================================================
 
 
 [the-guide-launch id=”tour_id” step=”tour_step_number” ] - launch a new tour. has higher priority than [the-guide-go]
 [the-guide-go step=”tour_step_number”] - go to the step of the current tour
 
-========================================================================================================================
 
-Actions
+========================================================================================================================
+                                                    ACTIONS
+========================================================================================================================
 
 
 the-guide_after_single_tour_ordering
 the-guide_after_tour_ordering
 
-========================================================================================================================
 
-Restrictions
+========================================================================================================================
+                                                    RESTRICTIONS
+========================================================================================================================
 
 
 * Shortcodes work only on posts and pages
