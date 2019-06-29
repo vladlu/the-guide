@@ -60,17 +60,14 @@ class TheGuide {
         /**
          * Tour's data.
          *
-         * The data has the following properties:
-         *
-         * - steps                      (An array of tour's steps (CSS selectors)).
-         * - stepsContent               (Content of the steps).
-         * - activationMethodAndItsData (Tour's activation method with the settings).
-         * - controllerMethodAndItsData (Tour's controller method with the settings).
-         *
          * @since 0.1.0
          * @private
          *
          * @type {null|object}
+         * @property {array}  steps                      An array of tour's steps (CSS selectors).
+         * @property {array}  stepsContent               Content of the steps.
+         * @property {object} activationMethodAndItsData Tour's activation method with the settings.
+         * @property {object} controllerMethodAndItsData Tour's controller method with the settings.
          */
         this._tourData = null;
 
