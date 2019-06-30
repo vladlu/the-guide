@@ -1,6 +1,7 @@
 /**
  * Custom CSS.
  *
+ * @author Vladislav Luzan
  * @since 0.1.0
  */
 'use strict';

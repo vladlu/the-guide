@@ -1,6 +1,7 @@
 /**
  * Functionality for Customize menu.
  *
+ * @author Vladislav Luzan
  * @since 0.1.0
  */
 'use strict';

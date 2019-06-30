@@ -1,6 +1,7 @@
 /**
  * Functionality for Tours List Table.
  *
+ * @author Vladislav Luzan
  * @since 0.1.0
  */
 'use strict';
