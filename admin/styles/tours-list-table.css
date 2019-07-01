@@ -23,6 +23,6 @@ tr[id^="post-"] input.the-guide-is-enabled:checked:before {
  *  Prioritize
  */
 
-table.widefat tbody th, table.widefat tbody td {
+table.widefat tbody.ui-sortable th, table.widefat tbody.ui-sortable td {
     cursor: move;
 }

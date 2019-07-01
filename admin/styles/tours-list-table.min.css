@@ -1,1 +1,1 @@
-tr[id^=post-] input.the-guide-is-enabled{background:transparent;border:0;opacity:1;box-shadow:none;cursor:default}tr[id^=post-] input.the-guide-is-enabled:checked:before{opacity:1}table.widefat tbody td,table.widefat tbody th{cursor:move}
+tr[id^=post-] input.the-guide-is-enabled{background:transparent;border:0;opacity:1;box-shadow:none;cursor:default}tr[id^=post-] input.the-guide-is-enabled:checked:before{opacity:1}table.widefat tbody.ui-sortable td,table.widefat tbody.ui-sortable th{cursor:move}

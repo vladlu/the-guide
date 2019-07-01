@@ -406,7 +406,7 @@ class TheGuide {
             $floatingBlock.css( obj );
 
 
-            // Prints content
+            // Prints the content.
             if ( activationData.floatingText )
                 $floatingBlockContent.text( activationData.floatingText );
 
