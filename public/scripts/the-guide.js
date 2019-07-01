@@ -629,18 +629,19 @@ class TheGuide {
         jQuery(document).on( 'keydown', this.handleKeydown );
 
 
-        let timeoutID;
         /**
-         * On Resize.
+         * On resize.
          *
          * @since 0.1.0
          *
          * @return {void}
          */
-        jQuery(window).resize(() => {
+        let timeoutID;
+        this.handleResize = function() {
             clearTimeout( timeoutID );
-            timeoutID = setTimeout( this._reposIfElemPosChanged.bind(this), 500 );
-        });
+            timeoutID = setTimeout( that._reposIfElemPosChanged.bind( this ), 500 );
+        };
+        jQuery( window ).on( 'resize', this.handleResize );
 
 
         /**
@@ -680,13 +681,14 @@ class TheGuide {
         /*
          * Removes all listeners.
          */
-        this._$targetButtonPrev.off( 'click', this.handleButtonPrev );
-        this._$targetButtonNext.off( 'click', this.handleButtonNext );
-        jQuery(document).off( 'click', this.handleClickOutsideModal );
-        jQuery(document).off( 'keydown', this.handleKeydown );
+        this._$targetButtonPrev.off( 'click',   this.handleButtonPrev );
+        this._$targetButtonNext.off( 'click',   this.handleButtonNext );
+        jQuery( document )     .off( 'click',   this.handleClickOutsideModal );
+        jQuery( document )     .off( 'keydown', this.handleKeydown );
+        jQuery( window )       .off( 'resize',  this.handleResize );
 
         /*
-         * Disables MutationObserver
+         * Disables MutationObserver.
          */
         this._observer.disconnect();
         this._observer = null;
