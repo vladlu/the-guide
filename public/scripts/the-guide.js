@@ -413,37 +413,46 @@ class TheGuide {
 
             $floatingBlock.draggable().show();
 
-
             /**
-             * TODO: ADD THE DESCRIPTION TO IT AND DELETE LISTENER ON "DELETE ALL LISTENERS" METHOD
+             * Inits the tour.
+             *
+             * @since 0.1.0
+             *
+             * @param {event} event The event object.
              */
-            jQuery( '.the-guide-floating-block-button' ).click( event => {
+            function eventHandlerFloating( event ) {
                 event.stopPropagation();
 
                 $floatingBlock.hide();
+                jQuery( '*' ).off( 'click', eventHandlerFloating );
 
-                this._initEverything();
-            });
-
+                that._initEverything();
+            }
+            jQuery( '.the-guide-floating-block-button' ).on( 'click', eventHandlerFloating );
 
         } else if ( activationData.method === 'on-click' ) {
+
             /**
-             * TODO: ADD THE DESCRIPTION TO IT AND DELETE LISTENER ON "DELETE ALL LISTENERS" METHOD
+             * Inits the tour.
+             *
+             * @since 0.1.0
+             *
+             * @param {event} event The event object.
              */
-            function handleEvent( event ) {
+            function eventHandlerOnClick( event ) {
                 event.stopPropagation();
                 event.preventDefault();
 
                 // Unfocuses clicked element.
                 event.target.blur();
 
-                // Removes all handlers when user clicks on 1 of the selected elements.
-                jQuery( '*' ).off( 'click', handleEvent );
+                // Removes all handlers when user clicks on one of the elements.
+                jQuery( '*' ).off( 'click', eventHandlerOnClick );
 
                 that._initEverything();
             }
             activationData.selectors.forEach( selector => {
-                jQuery( selector ).on( 'click', handleEvent );
+                jQuery( selector ).on( 'click', eventHandlerOnClick );
             });
         }
     }
