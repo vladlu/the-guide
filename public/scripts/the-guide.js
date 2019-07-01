@@ -199,7 +199,7 @@ class TheGuide {
          * Stops the current tour if it's active.
          */
         if ( this.isActive === true ) {
-            this.hide();
+            this.stop();
         }
 
 
@@ -601,7 +601,7 @@ class TheGuide {
          */
         this.handleClickOutsideModal = function( event ) {
             if ( ! jQuery( event.target ).closest( that._$targetModalWindow ).length  ) {
-                that.hide();
+                that.stop();
             }
         };
         jQuery(document).on( 'click', this.handleClickOutsideModal );
@@ -623,7 +623,7 @@ class TheGuide {
                 that._$targetButtonNext.click();
             // Esc
             } else if ( event.which === 27 ) {
-                that.hide();
+                that.stop();
             }
         };
         jQuery(document).on( 'keydown', this.handleKeydown );
@@ -861,7 +861,7 @@ class TheGuide {
      *
      * @return {void}
      */
-    hide() {
+    stop() {
         this.isActive = false;
 
         /*
@@ -987,7 +987,7 @@ class TheGuide {
             localStorage.setItem( 'theGuide', JSON.stringify( Object.assign( theGuideLocalStorage, dataToAdd ) ) );
 
 
-            this.hide();
+            this.stop();
         } else {
             /*
              * Saves the last step of the tour to the local storage.
