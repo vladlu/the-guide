@@ -10,6 +10,7 @@
  * License:     MIT
  *
  * @package The Guide
+ * @author  Vladislav Luzan <hey@vlad.lu>
  */
 
 
