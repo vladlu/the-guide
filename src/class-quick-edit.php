@@ -133,7 +133,9 @@ class The_Guide_Quick_Edit {
 	 */
 	public function save( $post_id ) {
 
-	    /* Verifications */
+		/*
+		 * Verifications.
+		 */
 
 	    $slug = 'the-guide';
 

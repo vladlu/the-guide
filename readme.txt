@@ -48,12 +48,12 @@ ________________________________________________________________________________
 
 
 
-TheGuideInst    <---- YOU SHOULD USE THIS
+TheGuideInstance    <---- YOU SHOULD USE THIS
 
     Example:
-        TheGuideInst.allTours;
-        TheGuideInst.go( TheGuideInst.allTours[1] );
-        TheGuideInst.show();
+        TheGuideInstance.allTours;
+        TheGuideInstance.go( TheGuideInstance.allTours[1] );
+        TheGuideInstance.show();
 
 
 
@@ -101,13 +101,13 @@ ________________________________________________________________________________
 
 
 async function showTheTour(tourID) {
-    const response = await theGuideInst.go( tourID, true );
+    const response = await TheGuideInstance.go( tourID, true );
 
     if ( response === 0 ) {
-        theGuideInst.show();
+        TheGuideInstance.show();
     }
 }
-showTheTour( theGuideInst.allTours[0] );
+showTheTour( TheGuideInstance.allTours[0] );
 
 ========================================================================================================================
                                                     SHORTCODES

@@ -83,7 +83,9 @@ class The_Guide_Meta_Boxes {
 	 */
 	public function save( $post_id ) {
 
-		/* Verifications */
+		/*
+		 * Verifications.
+		 */
 
 		if (
 			// nonce

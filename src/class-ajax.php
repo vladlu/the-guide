@@ -90,7 +90,9 @@ class The_Guide_Ajax {
 	 */
 	public function public_init() {
 
-		/* Verifications */
+		/*
+		 * Verifications.
+		 */
 
 		if ( ! isset( $_POST['url'] ) ) {
 			wp_die();
@@ -299,7 +301,9 @@ class The_Guide_Ajax {
 
 
 
-		/* Verifications */
+		/*
+		 * Verifications.
+		 */
 
 		check_ajax_referer( 'the-guide-reorder-tours', 'nonceToken' );
 

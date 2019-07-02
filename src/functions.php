@@ -28,7 +28,9 @@ function the_guide_duplicate_post( $post_id ) {
 
 
 
-	/* Verifications */
+	/*
+	 * Verifications.
+	 */
 
 	if ( ! isset( $post ) || $post == null) {
 		return;

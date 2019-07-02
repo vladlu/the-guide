@@ -775,7 +775,12 @@ class TheGuide {
         /*
          * Moves tour controller to the element.
          */
-        this._moveTheTourControllerToTheElement();
+        if ( 'next-to' === this.controllerMethod ) {
+            // Resets modal window width to the default.
+            this._$targetModalWindow.width('');
+
+            this._moveTheTourControllerToTheElement();
+        }
 
         /*
          * Scrolls to the selected element.
@@ -794,47 +799,118 @@ class TheGuide {
      * @return {void}
      */
     _moveTheTourControllerToTheElement() {
+        const that = this,
+              $selectedElemOffset = this._$selectedElem.offset(),
 
-        if ( this.controllerMethod === 'next-to' ) {
-            const $selectedElemOffset = this._$selectedElem.offset(),
-
-                  OFFSET = 10;
-
-
-            // TOP.
-
-            let heightOfTheModalWindow = this._$targetModalWindow.outerHeight(),
-                heightOfTheSelectedElem = this._$selectedElem.outerHeight(),
-
-                top  = $selectedElemOffset.top - heightOfTheModalWindow - OFFSET;
-
-            // If there is not enough space for the modal window, then moves it on another side of the elem.
-            if ( top < heightOfTheModalWindow + OFFSET * 2 ) // Offset must be in both sides ( top and bottom of the modal window ).
-                top = $selectedElemOffset.top + heightOfTheSelectedElem + OFFSET;
+              OFFSET = 10;  // The distance between the selected elem and the modal window.
 
 
-            // LEFT.
-
-            // Move to the center of the elem.
-            let halfOfTheModalWindow = this._$targetModalWindow.outerWidth() / 2,
-                halfOfTheSelectedElem = this._$selectedElem.outerWidth() / 2,
-
-                left = $selectedElemOffset.left + halfOfTheSelectedElem - halfOfTheModalWindow,
-
-                widthOfTheModalWindow = this._$targetModalWindow.outerWidth();
+        /*
+         * Top.
+         */
 
 
-            if ( left < widthOfTheModalWindow )
-                left = OFFSET;
+        let heightOfTheModalWindow  = this._$targetModalWindow.outerHeight(),
+            heightOfTheSelectedElem = this._$selectedElem.outerHeight(),
+
+            top = $selectedElemOffset.top - heightOfTheModalWindow - OFFSET;
 
 
-            // SET UP TOP & LEFT.
-
-            this._$targetModalWindow.css( {
-                top:  top,
-                left: left,
-            } );
+        // If there is not enough space for the modal window, then moves it to another side of the elem.
+        if ( top < ( heightOfTheModalWindow + OFFSET * 2 ) ) { // Offset must be on the both sides (top and bottom) of the modal window.
+            top = $selectedElemOffset.top + heightOfTheSelectedElem + OFFSET;
         }
+
+
+        /*
+         * Left.
+         */
+
+
+        let windowWidth = jQuery( window ).width(),
+
+            widthOfTheModalWindow      = this._$targetModalWindow.outerWidth(),
+            widthOfTheSelectedElem     = this._$selectedElem.outerWidth(),
+
+            halfWidthOfTheModalWindow  = widthOfTheModalWindow  / 2,
+            halfWidthOfTheSelectedElem = widthOfTheSelectedElem / 2,
+
+            left = $selectedElemOffset.left + halfWidthOfTheSelectedElem - halfWidthOfTheModalWindow; // Moves to the center of the elem.
+
+
+        /**
+         * Determines whether the modal window fits the document on the left side.
+         *
+         * @since 0.1.0
+         *
+         * @return {boolean}
+         */
+        function doesModalFitDocOnLeft() {
+            return ( left > OFFSET );
+        }
+
+
+        /**
+         * Determines whether the modal window fits the document on the right side.
+         *
+         * @since 0.1.0
+         *
+         * @return {boolean}
+         */
+        function doesModalFitDocOnRight() {
+            widthOfTheModalWindow = that._$targetModalWindow.outerWidth();
+
+            return ( ( left + widthOfTheModalWindow + OFFSET ) < windowWidth );
+        }
+
+
+        /**
+         * Returns a center modal window position relative the document (so the modal window will be at the center of the document).
+         *
+         * @since 0.1.0
+         *
+         * @return {number} A new "left" position that will center a modal window relative to the document.
+         */
+        function returnModalWindowCenterPosition() {
+            halfWidthOfTheModalWindow = that._$targetModalWindow.outerWidth() / 2;
+
+            return ( windowWidth / 2 ) - halfWidthOfTheModalWindow;
+        }
+
+
+        if ( ! doesModalFitDocOnRight() ) {
+
+            // Moves the right side of the modal window to the right side of the elem.
+            left = $selectedElemOffset.left - ( widthOfTheModalWindow - widthOfTheSelectedElem );
+
+            if ( ! doesModalFitDocOnLeft() ) {
+                const STEP = 5,
+                      MIN_MODAL_WIDTH = 305; // The minimum width of the modal width. If it less then it becomes corrupted.
+
+                left = returnModalWindowCenterPosition();
+
+                // Gradually decreases the width of the modal window until it fits the both sides of the document or reaches its limits.
+                while (
+                    ( ! doesModalFitDocOnLeft() || ! doesModalFitDocOnRight() ) &&
+                    this._$targetModalWindow.width() - STEP > MIN_MODAL_WIDTH // A limit.
+                ) {
+                    // Decreases the width by the step size.
+                    this._$targetModalWindow.width( this._$targetModalWindow.width() - STEP );
+
+                    left = returnModalWindowCenterPosition();
+                }
+            }
+        }
+
+
+        /*
+         * Setups the positions.
+         */
+
+        this._$targetModalWindow.css( {
+            top:  top,
+            left: left,
+        } );
     }
 
 
@@ -1064,7 +1140,14 @@ jQuery(() => {
                 theGuideLocalStorage = localStorage.getItem('theGuide') ? JSON.parse( localStorage.getItem('theGuide') ) : {};
 
             if ( ! ( tourID in theGuideLocalStorage ) || theGuideLocalStorage[tourID] !== '-1' ) {
-                window.TheGuideInst = new TheGuide();
+                /**
+                 * Main The Guide instance.
+                 *
+                 * @global
+                 *
+                 * @type {TheGuide}
+                 */
+                window.TheGuideInstance = new TheGuide();
                 showTheTour( tourID );
                 theGuide_loadCustomCSS();
             }
@@ -1082,10 +1165,10 @@ jQuery(() => {
      * @return {Promise<void>}
      */
     async function showTheTour( tourID ) {
-        const response = await window.TheGuideInst.go( tourID, true );
+        const response = await window.TheGuideInstance.go( tourID, true );
 
         if ( response === 0 ) {
-            window.TheGuideInst.show();
+            window.TheGuideInstance.show();
         }
     }
 });
