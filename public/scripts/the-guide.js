@@ -103,6 +103,16 @@ class TheGuide {
         this._htmlAdded = false;
 
         /**
+         * Whether The Guide's custom CSS was added to the page.
+         *
+         * @since 0.1.0
+         * @private
+         *
+         * @type {boolean}
+         */
+        this._customCSSAdded = false;
+
+        /**
          * The last recorded position of the key element on the current step.
          *
          * Has format:
@@ -200,17 +210,6 @@ class TheGuide {
          */
         if ( true === this.isActive ) {
             this.stop();
-        }
-
-
-        /*
-         * Adds HTML.
-         */
-        if ( ! this._htmlAdded ) {
-            this._addHTML();
-            this._$shadow = jQuery( '.the-guide-shadow' );
-
-            this._htmlAdded = true;
         }
 
 
@@ -470,6 +469,26 @@ class TheGuide {
      * @return {void}
      */
     _initEverything() {
+
+        /*
+         * Adds HTML.
+         */
+        if ( ! this._htmlAdded ) {
+            this._addHTML();
+            this._$shadow = jQuery( '.the-guide-shadow' );
+
+            this._htmlAdded = true;
+        }
+
+        /*
+         * Adds custom CSS.
+         */
+        if ( ! this._customCSSAdded ) {
+            this._addCustomCSS();
+
+            this._customCSSAdded = true;
+        }
+        
         this.isActive = true;
 
         this._initController();
@@ -932,6 +951,38 @@ class TheGuide {
 
 
     /**
+     * Adds custom CSS.
+     *
+     * Retrieves custom CSS from the server using AJAX and inserts it to the DOM.
+     *
+     * @since 0.1.0
+     *
+     * @return {void}
+     */
+     _addCustomCSS() {
+        let data = {
+            'action':     'the_guide_public_get_custom_css',
+            'nonceToken': theGuide.theGuideData.nonceTokenGetCustomCSS
+        };
+
+        /**
+         * Retrieves custom CSS from the server and adds it to the DOM.
+         *
+         * @since 0.1.0
+         *
+         * @param {string} customCSS The custom CSS to add to the DOM.
+         */
+        jQuery.post( theGuide.ajaxurl, data, customCSS => {
+            if ( customCSS ) {
+                let css       = document.createElement("style");
+                css.innerHTML = customCSS;
+                document.body.appendChild(css);
+            }
+        });
+    }
+
+
+    /**
      * Stops the tour.
      *
      * Hides the tour elements and disables all listeners.
@@ -1150,7 +1201,6 @@ jQuery(() => {
                  */
                 window.TheGuideInstance = new TheGuide();
                 showTheTour( tourID );
-                theGuide_loadCustomCSS();
             }
         }
     })();

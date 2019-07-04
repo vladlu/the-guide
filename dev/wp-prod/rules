@@ -2,7 +2,6 @@ plugin
 
 
 webpack		public/scripts/the-guide.js
-webpack		public/scripts/custom-css.js
 
 webpack		admin/scripts/menu-customize.js
 webpack		admin/scripts/meta-boxes.js

@@ -95,12 +95,6 @@ class The_Guide_Public_Assets {
 			[ 'jquery-ui-draggable' ],
 			THE_GUIDE_VERSION
 		);
-		wp_enqueue_script(
-			'the-guide-script-custom-css',
-			THE_GUIDE_URL . 'public/scripts/custom-css' . $this->assets_suffix . '.js',
-			[ 'the-guide-script-public', 'jquery' ],
-			THE_GUIDE_VERSION
-		);
 
 
 		/**
