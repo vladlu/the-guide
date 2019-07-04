@@ -21,9 +21,12 @@ webpack		admin/styles/tours-list-table.css
 
 ## babel-polyfill
 
+
 copy		[m]/@babel/polyfill/dist/polyfill.min.js	libs/babel-polyfill/babel-polyfill.js
 
+
 ## CodeMirror
+
 
 install 	codemirror
 
@@ -32,3 +35,12 @@ uglifyjs	[m]/codemirror/lib/codemirror.js	libs/codemirror/codemirror.js
 uglifyjs	[m]/codemirror/mode/css/css.js		libs/codemirror/css.js
 
 webpack		[m]/codemirror/lib/codemirror.css	libs/codemirror/codemirror.css
+
+
+## jQuery UI Touch Punch
+
+
+install 	jquery-ui-touch-punch
+
+
+copy		[m]/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js	libs/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js

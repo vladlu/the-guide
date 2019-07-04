@@ -113,6 +113,16 @@ class The_Guide_Public_Assets {
 			THE_GUIDE_VERSION
 		);
 
+		/**
+		 * jQuery UI Touch Punch.
+		 */
+		wp_enqueue_script(
+			'the-guide-script-jquery.ui.touch-punch',
+			THE_GUIDE_URL . 'libs/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js',
+			[ 'jquery-ui-draggable', 'the-guide-script-public' ],
+			THE_GUIDE_VERSION
+		);
+
 
 		/**
 		 * Data to JS.
