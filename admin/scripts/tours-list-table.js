@@ -48,7 +48,7 @@ jQuery( $ => {
                     // Gets the data.
                     $enabled = !! $( '.the-guide-is-enabled', $post_row ).prop( 'checked' ),
                     $url     =    $( '.the-guide-url',     $post_row ).text(),
-                    $steps   =    $( '.the-guide-steps',   $post_row ).data( 'steps' ).replace(/\s{2,}/g, ''); // Removes double spaces
+                    $steps   =    $( '.the-guide-steps',   $post_row ).data( 'steps' ).replace(/\s{2,}/g, ''); // Removes double spaces.
 
                 // Populates the data.
                 $( '.the-guide-is-enabled', $edit_row ).prop( 'checked', $enabled );
@@ -99,10 +99,10 @@ jQuery( $ => {
                 var prevpostid = ui.item.prev().find( '.check-column input' ).val();
                 var nextpostid = ui.item.next().find( '.check-column input' ).val();
 
-                // Show Spinner
+                // Show a spinner.
                 ui.item.find( '.check-column input' ).hide().after( '<img alt="processing" src="images/wpspin_light.gif" class="waiting" style="margin-left: 6px;" />' );
 
-                // Go do the sorting stuff via ajax
+                // Go do the sorting stuff via ajax.
                 $.post( ajaxurl,
                     { action: 'the_guide_reorder_tours', nonceToken: theGuide.nonceTokenReorderTours, id: postid, previd: prevpostid, nextid: nextpostid },
                     function( response ) {
@@ -114,7 +114,7 @@ jQuery( $ => {
                         $( 'table.widefat tbody' ).sortable( 'enable' );
                     });
 
-                // fix cell colors
+                // Fix cell colors.
                 $( 'table.widefat tbody tr' ).each( function() {
                     var i = $( 'table.widefat tbody tr' ).index( this );
                     if ( 0 === i%2 ) {

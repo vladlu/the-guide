@@ -59,18 +59,18 @@ class The_Guide_Columns {
 	 */
 	public function columns( $columns ) {
 
-		// Removes columns
+		// Removes columns.
 
 		unset( $columns['date'] );
 
-        // Adds columns
+        // Adds columns.
 
 		$new_columns = [
 			'url'     =>  __( 'URL',     'the-guide' ),
 			'steps'   =>  __( 'Steps',   'the-guide' ),
 			'enabled' =>  __( 'Enabled', 'the-guide' ),
 
-			'date' => __( 'Date' )  // Moves it back to the end
+			'date' => __( 'Date' )  // Moves it back to the end.
 		];
 
 		return array_merge( $columns, $new_columns );

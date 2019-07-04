@@ -43,7 +43,7 @@ class The_Guide_Menus {
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
 
-		// Inits dashboard menus
+		// Inits dashboard menus.
 		add_action( 'admin_menu', [ $this, 'init_dashboard_menus' ] );
 	}
 
@@ -64,7 +64,7 @@ class The_Guide_Menus {
 			'dashicons-analytics'
 		);
 
-		// Add New (the-guide)
+		// Add New (the-guide).
 
 		add_submenu_page(
 			'the-guide-menu',
@@ -74,7 +74,7 @@ class The_Guide_Menus {
 			'post-new.php?post_type=the-guide'
 		);
 
-		// Customize
+		// Customize.
 
 		add_submenu_page(
 			'the-guide-menu',

@@ -129,9 +129,9 @@ class The_Guide_Ajax {
 				$tour_url = get_post_meta( $tour_id, 'the-guide-url', true );
 
 				if (
-					'publish' === get_post_status( $tour_id ) && // Only published tours
+					'publish' === get_post_status( $tour_id ) && // Only published tours.
 					// Removes protocols.
-					$tour_url === preg_replace("(^https?://)", "", $current_url ) // that match the URL.
+					$tour_url === preg_replace("(^https?://)", "", $current_url ) // Only tours that match the URL.
 				) {
 					if ( ! $first_enabled_tour_id_for_this_url ) {
 						$first_enabled_tour_id_for_this_url = $tour_id;
@@ -167,7 +167,7 @@ class The_Guide_Ajax {
 				'tourID'                    => $first_enabled_tour_id_for_this_url,
 				'elemIndex'                 => THE_GUIDE_SHORTCODE_GO_STEP - 1
 			];
-		// Without shortcodes
+		// Without shortcodes.
 		} elseif (
 			$is_there_an_enabled_tour
 		) {
@@ -182,7 +182,7 @@ class The_Guide_Ajax {
 		if ( isset( $the_guide_data ) ) {
 
 			/*
-			 * Adds nonce
+			 * Adds nonce.
 			 */
 			$the_guide_data = array_merge($the_guide_data, [
 				'nonceTokenGetTourDataByID' => wp_create_nonce( 'the-guide-get-tour-data-by-id' ),
@@ -190,7 +190,7 @@ class The_Guide_Ajax {
 			]);
 
 			/*
-			 * Returns
+			 * Returns.
 			 */
 			echo json_encode( $the_guide_data );
 		}
@@ -212,7 +212,9 @@ class The_Guide_Ajax {
 	 */
 	public function public_get_tour_data_by_id() {
 
-		/* Nonce Check */
+		/*
+		 * Nonce check.
+		 */
 		check_ajax_referer( 'the-guide-get-tour-data-by-id', 'nonceToken' );
 
 
@@ -242,7 +244,9 @@ class The_Guide_Ajax {
      */
 	public function public_get_custom_css() {
 
-		/* Nonce Check */
+		/*
+         * Nonce check.
+         */
 		check_ajax_referer( 'the-guide-get-custom-css', 'nonceToken' );
 
 
@@ -267,7 +271,9 @@ class The_Guide_Ajax {
 	 */
 	public function save_custom_css() {
 
-		/* Nonce Check */
+		/*
+         * Nonce check.
+         */
 		check_ajax_referer( 'the-guide-menu-customize', 'nonceToken' );
 
 

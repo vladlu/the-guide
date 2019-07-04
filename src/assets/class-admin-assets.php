@@ -57,13 +57,13 @@ class The_Guide_Admin_Assets {
 	private function load_admin_assets() {
 
 		/**
-		 * General
+		 * General.
 		 */
 		add_action( 'admin_enqueue_scripts', [ $this, 'load_general_assets' ] );
 
 
 		/**
-		 * Customize menu
+		 * Customize menu.
 		 */
 		add_action( 'load-the-guide_page_the-guide-customize', [
 			$this, 'load_menu_customize_assets'

@@ -34,7 +34,7 @@ jQuery( $ => {
     $( '.the-guide-submit-form' ).submit( event => {
         event.preventDefault();
 
-        // Sends
+        // Sends.
         let data = {
             'action':      'the_guide_save_custom_css',
             'nonceToken':       theGuide.nonceToken,

@@ -88,14 +88,14 @@ class The_Guide_Meta_Boxes {
 		 */
 
 		if (
-			// nonce
+			// Nonce.
 			! isset( $_POST['the-guide_edit_tour_nonce-token'] ) ||
 			! wp_verify_nonce( $_POST['the-guide_edit_tour_nonce-token'], 'the-guide-edit-tour' ) ||
 
-			// autosave
+			// Autosave.
 			defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ||
 
-			// capabilities
+			// Capabilities.
 		    ! current_user_can( 'edit_post', $post_id )
 		) {
 			return;
@@ -126,7 +126,7 @@ class The_Guide_Meta_Boxes {
                 'left'   => $_POST['the-guide-activation-position-left'],
                 'right'  => $_POST['the-guide-activation-position-right']
             ],
-			// Translates a comma-separated string into an array
+			// Translates a comma-separated string into an array.
 			'selectors'  => array_map( 'trim', explode( ',',  $_POST['the-guide-activation-selectors'] ) )
         ] );
 
@@ -158,7 +158,7 @@ class The_Guide_Meta_Boxes {
          * Selected elements (steps)
          */
 
-		// Translates a comma-separated string into an array
+		// Translates a comma-separated string into an array.
 		$steps = array_map( 'trim', explode( ',',  $_POST['the-guide-steps'] ) );
 		update_post_meta( $post_id, 'the-guide-steps', $steps );
 

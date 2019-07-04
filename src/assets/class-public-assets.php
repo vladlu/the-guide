@@ -70,7 +70,7 @@ class The_Guide_Public_Assets {
 
 
 		/**
-		 * CSS
+		 * CSS.
 		 */
 		wp_enqueue_style(
 			'the-guide-style-public-main',
@@ -87,7 +87,7 @@ class The_Guide_Public_Assets {
 
 
 		/**
-		 * JS
+		 * JS.
 		 */
 		wp_enqueue_script(
 			'the-guide-script-public',
@@ -104,7 +104,7 @@ class The_Guide_Public_Assets {
 
 
 		/**
-		 * Babel Polyfill
+		 * Babel Polyfill.
 		 */
 		wp_enqueue_script(
 			'the-guide-script-babel-polyfill',
@@ -115,7 +115,7 @@ class The_Guide_Public_Assets {
 
 
 		/**
-		 * Data to JS
+		 * Data to JS.
 		 */
 		wp_localize_script( 'the-guide-script-public', 'theGuide', [
 			'translates' => [

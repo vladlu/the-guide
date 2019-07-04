@@ -65,7 +65,7 @@ function the_guide_duplicate_post( $post_id ) {
 	/*
 	 * Get all current post terms ad set them to the new post draft
 	 */
-	$taxonomies = get_object_taxonomies( $post->post_type ); // Returns array of taxonomy names for post type, ex array("category", "post_tag");
+	$taxonomies = get_object_taxonomies( $post->post_type ); // Returns array of taxonomy names for post type, ex array("category", "post_tag").
 	foreach ( $taxonomies as $taxonomy ) {
 		$post_terms = wp_get_object_terms( $post_id, $taxonomy, [ 'fields' => 'slugs' ] );
 		wp_set_object_terms( $new_post_id, $post_terms, $taxonomy, false );

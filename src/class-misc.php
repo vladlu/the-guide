@@ -255,10 +255,10 @@ class The_Guide_Misc {
 
 		$messages['the-guide'] = [
 			0  => '', // Unused. Messages start at index 1.
-			1  => __( 'Tour updated.', 'the-guide' ), // It may contain link "View tour"
+			1  => __( 'Tour updated.', 'the-guide' ), // It may contain link "View tour".
 			2  => __( 'Custom field updated.' ),
 			3  => __( 'Custom field deleted.'),
-			4  => __( 'Tour updated.', 'the-guide' ), // It doesn't contain link. Just message, as it is
+			4  => __( 'Tour updated.', 'the-guide' ), // It doesn't contain link. Just message, as it is.
 			/* translators: %s: date and time of the revision */
 			5  => isset( $_GET['revision'] ) ? sprintf( __( 'Tour restored to revision from %s' ),
 				wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
