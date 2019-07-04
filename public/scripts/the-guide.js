@@ -287,7 +287,7 @@ class TheGuide {
          */
         if ( this._filteredSteps.length ) {
             if ( this._showPrelude ) {
-                this._useSelectedActivationMethod();
+                this._initActivationMethod();
             } else {
                 this._initEverything();
             }
@@ -365,7 +365,7 @@ class TheGuide {
      *
      * @return {void}
      */
-    _useSelectedActivationMethod() {
+    _initActivationMethod() {
         const that = this;
         let activationData = this._tourData.activationMethodAndItsData;
 
