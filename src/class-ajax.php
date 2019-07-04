@@ -60,8 +60,8 @@ class The_Guide_Ajax {
 
 
 		foreach ( $ajax_events_nopriv as $ajax_event ) {
-			add_action( 'wp_ajax_the_guide_'        . $ajax_event, [ __CLASS__, $ajax_event ] );
-			add_action( 'wp_ajax_nopriv_the_guide_' . $ajax_event, [ __CLASS__, $ajax_event ] );
+			add_action( 'wp_ajax_the_guide_'        . $ajax_event, [ $this, $ajax_event ] );
+			add_action( 'wp_ajax_nopriv_the_guide_' . $ajax_event, [ $this, $ajax_event ] );
 		}
 
 
@@ -72,7 +72,7 @@ class The_Guide_Ajax {
 
 
 		foreach ( $ajax_events as $ajax_event ) {
-			add_action( 'wp_ajax_the_guide_' . $ajax_event, [ __CLASS__, $ajax_event ] );
+			add_action( 'wp_ajax_the_guide_' . $ajax_event, [ $this, $ajax_event ] );
 		}
 	}
 
