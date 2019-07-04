@@ -68,7 +68,7 @@ class The_Guide_Prioritize {
 	 *
 	 * @param WP_Query $query The current WP_Query instance.
 	 */
-	public function change_sorting( $query) {
+	public function change_sorting( $query ) {
 		$screen = get_current_screen();
 		if ( 'edit'      == $screen->base      &&
 			 'the-guide' == $screen->post_type &&

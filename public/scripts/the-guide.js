@@ -640,7 +640,7 @@ class TheGuide {
         let timeoutID;
         this.handleResize = function() {
             clearTimeout( timeoutID );
-            timeoutID = setTimeout( that._reposIfElemPosChanged.bind( this ), 500 );
+            timeoutID = setTimeout( that._reposIfElemPosChanged.bind( that ), 500 );
         };
         jQuery( window ).on( 'resize', this.handleResize );
 
