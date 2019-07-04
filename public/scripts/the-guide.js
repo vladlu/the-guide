@@ -198,7 +198,7 @@ class TheGuide {
         /*
          * Stops the current tour if it's active.
          */
-        if ( this.isActive === true ) {
+        if ( true === this.isActive ) {
             this.stop();
         }
 
@@ -369,11 +369,11 @@ class TheGuide {
         const that = this;
         let activationData = this._tourData.activationMethodAndItsData;
 
-        if ( activationData.method === 'on-load' ) {
+        if ( 'on-load' === activationData.method ) {
 
             this._initEverything();
 
-        } else if ( activationData.method === 'floating' ) {
+        } else if ( 'floating' === activationData.method ) {
 
             const $floatingBlock        = jQuery( '.the-guide-floating-block' ),
                   $floatingBlockContent = jQuery( '.the-guide-floating-block-content' );
@@ -407,8 +407,9 @@ class TheGuide {
 
 
             // Prints the content.
-            if ( activationData.floatingText )
+            if ( activationData.floatingText ) {
                 $floatingBlockContent.text( activationData.floatingText );
+            }
 
 
             $floatingBlock.draggable().show();
@@ -430,7 +431,7 @@ class TheGuide {
             }
             jQuery( '.the-guide-floating-block-button' ).on( 'click', eventHandlerFloating );
 
-        } else if ( activationData.method === 'on-click' ) {
+        } else if ( 'on-click' === activationData.method ) {
 
             /**
              * Inits the tour.
@@ -491,7 +492,7 @@ class TheGuide {
         const controllerMethodAndData = this._tourData.controllerMethodAndItsData;
 
 
-        if ( controllerMethodAndData.method === 'floating' ) {
+        if ( 'floating' === controllerMethodAndData.method ) {
 
             this.controllerMethod = 'floating';
 
@@ -531,7 +532,7 @@ class TheGuide {
 
             this._$targetModalWindow.draggable().show();
 
-        } else if ( controllerMethodAndData.method === 'next-to-the-selected-elem' ) {
+        } else if ( 'next-to-the-selected-elem' === controllerMethodAndData.method ) {
 
             this.controllerMethod = 'next-to';
 
@@ -616,13 +617,13 @@ class TheGuide {
          */
         this.handleKeydown = function( event ) {
             // Arrow Left
-            if ( event.which === 37 ) {
+            if ( 37 === event.which ) {
                 that._$targetButtonPrev.click();
             // Arrow Right
-            } else if ( event.which === 39 ) {
+            } else if ( 39 === event.which ) {
                 that._$targetButtonNext.click();
             // Esc
-            } else if ( event.which === 27 ) {
+            } else if ( 27 === event.which ) {
                 that.stop();
             }
         };
@@ -998,7 +999,7 @@ class TheGuide {
     setStepSelector( stepNumber, selector ) {
         this._filteredSteps[ stepNumber - 1 ] = selector;
 
-        if  ( this.currentStep === stepNumber ) {
+        if  ( stepNumber === this.currentStep ) {
             this._setShadowAndScroll();
         }
 
@@ -1019,7 +1020,7 @@ class TheGuide {
     setStepContent( stepNumber, content ) {
         this._tourData.stepsContent[ stepNumber - 1 ] = content;
 
-        if  ( this.currentStep === stepNumber ) {
+        if  ( stepNumber === this.currentStep ) {
             this._print();
         }
 
@@ -1046,10 +1047,10 @@ class TheGuide {
             this._elemIndex  = 0;
             this.currentStep = 1;
         }
-        if ( this.currentStep === this.howManySteps - 1 ) {
+        if ( this.howManySteps - 1 === this.currentStep ) {
             this._$targetButtonNext.val( theGuide.translates.next );
         }
-        if ( this.currentStep === this.howManySteps ) {
+        if ( this.howManySteps === this.currentStep ) {
             this._$targetButtonNext.val( theGuide.translates.finish );
         }
 
@@ -1123,7 +1124,7 @@ jQuery(() => {
              * @param {object} tourData The data of the tour.
              */
             jQuery.post( theGuide.ajaxurl, data, theGuideData => {
-                if (theGuideData) {
+                if ( theGuideData ) {
                     // Populates the init data.
                     theGuide.theGuideData = theGuideData;
 
@@ -1132,14 +1133,14 @@ jQuery(() => {
             }, 'json');
         } );
 
-        if ( response === 0 ) {
+        if ( 0 === response ) {
             /*
              * Runs the tour only if it has not been finished.
              */
             let tourID = theGuide.theGuideData.tourID,
                 theGuideLocalStorage = localStorage.getItem('theGuide') ? JSON.parse( localStorage.getItem('theGuide') ) : {};
 
-            if ( ! ( tourID in theGuideLocalStorage ) || theGuideLocalStorage[tourID] !== '-1' ) {
+            if ( '-1' !== ! ( tourID in theGuideLocalStorage ) || theGuideLocalStorage[tourID] ) {
                 /**
                  * Main The Guide instance.
                  *
@@ -1167,7 +1168,7 @@ jQuery(() => {
     async function showTheTour( tourID ) {
         const response = await window.TheGuideInstance.go( tourID, true );
 
-        if ( response === 0 ) {
+        if ( 0 === response ) {
             window.TheGuideInstance.show();
         }
     }

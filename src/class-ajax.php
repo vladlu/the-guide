@@ -129,9 +129,9 @@ class The_Guide_Ajax {
 				$tour_url = get_post_meta( $tour_id, 'the-guide-url', true );
 
 				if (
-					get_post_status( $tour_id ) === 'publish' && // Only published tours
-					// removes protocols
-					preg_replace("(^https?://)", "", $current_url ) === $tour_url  // that match the URL
+					'publish' === get_post_status( $tour_id ) && // Only published tours
+					// Removes protocols.
+					$tour_url === preg_replace("(^https?://)", "", $current_url ) // that match the URL.
 				) {
 					if ( ! $first_enabled_tour_id_for_this_url ) {
 						$first_enabled_tour_id_for_this_url = $tour_id;

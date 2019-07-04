@@ -24,16 +24,16 @@ jQuery( $ => {
     $selectActivationMethod.change( () => {
         const $selectedActivationMethod = $( '#the-guide-select-activation-method option:selected' );
 
-        if ( $selectedActivationMethod.val() === 'on-load' ) {
+        if ( 'on-load' === $selectedActivationMethod.val() ) {
             $( '.the-guide-activation-floating' ) .hide();
             $( '.the-guide-activation-selectors' ).hide();
 
-        } else if ( $selectedActivationMethod.val() === 'floating' ) {
+        } else if ( 'floating' === $selectedActivationMethod.val() ) {
             $( '.the-guide-activation-selectors' ).hide();
             $( '.the-guide-activation-floating' ) .show();
 
 
-        } else if ( $selectedActivationMethod.val() === 'on-click' ) {
+        } else if ( 'on-click' === $selectedActivationMethod.val() ) {
             $( '.the-guide-activation-floating' ) .hide();
             $( '.the-guide-activation-selectors' ).css('display', 'flex');
         }
@@ -53,9 +53,9 @@ jQuery( $ => {
     $selectControllerMethod.change( () => {
         const $selectedControllerPositionMethod = $( '#the-guide-select-controller-method option:selected' );
 
-        if ( $selectedControllerPositionMethod.val() === 'next-to-the-selected-elem' ) {
+        if ( 'next-to-the-selected-elem' === $selectedControllerPositionMethod.val() ) {
             $( '.the-guide-controller-position-floating' ).hide();
-        } else if ( $selectedControllerPositionMethod.val() === 'floating' ) {
+        } else if ( 'floating' === $selectedControllerPositionMethod.val() ) {
             $( '.the-guide-controller-position-floating' ).show();
         }
     });

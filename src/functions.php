@@ -32,7 +32,7 @@ function the_guide_duplicate_post( $post_id ) {
 	 * Verifications.
 	 */
 
-	if ( ! isset( $post ) || $post == null) {
+	if ( ! isset( $post ) || null === $post ) {
 		return;
 	}
 
@@ -75,13 +75,13 @@ function the_guide_duplicate_post( $post_id ) {
 	 * Duplicate all post meta just in two SQL queries
 	 */
 	$post_meta_infos = $wpdb->get_results( "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id" );
-	if ( count( $post_meta_infos ) != 0 ) {
+	if ( 0 !== count( $post_meta_infos ) ) {
 		$sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
 
 		foreach ( $post_meta_infos as $meta_info ) {
 			$meta_key = $meta_info->meta_key;
 
-			if ( $meta_key == '_wp_old_slug' ) {
+			if ( '_wp_old_slug' === $meta_key ) {
 				continue;
 			}
 

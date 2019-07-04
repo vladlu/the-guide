@@ -124,7 +124,7 @@ class The_Guide_Misc {
 
 
 		add_filter( 'handle_bulk_actions-edit-the-guide', function( $redirect_to, $doaction, $post_ids ) {
-			if ( $doaction !== 'enable' ) {
+			if ( 'enable' !== $doaction ) {
 				return $redirect_to;
 			}
 			foreach ( $post_ids as $post_id ) {
@@ -168,7 +168,7 @@ class The_Guide_Misc {
 
 
 		add_filter( 'handle_bulk_actions-edit-the-guide', function( $redirect_to, $doaction, $post_ids ) {
-			if ( $doaction !== 'disable' ) {
+			if ( 'disable' !== $doaction ) {
 				return $redirect_to;
 			}
 			foreach ( $post_ids as $post_id ) {
@@ -212,7 +212,7 @@ class The_Guide_Misc {
 
 
 		add_filter( 'handle_bulk_actions-edit-the-guide', function( $redirect_to, $doaction, $post_ids ) {
-			if ( $doaction !== 'duplicate' ) {
+			if ( 'duplicate' !== $doaction ) {
 				return $redirect_to;
 			}
 			foreach ( $post_ids as $post_id ) {

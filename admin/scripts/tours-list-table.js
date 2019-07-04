@@ -17,7 +17,7 @@ jQuery( $ => {
      *
      * @since 0.1.0
      */
-    if ( typeof inlineEditPost !== 'undefined' ) {
+    if ( 'undefined' !== typeof inlineEditPost ) {
         // We create a copy of the WP inline edit post function.
         var $wp_inline_edit = inlineEditPost.edit;
 
@@ -32,7 +32,7 @@ jQuery( $ => {
             // Now we take care of our business.
 
             var $post_id = 0;
-            if ( typeof( id ) == 'object' ) {
+            if ( 'object' == typeof( id ) ) {
                 $post_id = parseInt( this.getId( id ) );
             }
 
@@ -117,7 +117,7 @@ jQuery( $ => {
                 // fix cell colors
                 $( 'table.widefat tbody tr' ).each( function() {
                     var i = $( 'table.widefat tbody tr' ).index( this );
-                    if ( i%2 === 0 ) {
+                    if ( 0 === i%2 ) {
                         $( this ).addClass( 'alternate' );
                     } else {
                         $( this ).removeClass( 'alternate' );
