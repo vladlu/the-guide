@@ -1,5 +1,5 @@
 /**
- * Functionality for tour meta boxes.
+ * Functionality for the tour meta boxes.
  *
  * @author Vladislav Luzan
  * @since 0.1.0
@@ -13,7 +13,7 @@ jQuery( $ => {
 
 
     /**
-     * When Activation Method is changed.
+     * When tour Activation Method is changed.
      *
      * @since 0.1.0
      *
@@ -38,11 +38,10 @@ jQuery( $ => {
             $( '.the-guide-activation-selectors' ).css('display', 'flex');
         }
     });
-    $selectActivationMethod.change();
 
 
     /**
-     * When Tour Controller Position is changed.
+     * When tour Controller Position is changed.
      *
      * @since 0.1.0
      *
@@ -59,5 +58,4 @@ jQuery( $ => {
             $( '.the-guide-controller-position-floating' ).show();
         }
     });
-    $selectControllerMethod.change();
 });

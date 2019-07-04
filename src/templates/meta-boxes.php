@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-<!-- Activation method -->
+<!-- Activation Method -->
 <div class="the-guide-tour-activation">
 
 	<!-- Selector -->
@@ -49,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="the-guide-flex-title">
 			<label class="the-guide-bold" for="the-guide-select-activation-method">
-				<?php esc_html_e( 'Activation method', 'the-guide' ) ?>
+				<?php esc_html_e( 'Activation Method', 'the-guide' ) ?>
 			</label>
 		</div>
 
@@ -78,7 +78,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 	<!-- Floating block -->
-	<div class="the-guide-activation-floating the-guide-hidden">
+	<div class="the-guide-activation-floating <?php if ( 'floating' !== $activation_method_itself ) { echo 'the-guide-hidden'; } ?>">
 
 		<!-- Text -->
 		<div class="the-guide-flex-container">
@@ -150,7 +150,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 	<!-- On click -->
-	<div class="the-guide-flex-container the-guide-activation-selectors the-guide-hidden">
+	<div class="the-guide-flex-container the-guide-activation-selectors <?php if ( 'on-click' !== $activation_method_itself ) { echo 'the-guide-hidden'; } ?>">
 		<div class="the-guide-flex-title">
 			<label for="the-guide-activation-selectors">
 				<?php esc_html_e( 'Selectors', 'the-guide' ) ?>
@@ -171,13 +171,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-<!-- Tour controller position -->
+<!-- Tour Controller Position -->
 <div class="the-guide-controller-position">
 
     <div class="the-guide-flex-container">
         <div class="the-guide-flex-title">
             <label class="the-guide-bold" for="the-guide-select-controller-method">
-				<?php esc_html_e( 'Tour controller position', 'the-guide' ) ?>
+				<?php esc_html_e( 'Tour Controller Position', 'the-guide' ) ?>
             </label>
         </div>
         <div class="the-guide-flex-input">
@@ -199,7 +199,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
     <!-- Floating -->
-    <div class="the-guide-controller-position-floating the-guide-hidden">
+    <div class="the-guide-controller-position-floating <?php if ( 'on-click' !== $activation_method_itself ) { echo 'floating'; } ?>">
         <div class="the-guide-flex-container">
 
             <label class="the-guide-flex-item-text" for="the-guide-controller-position-top">
