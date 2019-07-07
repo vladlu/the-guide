@@ -1,0 +1,21 @@
+
+/*
+ * Resets all styles (primarily the styles of the theme).
+ */
+
+#the-guide {
+    all: initial;
+}
+#the-guide * {
+    all: unset;
+}
+
+/*
+ * Some styles.
+ */
+
+#the-guide .the-guide-shadow {
+    position:    absolute;
+    z-index:     1000;
+    box-shadow:  0 0 0 100000px rgba(0,0,0,.85);
+}
