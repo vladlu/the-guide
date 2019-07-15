@@ -84,20 +84,6 @@ class The_Guide_Admin_Assets {
 
 
 		/**
-		 * General
-		 *
-		 *      Babel Polyfill
-		 */
-		wp_enqueue_script(
-			'the-guide-script-babel-polyfill',
-			THE_GUIDE_URL . 'libs/babel-polyfill/babel-polyfill.js',
-			[],
-			THE_GUIDE_VERSION
-		);
-
-
-
-		/**
 		 * Tours List Table
 		 *
 		 *      CSS

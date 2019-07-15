@@ -18,12 +18,6 @@ webpack		admin/styles/tours-list-table.css
 # Libraries
 
 
-## babel-polyfill
-
-
-copy		[m]/@babel/polyfill/dist/polyfill.min.js	libs/babel-polyfill/babel-polyfill.js
-
-
 ## CodeMirror
 
 

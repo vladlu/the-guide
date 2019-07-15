@@ -98,16 +98,6 @@ class The_Guide_Public_Assets {
 
 
 		/**
-		 * Babel Polyfill.
-		 */
-		wp_enqueue_script(
-			'the-guide-script-babel-polyfill',
-			THE_GUIDE_URL . 'libs/babel-polyfill/babel-polyfill.js',
-			[],
-			THE_GUIDE_VERSION
-		);
-
-		/**
 		 * jQuery UI Touch Punch.
 		 */
 		wp_enqueue_script(
