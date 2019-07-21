@@ -103,7 +103,7 @@ class The_Guide_Meta_Boxes {
 
 
 		/*
-         * Enabled (checkbox)
+         * Enabled (checkbox).
          */
 
 		if ( isset( $_POST['the-guide-is-enabled'] ) ) {
@@ -114,7 +114,7 @@ class The_Guide_Meta_Boxes {
 
 
 		/*
-         * Activation Method
+         * Activation Method.
          */
 
 		update_post_meta( $post_id, 'the-guide-activation-method-and-its-data', [
@@ -132,7 +132,7 @@ class The_Guide_Meta_Boxes {
 
 
 		/*
-         * Tour controller position
+         * Tour controller position.
          */
 
 		update_post_meta( $post_id, 'the-guide-controller-method-and-its-data', [
@@ -147,7 +147,7 @@ class The_Guide_Meta_Boxes {
 
 
 		/*
-         * Tour URL
+         * Tour URL.
          */
 
 		$url_with_no_proto = preg_replace("(^https?://)", "", $_POST['the-guide-url'] );
@@ -155,7 +155,7 @@ class The_Guide_Meta_Boxes {
 
 
 		/*
-         * Selected elements (steps)
+         * Selected elements (steps).
          */
 
 		// Translates a comma-separated string into an array.
@@ -164,7 +164,7 @@ class The_Guide_Meta_Boxes {
 
 
 		/*
-		 * Steps content
+		 * Steps content.
 		 */
 
 		$steps_content = [];

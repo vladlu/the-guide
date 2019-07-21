@@ -130,7 +130,7 @@ textarea {
     margin: 0.6em 0;
   }
 }
-/* Resets styles */
+/* Resets styles. */
 #the-guide-tour-data textarea {
   margin-left: 0 !important;
 }

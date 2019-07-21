@@ -107,13 +107,13 @@ class The_Guide_Misc {
 	private function custom_bulk_actions() {
 
 		/*
-		 * Enable
+		 * Enable.
 		 */
 
 		add_filter( 'bulk_actions-edit-the-guide', function( $bulk_actions ) {
 
 			/*
-             * Adds
+             * Adds.
              */
 
 			$bulk_actions['enable'] = __( 'Enable', 'the-guide' );
@@ -129,7 +129,7 @@ class The_Guide_Misc {
 			}
 			foreach ( $post_ids as $post_id ) {
 				/*
-                 * Adds a tour to enabled
+                 * Adds a tour to enabled.
                  */
 				update_post_meta( $post_id, 'the-guide-is-enabled', 1 );
 			}
@@ -151,13 +151,13 @@ class The_Guide_Misc {
 		} );
 
 		/*
-		 * Disable
+		 * Disable.
 		 */
 
 		add_filter( 'bulk_actions-edit-the-guide', function( $bulk_actions ) {
 
 			/*
-			 * Adds
+			 * Adds.
 			 */
 
 			$bulk_actions['disable'] = __( 'Disable', 'the-guide' );
@@ -173,7 +173,7 @@ class The_Guide_Misc {
 			}
 			foreach ( $post_ids as $post_id ) {
 				/*
-				 * Removes a tour from enabled
+				 * Removes a tour from enabled.
 				 */
 				update_post_meta( $post_id, 'the-guide-is-enabled', 0 );
 			}
@@ -195,13 +195,13 @@ class The_Guide_Misc {
 		} );
 
 		/*
-         * Duplicate
+         * Duplicate.
          */
 
 		add_filter( 'bulk_actions-edit-the-guide', function( $bulk_actions ) {
 
 			/*
-			 * Adds
+			 * Adds.
 			 */
 
 			$bulk_actions['duplicate'] = __( 'Duplicate', 'the-guide' );
@@ -217,7 +217,7 @@ class The_Guide_Misc {
 			}
 			foreach ( $post_ids as $post_id ) {
 				/*
-				 * Removes a tour from enabled
+				 * Removes a tour from enabled.
 				 */
 				the_guide_duplicate_post( $post_id );
 			}

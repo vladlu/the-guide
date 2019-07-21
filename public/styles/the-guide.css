@@ -14,7 +14,7 @@
 }
 
 #the-guide .the-guide-floating-block {
-  /* Better don't edit this "position" */
+  /* Better don't edit this "position". */
   position: fixed;
   /*
   * The default position of the element.
@@ -72,7 +72,7 @@
 }
 
 #the-guide #the-guide-modal-floating {
-  /* Better don't edit this "position" */
+  /* Better don't edit this "position". */
   position: fixed;
   /* The default position of the element. */
   top: 7.5%;

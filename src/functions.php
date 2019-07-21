@@ -39,7 +39,7 @@ function the_guide_duplicate_post( $post_id ) {
 
 
 	/*
-	 * New post data array
+	 * New post data array.
 	 */
 	$args = [
 		'comment_status' => $post->comment_status,
@@ -58,12 +58,12 @@ function the_guide_duplicate_post( $post_id ) {
 	];
 
 	/*
-	 * Insert the post by wp_insert_post() function
+	 * Insert the post by wp_insert_post() function.
 	 */
 	$new_post_id = wp_insert_post( $args );
 
 	/*
-	 * Get all current post terms ad set them to the new post draft
+	 * Get all current post terms ad set them to the new post draft.
 	 */
 	$taxonomies = get_object_taxonomies( $post->post_type ); // Returns array of taxonomy names for post type, ex array("category", "post_tag").
 	foreach ( $taxonomies as $taxonomy ) {
@@ -72,7 +72,7 @@ function the_guide_duplicate_post( $post_id ) {
 	}
 
 	/*
-	 * Duplicate all post meta just in two SQL queries
+	 * Duplicate all post meta just in two SQL queries.
 	 */
 	$post_meta_infos = $wpdb->get_results( "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id" );
 	if ( 0 !== count( $post_meta_infos ) ) {
