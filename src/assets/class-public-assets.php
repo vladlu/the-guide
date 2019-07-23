@@ -9,7 +9,6 @@
  * @since 0.1.3
  */
 
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,8 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 0.1.0
  */
 class The_Guide_Public_Assets {
-	
-	
+
 	/**
 	 * Settings object.
 	 *
@@ -44,7 +42,6 @@ class The_Guide_Public_Assets {
 	public $assets_suffix;
 
 
-
 	/**
 	 * Constructor.
 	 *
@@ -53,12 +50,11 @@ class The_Guide_Public_Assets {
 	 * @param The_Guide_Settings $settings_inst Settings Object.
 	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
-		$this->settings = $settings_inst;
+		$this->settings      = $settings_inst;
 		$this->assets_suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'load_public_assets' ] );
 	}
-
 
 
 	/**
@@ -67,7 +63,6 @@ class The_Guide_Public_Assets {
 	 * @since 0.1.0
 	 */
 	public function load_public_assets() {
-
 
 		/**
 		 * CSS.
@@ -85,7 +80,6 @@ class The_Guide_Public_Assets {
 			THE_GUIDE_VERSION
 		);
 
-
 		/**
 		 * JS.
 		 */
@@ -93,9 +87,9 @@ class The_Guide_Public_Assets {
 			'the-guide-script-public',
 			THE_GUIDE_URL . 'public/scripts/the-guide' . $this->assets_suffix . '.js',
 			[ 'jquery-ui-draggable' ],
-			THE_GUIDE_VERSION
+			THE_GUIDE_VERSION,
+			false
 		);
-
 
 		/**
 		 * jQuery UI Touch Punch.
@@ -104,21 +98,25 @@ class The_Guide_Public_Assets {
 			'the-guide-script-jquery.ui.touch-punch',
 			THE_GUIDE_URL . 'libs/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js',
 			[ 'jquery-ui-draggable', 'the-guide-script-public' ],
-			THE_GUIDE_VERSION
+			THE_GUIDE_VERSION,
+			false
 		);
-
 
 		/**
 		 * Data to JS.
 		 */
-		wp_localize_script( 'the-guide-script-public', 'theGuide', [
-			'translates' => [
-				'start'     => __( 'Start the tour', 'the-guide' ),
-				'previous'  => __( 'Previous',       'the-guide' ),
-				'next'      => __( 'Next',           'the-guide' ),
-				'finish'    => __( 'Finish',         'the-guide' )
-			],
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-		] );
+		wp_localize_script(
+			'the-guide-script-public',
+			'theGuide',
+			[
+				'translates' => [
+					'start'    => __( 'Start the tour', 'the-guide' ),
+					'previous' => __( 'Previous',       'the-guide' ),
+					'next'     => __( 'Next',           'the-guide' ),
+					'finish'   => __( 'Finish',         'the-guide' ),
+				],
+				'ajaxurl'    => admin_url( 'admin-ajax.php' ),
+			]
+		);
 	}
 }

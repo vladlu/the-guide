@@ -6,7 +6,6 @@
  * @since 0.1.3
  */
 
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -23,10 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function the_guide_duplicate_post( $post_id ) {
 	global $wpdb;
 
-
 	$post = get_post( $post_id );
-
-
 
 	/*
 	 * Verifications.
@@ -35,8 +31,6 @@ function the_guide_duplicate_post( $post_id ) {
 	if ( ! isset( $post ) || null === $post ) {
 		return;
 	}
-
-
 
 	/*
 	 * New post data array.
@@ -54,16 +48,16 @@ function the_guide_duplicate_post( $post_id ) {
 		'post_title'     => $post->post_title,
 		'post_type'      => $post->post_type,
 		'to_ping'        => $post->to_ping,
-		'menu_order'     => $post->menu_order
+		'menu_order'     => $post->menu_order,
 	];
 
 	/*
-	 * Insert the post by wp_insert_post() function.
+	 * Inserts the post by wp_insert_post() function.
 	 */
 	$new_post_id = wp_insert_post( $args );
 
 	/*
-	 * Get all current post terms ad set them to the new post draft.
+	 * Gets all current post terms ad set them to the new post draft.
 	 */
 	$taxonomies = get_object_taxonomies( $post->post_type ); // Returns array of taxonomy names for post type, ex array("category", "post_tag").
 	foreach ( $taxonomies as $taxonomy ) {
@@ -72,7 +66,7 @@ function the_guide_duplicate_post( $post_id ) {
 	}
 
 	/*
-	 * Duplicate all post meta just in two SQL queries.
+	 * Duplicates all post meta just in two SQL queries.
 	 */
 	$post_meta_infos = $wpdb->get_results( "SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id" );
 	if ( 0 !== count( $post_meta_infos ) ) {
@@ -89,7 +83,7 @@ function the_guide_duplicate_post( $post_id ) {
 			$sql_query_sel[] = "SELECT $new_post_id, '$meta_key', '$meta_value'";
 		}
 
-		$sql_query .= implode( " UNION ALL ", $sql_query_sel );
+		$sql_query .= implode( ' UNION ALL ', $sql_query_sel );
 		$wpdb->query( $sql_query );
 	}
 }

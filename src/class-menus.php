@@ -8,7 +8,6 @@
  * @since 0.1.3
  */
 
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,7 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class The_Guide_Menus {
 
-
 	/**
 	 * Settings object.
 	 *
@@ -30,7 +28,6 @@ class The_Guide_Menus {
 	 * @var The_Guide_Settings $settings
 	 */
 	private $settings;
-
 
 
 	/**
@@ -46,7 +43,6 @@ class The_Guide_Menus {
 		// Inits dashboard menus.
 		add_action( 'admin_menu', [ $this, 'init_dashboard_menus' ] );
 	}
-
 
 
 	/**

@@ -6,7 +6,6 @@
  * @since 0.1.3
  */
 
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -20,7 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class The_Guide_Shortcodes {
 
-
 	/**
 	 * Constructor.
 	 *
@@ -30,7 +28,6 @@ class The_Guide_Shortcodes {
 		// It's impossible to use is_singular() before WP object is initialized.
 		add_action( 'wp', [ $this, 'init_shortcodes' ] );
 	}
-
 
 
 	/**
@@ -51,7 +48,6 @@ class The_Guide_Shortcodes {
 			$post->post_content = do_shortcode( $content );
 		}
 	}
-
 
 
 	/**
@@ -98,7 +94,6 @@ class The_Guide_Shortcodes {
 		}
 
 	}
-
 
 
 	/**

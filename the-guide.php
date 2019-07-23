@@ -13,7 +13,6 @@
  * @author  Vladislav Luzan <hey@vlad.lu>
  */
 
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -45,25 +44,28 @@ final class The_Guide {
 	public function __construct() {
 		$this->define_constants();
 		$this->import_files();
-		add_action( 'init', function () {
-			$this->settings = new The_Guide_Settings;
+		add_action(
+			'init',
+			function () {
+				$this->settings = new The_Guide_Settings();
 
-			new The_Guide_Misc( $this->settings );
-			new The_Guide_Shortcodes();
-			if ( wp_doing_ajax() ) {
-				new The_Guide_Ajax( $this->settings );
+				new The_Guide_Misc( $this->settings );
+				new The_Guide_Shortcodes();
+				if ( wp_doing_ajax() ) {
+					new The_Guide_Ajax( $this->settings );
+				}
+				if ( is_admin() ) {
+					new The_Guide_Admin_Assets();
+					new The_Guide_Menus       ( $this->settings );
+					new The_Guide_Meta_Boxes  ( $this->settings );
+					new The_Guide_Columns     ( $this->settings );
+					new The_Guide_Quick_Edit  ( $this->settings );
+					new The_Guide_Prioritize();
+				} else {
+					new The_Guide_Public_Assets( $this->settings );
+				}
 			}
-			if ( is_admin() ) {
-				new The_Guide_Admin_Assets();
-				new The_Guide_Menus       ( $this->settings );
-				new The_Guide_Meta_Boxes  ( $this->settings );
-				new The_Guide_Columns     ( $this->settings );
-				new The_Guide_Prioritize();
-				new The_Guide_Quick_Edit  ( $this->settings );
-			} else {
-				new The_Guide_Public_Assets( $this->settings );
-			}
-		} );
+		);
 	}
 
 
@@ -82,7 +84,6 @@ final class The_Guide {
 		 */
 		define( 'THE_GUIDE_URL', plugin_dir_url( __FILE__ ) );
 
-
 		/**
 		 * The filesystem directory path to the plugin.
 		 *
@@ -91,14 +92,13 @@ final class The_Guide {
 		 */
 		define( 'THE_GUIDE_DIR', plugin_dir_path( __FILE__ ) );
 
-
 		/**
 		 * The version of the plugin.
 		 *
 		 * @since 0.1.0
 		 * @var string THE_GUIDE_URL
 		 */
-		define( 'THE_GUIDE_VERSION', get_file_data( __FILE__, ['Version'] )[0] );
+		define( 'THE_GUIDE_VERSION', get_file_data( __FILE__, [ 'Version' ] )[0] );
 	}
 
 
@@ -109,7 +109,6 @@ final class The_Guide {
 	 */
 	private function import_files() {
 		require_once THE_GUIDE_DIR . 'src/functions.php';
-
 		require_once THE_GUIDE_DIR . 'src/class-ajax.php';
 		require_once THE_GUIDE_DIR . 'src/class-columns.php';
 		require_once THE_GUIDE_DIR . 'src/class-menus.php';

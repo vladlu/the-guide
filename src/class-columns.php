@@ -8,7 +8,6 @@
  * @since 0.1.3
  */
 
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,7 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class The_Guide_Columns {
 
-
 	/**
 	 * Settings object.
 	 *
@@ -32,13 +30,12 @@ class The_Guide_Columns {
 	private $settings;
 
 
-
 	/**
 	 * Constructor.
 	 *
 	 * @since 0.1.0
 	 *
-     * @param The_Guide_Settings $settings_inst Settings Object.
+	 * @param The_Guide_Settings $settings_inst Settings Object.
 	 */
 	public function __construct( The_Guide_Settings $settings_inst ) {
 		$this->settings = $settings_inst;
@@ -48,14 +45,13 @@ class The_Guide_Columns {
 	}
 
 
-
 	/**
 	 * Adds new columns and rearranges the old columns.
 	 *
 	 * @since 0.1.0
 	 *
-     * @param  array $columns The list of columns.
-     * @return array          The list of columns.
+	 * @param  array $columns The list of columns.
+	 * @return array          The list of columns.
 	 */
 	public function columns( $columns ) {
 
@@ -63,19 +59,18 @@ class The_Guide_Columns {
 
 		unset( $columns['date'] );
 
-        // Adds columns.
+		// Adds columns.
 
 		$new_columns = [
-			'url'     =>  __( 'URL',     'the-guide' ),
-			'steps'   =>  __( 'Steps',   'the-guide' ),
-			'enabled' =>  __( 'Enabled', 'the-guide' ),
+			'url'     => __( 'URL',     'the-guide' ),
+			'steps'   => __( 'Steps',   'the-guide' ),
+			'enabled' => __( 'Enabled', 'the-guide' ),
 
-			'date' => __( 'Date' )  // Moves it back to the end.
+			'date'    => __( 'Date' ),  // Moves it back to the end.
 		];
 
 		return array_merge( $columns, $new_columns );
 	}
-
 
 
 	/**
@@ -83,7 +78,7 @@ class The_Guide_Columns {
 	 *
 	 * @since 0.1.0
 	 *
-     * @param string $column  The name of the column
+	 * @param string $column  The name of the column.
 	 * @param int    $post_id The ID of the post.
 	 */
 	public function custom_column( $column, $post_id ) {
@@ -94,22 +89,22 @@ class The_Guide_Columns {
 				break;
 			case 'steps':
 				?>
-                    <ol class="the-guide-steps" data-steps="
-                        <?php
-                            $steps = get_post_meta( $post_id, 'the-guide-steps', true );
-                            echo implode( ',', $steps );
-                        ?>
-                    ">
-                        <li><?php echo implode( '</li><li>', $steps ) ?></li>
-                    </ol>
+					<ol class="the-guide-steps" data-steps="
+						<?php
+							$steps = get_post_meta( $post_id, 'the-guide-steps', true );
+							echo esc_attr( implode( ',', $steps ) );
+						?>
+					">
+						<li><?php echo esc_attr( implode( '</li><li>', $steps ) ); ?></li>
+					</ol>
 				<?php
 
 				break;
 			case 'enabled':
 				?>
-                <input
-					<?php checked( get_post_meta( $post_id, 'the-guide-is-enabled', true ) ) ?>
-                disabled class="the-guide-is-enabled" type="checkbox">
+				<input
+					<?php checked( get_post_meta( $post_id, 'the-guide-is-enabled', true ) ); ?>
+				disabled class="the-guide-is-enabled" type="checkbox">
 				<?php
 
 				break;

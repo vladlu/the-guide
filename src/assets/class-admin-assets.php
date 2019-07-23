@@ -9,7 +9,6 @@
  * @since 0.1.3
  */
 
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -23,7 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class The_Guide_Admin_Assets {
 
-	
 	/**
 	 * Suffix for assets.
 	 *
@@ -35,7 +33,6 @@ class The_Guide_Admin_Assets {
 	public $assets_suffix;
 
 
-
 	/**
 	 * Constructor.
 	 *
@@ -43,10 +40,9 @@ class The_Guide_Admin_Assets {
 	 */
 	public function __construct() {
 		$this->assets_suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-		
+
 		$this->load_admin_assets();
 	}
-
 
 
 	/**
@@ -61,15 +57,11 @@ class The_Guide_Admin_Assets {
 		 */
 		add_action( 'admin_enqueue_scripts', [ $this, 'load_general_assets' ] );
 
-
 		/**
 		 * Customize menu.
 		 */
-		add_action( 'load-the-guide_page_the-guide-customize', [
-			$this, 'load_menu_customize_assets'
-		] );
+		add_action( 'load-the-guide_page_the-guide-customize', [ $this, 'load_menu_customize_assets' ] );
 	}
-
 
 
 	/**
@@ -81,7 +73,6 @@ class The_Guide_Admin_Assets {
 	 * @since 0.1.0
 	 */
 	public function load_general_assets() {
-
 
 		/**
 		 * Tours List Table
@@ -95,7 +86,6 @@ class The_Guide_Admin_Assets {
 			THE_GUIDE_VERSION
 		);
 
-
 		/**
 		 *      JS
 		 */
@@ -103,18 +93,20 @@ class The_Guide_Admin_Assets {
 			'the-guide-script-admin-tours-list-table',
 			THE_GUIDE_URL . 'admin/scripts/tours-list-table' . $this->assets_suffix . '.js',
 			[ 'jquery-ui-sortable' ],
-			THE_GUIDE_VERSION
+			THE_GUIDE_VERSION,
+			false
 		);
-
 
 		/**
 		 *      Data to JS
 		 */
-		wp_localize_script( 'the-guide-script-admin-tours-list-table', 'theGuide', [
-			'nonceTokenReorderTours' => wp_create_nonce( 'the-guide-reorder-tours' ),
-		] );
-
-
+		wp_localize_script(
+			'the-guide-script-admin-tours-list-table',
+			'theGuide',
+			[
+				'nonceTokenReorderTours' => wp_create_nonce( 'the-guide-reorder-tours' ),
+			]
+		);
 
 		/**
 		 * Add/Edit Tour
@@ -128,7 +120,6 @@ class The_Guide_Admin_Assets {
 			THE_GUIDE_VERSION
 		);
 
-
 		/*
 		 *      JS
 		 */
@@ -136,10 +127,10 @@ class The_Guide_Admin_Assets {
 			'the-guide-script-admin-meta-boxes',
 			THE_GUIDE_URL . 'admin/scripts/meta-boxes' . $this->assets_suffix . '.js',
 			[],
-			THE_GUIDE_VERSION
+			THE_GUIDE_VERSION,
+			false
 		);
 	}
-
 
 
 	/**
@@ -149,17 +140,15 @@ class The_Guide_Admin_Assets {
 	 */
 	public function load_menu_customize_assets() {
 
-
 		/**
 		 * CSS
 		 */
 		wp_enqueue_style(
 			'the-guide-style-admin-menu-customize',
-			THE_GUIDE_URL . 'admin/styles/menu-customize' . $this->assets_suffix .  '.css',
+			THE_GUIDE_URL . 'admin/styles/menu-customize' . $this->assets_suffix . '.css',
 			[],
 			THE_GUIDE_VERSION
 		);
-
 
 		/**
 		 * JS
@@ -168,9 +157,9 @@ class The_Guide_Admin_Assets {
 			'the-guide-script-admin-menu-customize',
 			THE_GUIDE_URL . 'admin/scripts/menu-customize' . $this->assets_suffix . '.js',
 			[ 'jquery' ],
-			THE_GUIDE_VERSION
+			THE_GUIDE_VERSION,
+			false
 		);
-
 
 		/**
 		 * Codemirror
@@ -179,14 +168,16 @@ class The_Guide_Admin_Assets {
 			'the-guide-script-admin-customize-codemirror-main',
 			THE_GUIDE_URL . 'libs/codemirror/codemirror.js',
 			[],
-			THE_GUIDE_VERSION
+			THE_GUIDE_VERSION,
+			false
 		);
 
 		wp_enqueue_script(
 			'the-guide-script-admin-customize-codemirror-css',
 			THE_GUIDE_URL . 'libs/codemirror/css.js',
 			[],
-			THE_GUIDE_VERSION
+			THE_GUIDE_VERSION,
+			false
 		);
 
 		wp_enqueue_style(
@@ -196,12 +187,15 @@ class The_Guide_Admin_Assets {
 			THE_GUIDE_VERSION
 		);
 
-
 		/**
 		 * Data to JS
 		 */
-		wp_localize_script( 'the-guide-script-admin-menu-customize', 'theGuide', [
-			'nonceToken' => wp_create_nonce( 'the-guide-menu-customize' ),
-		] );
+		wp_localize_script(
+			'the-guide-script-admin-menu-customize',
+			'theGuide',
+			[
+				'nonceToken' => wp_create_nonce( 'the-guide-menu-customize' ),
+			]
+		);
 	}
 }

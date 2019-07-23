@@ -6,7 +6,6 @@
  * @since 0.1.3
  */
 
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -20,7 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class The_Guide_Ajax {
 
-
 	/**
 	 * Settings object.
 	 *
@@ -28,7 +26,6 @@ class The_Guide_Ajax {
 	 * @var The_Guide_Settings $settings
 	 */
 	private $settings;
-
 
 
 	/**
@@ -44,7 +41,6 @@ class The_Guide_Ajax {
 	}
 
 
-
 	/**
 	 * Loads public assets.
 	 *
@@ -55,27 +51,23 @@ class The_Guide_Ajax {
 		$ajax_events_nopriv = [
 			'public_init',
 			'public_get_tour_data_by_id',
-			'public_get_custom_css'
+			'public_get_custom_css',
 		];
-
 
 		foreach ( $ajax_events_nopriv as $ajax_event ) {
 			add_action( 'wp_ajax_the_guide_'        . $ajax_event, [ $this, $ajax_event ] );
 			add_action( 'wp_ajax_nopriv_the_guide_' . $ajax_event, [ $this, $ajax_event ] );
 		}
 
-
 		$ajax_events = [
 			'reorder_tours',
-			'save_custom_css'
+			'save_custom_css',
 		];
-
 
 		foreach ( $ajax_events as $ajax_event ) {
 			add_action( 'wp_ajax_the_guide_' . $ajax_event, [ $this, $ajax_event ] );
 		}
 	}
-
 
 
 	/**
@@ -89,7 +81,6 @@ class The_Guide_Ajax {
 	 * @since 0.1.0
 	 */
 	public function public_init() {
-
 		/*
 		 * Verifications.
 		 */
@@ -98,28 +89,27 @@ class The_Guide_Ajax {
 			wp_die();
 		}
 
-
-
 		$current_url = $_POST['url'];
 
 		$all_enabled_tours_for_this_url     = [];
 		$first_enabled_tour_id_for_this_url = null;
 		$is_there_an_enabled_tour           = false;
 
-
-		$all_enabled_tours = new WP_Query( [
-			'post_type'      => 'the-guide',
-			'posts_per_page' => -1,
-			'meta_query'     => [
-				[
-					'key'     => 'the-guide-is-enabled',
-					'value'   => 1,
-					'compare' => '=',
-				]
-			],
-			'orderby' => 'menu_order title',
-			'order'   => 'ASC'
-		] );
+		$all_enabled_tours = new WP_Query(
+			[
+				'post_type'      => 'the-guide',
+				'posts_per_page' => -1,
+				'meta_query'     => [
+					[
+						'key'     => 'the-guide-is-enabled',
+						'value'   => 1,
+						'compare' => '=',
+					],
+				],
+				'orderby'        => 'menu_order title',
+				'order'          => 'ASC',
+			]
+		);
 
 		if ( $all_enabled_tours->have_posts() ) {
 			while ( $all_enabled_tours->have_posts() ) {
@@ -131,7 +121,7 @@ class The_Guide_Ajax {
 				if (
 					'publish' === get_post_status( $tour_id ) && // Only published tours.
 					// Removes protocols.
-					$tour_url === preg_replace("(^https?://)", "", $current_url ) // Only tours that match the URL.
+					preg_replace( '(^https?://)', '', $current_url ) === $tour_url // Only tours that match the URL.
 				) {
 					if ( ! $first_enabled_tour_id_for_this_url ) {
 						$first_enabled_tour_id_for_this_url = $tour_id;
@@ -145,19 +135,18 @@ class The_Guide_Ajax {
 			wp_reset_postdata();
 		}
 
-
-		// Shortcode: the-guide-launch
+		// Shortcode: the-guide-launch.
 		if (
 			defined( 'THE_GUIDE_DOING_SHORTCODE_LAUNCH' ) &&
 			defined( 'THE_GUIDE_SHORTCODE_LAUNCH_ID'    ) &&
-			defined( 'THE_GUIDE_SHORTCODE_LAUNCH_STEP' )
+			defined( 'THE_GUIDE_SHORTCODE_LAUNCH_STEP'  )
 		) {
 			$the_guide_data = [
 				'allEnabledToursForThisURL' => $all_enabled_tours_for_this_url,
 				'tourID'                    => THE_GUIDE_SHORTCODE_LAUNCH_ID,
-				'elemIndex'                 => THE_GUIDE_SHORTCODE_LAUNCH_STEP - 1
+				'elemIndex'                 => THE_GUIDE_SHORTCODE_LAUNCH_STEP - 1,
 			];
-		// Shortcode: the-guide-go
+		// Shortcode: the-guide-go.
 		} elseif (
 			defined( 'THE_GUIDE_DOING_SHORTCODE_GO' ) &&
 			defined( 'THE_GUIDE_SHORTCODE_GO_STEP' )
@@ -165,7 +154,7 @@ class The_Guide_Ajax {
 			$the_guide_data = [
 				'allEnabledToursForThisURL' => $all_enabled_tours_for_this_url,
 				'tourID'                    => $first_enabled_tour_id_for_this_url,
-				'elemIndex'                 => THE_GUIDE_SHORTCODE_GO_STEP - 1
+				'elemIndex'                 => THE_GUIDE_SHORTCODE_GO_STEP - 1,
 			];
 		// Without shortcodes.
 		} elseif (
@@ -174,32 +163,30 @@ class The_Guide_Ajax {
 			$the_guide_data = [
 				'allEnabledToursForThisURL' => $all_enabled_tours_for_this_url,
 				'tourID'                    => $first_enabled_tour_id_for_this_url,
-				'elemIndex'                 => 0
+				'elemIndex'                 => 0,
 			];
 		}
 
-
 		if ( isset( $the_guide_data ) ) {
-
 			/*
 			 * Adds nonce.
 			 */
-			$the_guide_data = array_merge($the_guide_data, [
-				'nonceTokenGetTourDataByID' => wp_create_nonce( 'the-guide-get-tour-data-by-id' ),
-				'nonceTokenGetCustomCSS'    => wp_create_nonce( 'the-guide-get-custom-css' ),
-			]);
+			$the_guide_data = array_merge(
+				$the_guide_data,
+				[
+					'nonceTokenGetTourDataByID' => wp_create_nonce( 'the-guide-get-tour-data-by-id' ),
+					'nonceTokenGetCustomCSS'    => wp_create_nonce( 'the-guide-get-custom-css' ),
+				]
+			);
 
 			/*
 			 * Returns.
 			 */
-			echo json_encode( $the_guide_data );
+			echo wp_json_encode( $the_guide_data );
 		}
-
-
 
 		wp_die();
 	}
-
 
 
 	/**
@@ -211,13 +198,10 @@ class The_Guide_Ajax {
 	 * @since 0.1.0
 	 */
 	public function public_get_tour_data_by_id() {
-
 		/*
 		 * Nonce check.
 		 */
 		check_ajax_referer( 'the-guide-get-tour-data-by-id', 'nonceToken' );
-
-
 
 		$the_tour_data = [];
 
@@ -226,39 +210,30 @@ class The_Guide_Ajax {
 		$the_tour_data['activationMethodAndItsData'] = get_post_meta( $_POST['id'], 'the-guide-activation-method-and-its-data', true );
 		$the_tour_data['controllerMethodAndItsData'] = get_post_meta( $_POST['id'], 'the-guide-controller-method-and-its-data', true );
 
-		echo json_encode( $the_tour_data );
-
-
+		echo wp_json_encode( $the_tour_data );
 
 		wp_die();
 	}
-
 
 
 	/**
 	 * Get the custom css (that was added on the customize menu).
 	 *
-     * Accepts: $_POST['nonceToken'].
+	 * Accepts: $_POST['nonceToken'].
 	 *
 	 * @since 0.1.0
-     */
+	 */
 	public function public_get_custom_css() {
-
 		/*
-         * Nonce check.
-         */
+		 * Nonce check.
+		 */
 		check_ajax_referer( 'the-guide-get-custom-css', 'nonceToken' );
-
-
 
 		$custom_css = $this->settings->get_plugin_setting( 'custom-css' );
 		echo $custom_css;
 
-
-
 		wp_die();
 	}
-
 
 
 	/**
@@ -270,21 +245,15 @@ class The_Guide_Ajax {
 	 * @since 0.1.0
 	 */
 	public function save_custom_css() {
-
 		/*
-         * Nonce check.
-         */
+		 * Nonce check.
+		 */
 		check_ajax_referer( 'the-guide-menu-customize', 'nonceToken' );
 
-
-
-		$this->settings->save_plugin_setting( 'custom-css', stripslashes( $_POST['customCSS'] ) );
-
-
+		$this->settings->save_plugin_setting( 'custom-css', wp_unslash( $_POST['customCSS'] ) );
 
 		wp_die();
 	}
-
 
 
 	/**
@@ -305,8 +274,6 @@ class The_Guide_Ajax {
 	public function reorder_tours() {
 		global $wpdb;
 
-
-
 		/*
 		 * Verifications.
 		 */
@@ -317,13 +284,14 @@ class The_Guide_Ajax {
 			wp_die( -1 );
 		}
 
-
-
-		$sorting_id  = absint( $_POST['id'] );
-		$previd      = absint( isset( $_POST['previd'] ) ? $_POST['previd'] : 0 );
-		$nextid      = absint( isset( $_POST['nextid'] ) ? $_POST['nextid'] : 0 );
-		$menu_orders = wp_list_pluck( $wpdb->get_results( "SELECT ID, menu_order FROM {$wpdb->posts} WHERE post_type = 'the-guide' ORDER BY menu_order ASC, post_title ASC" ), 'menu_order', 'ID' );
-		$index       = 0;
+		$sorting_id       = absint( $_POST['id'] );
+		$previd           = absint( isset( $_POST['previd'] ) ? $_POST['previd'] : 0 );
+		$nextid           = absint( isset( $_POST['nextid'] ) ? $_POST['nextid'] : 0 );
+		$menu_order_query = $wpdb->get_results(
+			"SELECT ID, menu_order FROM {$wpdb->posts} WHERE post_type = 'the-guide' ORDER BY menu_order ASC, post_title ASC"
+		);
+		$menu_orders      = wp_list_pluck( $menu_order_query, 'menu_order', 'ID' );
+		$index            = 0;
 
 		foreach ( $menu_orders as $id => $menu_order ) {
 			$id = absint( $id );
@@ -358,7 +326,6 @@ class The_Guide_Ajax {
 		}
 
 		$wpdb->update( $wpdb->posts, [ 'menu_order' => $menu_orders[ $sorting_id ] ], [ 'ID' => $sorting_id ] );
-
 
 		/**
 		 * When ordering of all tours have been updated.

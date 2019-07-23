@@ -6,7 +6,6 @@
  * @since 0.1.3
  */
 
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -19,7 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 0.1.3
  */
 class The_Guide_Settings {
-
 
 	/**
 	 * Returns the plugin's setting decomposing it from the array of plugin settings (wp option).
@@ -34,7 +32,6 @@ class The_Guide_Settings {
 
 		return isset( $all_settings[ $setting_name ] ) ? $all_settings[ $setting_name ] : '';
 	}
-
 
 	/**
 	 * Adds the plugin's setting composing it to the array of plugin settings (wp option).

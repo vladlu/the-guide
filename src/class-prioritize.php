@@ -9,7 +9,6 @@
  * @since 0.1.3
  */
 
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -23,7 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class The_Guide_Prioritize {
 
-
 	/**
 	 * Constructor.
 	 *
@@ -35,9 +33,8 @@ class The_Guide_Prioritize {
 	}
 
 
-
 	/**
-	 * Change views, adding the prioritizing button.
+	 * Changes views, adding the prioritizing button.
 	 *
 	 * @since 0.1.0
 	 *
@@ -45,11 +42,10 @@ class The_Guide_Prioritize {
 	 * @return array        Array of views.
 	 */
 	public function tours_views( $views ) {
-		// Add a prioritize link.
+		// Adds a prioritize link.
 		if ( current_user_can( 'edit_others_pages' ) ) {
-			$arg_name  = "the-guide-sorting";
-			$arg_value = "true";
-
+			$arg_name  = 'the-guide-sorting';
+			$arg_value = 'true';
 
 			$class               = ( isset( $_REQUEST[ $arg_name ] ) && $arg_value === $_REQUEST[ $arg_name ] ) ? 'current' : '';
 			$prioritize_url      = add_query_arg( $arg_name, rawurlencode( $arg_value ) );
@@ -60,9 +56,8 @@ class The_Guide_Prioritize {
 	}
 
 
-
 	/**
-	 * Change tours sorting based on their priority using "pre_get_posts".
+	 * Changes tours sorting based on their priority using "pre_get_posts".
 	 *
 	 * @since 0.1.0
 	 *
@@ -70,9 +65,10 @@ class The_Guide_Prioritize {
 	 */
 	public function change_sorting( $query ) {
 		$screen = get_current_screen();
-		if ( 'edit'      == $screen->base      &&
-			 'the-guide' == $screen->post_type &&
-		     ! isset( $_GET['orderby'] )
+		if (
+			'edit'      === $screen->base      &&
+			'the-guide' === $screen->post_type &&
+			! isset( $_GET['orderby'] )
 		) {
 			$query->set( 'orderby', 'menu_order title' );
 			$query->set( 'order',   'ASC' );
