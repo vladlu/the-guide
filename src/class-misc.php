@@ -300,7 +300,7 @@ class The_Guide_Misc {
 			7  => __( 'Tour saved.',     'the-guide' ),
 			8  => __( 'Tour submitted.', 'the-guide' ),
 			9  => sprintf(
-				/* translators: %1$s: date and time */
+				/* translators: 1: date and time */
 				__( 'Tour scheduled for: <strong>%1$s</strong>.', 'the-guide' ),
 				date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) )
 			),
