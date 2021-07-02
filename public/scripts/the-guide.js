@@ -443,7 +443,7 @@ class TheGuide {
                 event.stopPropagation();
                 event.preventDefault();
 
-                // Unfocuses the clicked element.
+                // Defocuses the clicked element.
                 event.target.blur();
 
                 // Removes all handlers when user clicks on one of the elements.
