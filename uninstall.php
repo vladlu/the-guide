@@ -5,7 +5,7 @@
  * Deletes The Guide options, posts (tours).
  *
  * @package The Guide
- * @version 2.3.0
+ * @since 0.1.0
  */
 
 // Exit if accessed directly.
