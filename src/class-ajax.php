@@ -42,7 +42,7 @@ class The_Guide_Ajax {
 
 
 	/**
-	 * Loads public assets.
+	 * Adds AJAX events.
 	 *
 	 * @since 0.1.0
 	 */
